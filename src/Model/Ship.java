@@ -28,21 +28,21 @@ public abstract class Ship implements Hittable {
 
 	private void cellsInit() {
 		
-		/*FARE CONTROLLO OUTOFBOUND*/
+		/* TODO FARE CONTROLLO OUTOFBOUND*/
 		
 		if (orientation.equals(ShipOrientation.ORIZZONTALE))
 			for(int i=0;i<length;i++) 
-				cells[i].setLocation(headCell.x +i, headCell.y);
+				cells[i]=new Cell(headCell.x +i,headCell.y);                   
 		else
 			for(int i=0;i<length;i++) 
-				cells[i].setLocation(headCell.x, headCell.y +i);	
+				cells[i]=new Cell(headCell.x,headCell.y+i); 	
 		
 	}
 	
 	@Override
 	public void hit(int x, int y) {
 		
-		/*FARE CONTROLLO OUTOFBOUND*/
+		/* TODO FARE CONTROLLO OUTOFBOUND*/
 		
 		for(int i=0;i<length;i++) {
 			
@@ -67,7 +67,7 @@ public abstract class Ship implements Hittable {
 	@Override
 	public boolean isHit(int x, int y) {
 		
-		/*FARE CONTROLLO OUTOFBOUND*/
+		/* TODO FARE CONTROLLO OUTOFBOUND*/
 		
 		for(int i=0;i<length;i++) 
 			if(cells[i].x == x && cells[i].y == y) 
