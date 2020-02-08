@@ -48,11 +48,6 @@ public class Grid implements Hittable{
 		return cells;
 	}
 
-
-	public void setCells(GridCell[][] cells) {
-		this.cells = cells;
-	}
-
 	
 
 }
