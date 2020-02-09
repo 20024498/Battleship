@@ -1,29 +1,34 @@
 package Model;
 
-public abstract class Ship implements Hittable {
+public class Ship implements Hittable {
 
 	private final ShipType type;
 	private final int length;
 	private Cell[] cells;
 	private ShipState state;
-	private final ShipOrientation orientation;
+	private ShipOrientation orientation;
 	private int health;
 	private Cell headCell;
 	private final String name;
 	
-	public Ship (ShipType type,Cell headCell,ShipOrientation orientation){
+	public Ship (ShipType type){
 		
 		this.type=type;
 		this.name = type.shipName();
 		this.length=type.length();
 		this.health=type.length();
 		this.state=ShipState.ILLESA;
+		this.cells = new Cell[type.length()];
+		this.orientation=ShipOrientation.NESSUNA;
+		this.headCell = new Cell(-1,-1);
+		cells[0]=headCell;
+		
+	}
+	
+	public void setPosition(Cell headCell,ShipOrientation orientation) {
 		this.orientation=orientation;
 		this.headCell=headCell;
-		this.cells = new Cell[type.length()];
 		cellsInit();
-		
-		
 	}
 
 	private void cellsInit() {
