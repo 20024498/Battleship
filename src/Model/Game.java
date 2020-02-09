@@ -7,11 +7,11 @@ public class Game {
 	
 	private HumanPlayer player;
 	private Computer cpu;
-	private Timer timer;
+	private Countdown timer;
 	
 	public Game (Boolean hard) {
 		
-		timer= new Timer();
+		timer= new Countdown();
 		player = new HumanPlayer();
 
 		if(hard)
@@ -19,6 +19,7 @@ public class Game {
 		else
 			cpu = new Computer();
 	}
+	
 	
 	public void playerMove() {
 		Point p;
@@ -29,12 +30,24 @@ public class Game {
 		player.getOppGrid().hit(p.x, p.y);
 		cpu.getMyGrid().hit(p.x, p.y);
 		if(cpu.hasHit(p.x, p.y)) {
-			//cpu.
+			cpu.setHit(p.x, p.y);
 		}
 		
 	}
 	
-	public void cpuMove() {}
+	public void cpuMove() {
+		Point p;
+		do {
+			p = cpu.declareCoord();
+		} while(cpu.getOppGrid().isHit(p.x, p.y));
+		 
+		cpu.getOppGrid().hit(p.x, p.y);
+		player.getMyGrid().hit(p.x, p.y);
+		if(player.hasHit(p.x, p.y)) {
+			player.setHit(p.x, p.y);
+		}
+		
+	}
 	
 	
 }
