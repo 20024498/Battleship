@@ -47,8 +47,8 @@ public abstract class Player {
 	
 	public void setHit(int x, int y) {
 		
-		if(!myGrid.isHit(x, y))
-			myGrid.hit(x, y);
+		/*if(!myGrid.isHit(x, y))
+			myGrid.hit(x, y);*/
 		
 		for(Ship s : ships)
 			if(!s.isHit(x, y)) {
@@ -57,6 +57,37 @@ public abstract class Player {
 					shipsAlive--;
 			}
 					
+	}
+	
+	public void hitOpp (int x, int y) {
+		
+		if(!oppGrid.isHit(x, y))
+		oppGrid.hit(x, y);
+	}
+
+
+	public static int getShipnum() {
+		return SHIPNUM;
+	}
+
+
+	public Grid getMyGrid() {
+		return myGrid;
+	}
+
+
+	public Grid getOppGrid() {
+		return oppGrid;
+	}
+
+
+	public Ship[] getShips() {
+		return ships;
+	}
+
+
+	public int getShipsAlive() {
+		return shipsAlive;
 	}
 	
 	
