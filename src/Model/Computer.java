@@ -10,10 +10,8 @@ public class Computer extends Player{
 		
 	}
 
-	@Override
 	public Point declareCoord() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		 return new Point();
+	};
 
 }

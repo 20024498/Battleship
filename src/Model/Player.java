@@ -29,13 +29,11 @@ public abstract class Player {
 	}
 	
 	
-	public abstract void shipPositioning();
+	public abstract void shipPositioning(ShipOrientation orientation, int x, int y) ;
 	
-	
-	public abstract Point declareCoord();
 	
 
-	public boolean hasHit(int x, int y) {
+	public boolean isShipOnCell(int x, int y) {
 		
 		if(myGrid.getCells()[x][y].isOccupied())
 			return true;
@@ -45,24 +43,30 @@ public abstract class Player {
 	}
 	
 	
-	public void setHit(int x, int y) {
-		
-		/*if(!myGrid.isHit(x, y))
-			myGrid.hit(x, y);*/
-		
+	public ShipState hitShip(int x, int y) {
+			
 		for(Ship s : ships)
-			if(!s.isHit(x, y)) {
+			if(s.isHit(x, y)) {
+				
 				s.hit(x, y);
-				if(s.getHealth()==0);
+				if(s.getState().equals(ShipState.AFFONDATA)) 
 					shipsAlive--;
+				
+				return s.getState();
 			}
-					
+			
+		return ShipState.ILLESA;				
 	}
 	
-	public void hitOpp (int x, int y) {
+	public void hitOppGrid (int x, int y) {
 		
 		if(!oppGrid.isHit(x, y))
-		oppGrid.hit(x, y);
+			oppGrid.hit(x, y);
+	}
+	
+	public void hitOwnGrid(int x, int y) {
+		if(!myGrid.isHit(x, y))
+			myGrid.hit(x, y);
 	}
 
 
