@@ -58,6 +58,12 @@ public class Game {
 		if(player.isShipOnCell(p.x, p.y)) {
 			ShipState s = player.hitShip(p.x, p.y);
 			
+			if(cpu instanceof SmartComputer) {
+				if(((SmartComputer) cpu).getState().equals(SmartComputerState.SEEK))
+					((SmartComputer) cpu).setState(SmartComputerState.DESTROY);
+				((SmartComputer) cpu).getHitCells().add(p);
+			}
+				
 			if(player.getShipsAlive()==0)
 				pState=PlayerState.SCONFITTA;
 			

@@ -1,11 +1,24 @@
 package Model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Computer extends Player{
 	
+	protected ArrayList<Point> possibleTargets;
 	
+	public Computer() {
+		super();
+		possibleTargets = new ArrayList<Point>();
+		initTargets();
+	}
+	
+	protected void initTargets () {
+		for(int i=0; i<Grid.getDim();i++)
+			for(int j=0; j<Grid.getDim();j++)
+				possibleTargets.add(new Point(i,j));
+	}
 
 	public void autoPosition() {
 		 
@@ -18,10 +31,10 @@ public class Computer extends Player{
 			
 			do {
 				
-				x = randomCoord();
-				y = randomCoord();
+				x = randomCell();
+				y = randomCell();
 				l = s.getLength();
-				if(randomCoord()%2==0)
+				if(randomCell()%2==0)
 					o=ShipOrientation.ORIZZONTALE;
 				else
 					o=ShipOrientation.VERTICALE;
@@ -36,23 +49,23 @@ public class Computer extends Player{
 	
 	public Point declareCoord() {
 		
-		int x; 
-		int y;
+		int index = randomCell();
+		Point p = possibleTargets.get(index);
+		possibleTargets.remove(index);
 		
-		do {
-			
-			x=randomCoord();
-			y=randomCoord();
-			
-		}while(getOppGrid().getCells()[x][y].isHit());
-		
-		return new Point(x,y);
+		return new Point(p.x,p.y);
 		
 	}
 
-	public int randomCoord () {
+	public int randomCell() {
 		Random rand = new Random();
-		return rand.nextInt(Grid.getDim());
+		return rand.nextInt(possibleTargets.size());
 	}
+
+	public ArrayList<Point> getPossibleTargets() {
+		return possibleTargets;
+	}
+	
+	
 
 }

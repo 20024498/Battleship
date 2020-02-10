@@ -66,6 +66,26 @@ public abstract class Player {
 		
 		return true;
 	}
+	
+	private boolean verifySurround(int x, int y) {
+		
+		if(x!=0 && y!=0 && x!=(Grid.getDim()-1) && y!=(Grid.getDim()-1)) {}
+		
+		else {
+			
+			if(x==0) {}
+			else if(x==Grid.getDim()-1) {}
+			if(y==0) {}
+			else if(y==Grid.getDim()-1) {}
+			
+		}
+		
+		
+		
+		
+		
+		
+	}
 
 	public boolean isShipOnCell(int x, int y) {
 		
