@@ -1,8 +1,8 @@
-package Model;
+package model;
 
 import java.awt.Point;
 
-public class HumanPlayer extends Player{
+public class Computer extends Player{
 
 	@Override
 	public void shipPositioning() {
