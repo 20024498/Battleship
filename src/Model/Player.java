@@ -1,14 +1,13 @@
 package Model;
 
-import java.awt.Point;
-
 public abstract class Player {
 	
 	private static final int SHIPNUM = 5;
 	private Grid myGrid;
 	private Grid oppGrid;
 	private Ship[] ships;
-	private int shipsAlive; 
+	private int shipsAlive;
+	protected int shipPositioned;
 	
 	
 	public Player () {
@@ -17,6 +16,7 @@ public abstract class Player {
 		this.oppGrid = new Grid();
 		this.ships = new Ship[SHIPNUM];
 		shipsAlive = SHIPNUM;
+		shipPositioned = 0;
 		shipInit();
 	}
 
@@ -29,9 +29,43 @@ public abstract class Player {
 	}
 	
 	
-	public abstract void shipPositioning(ShipOrientation orientation, int x, int y) ;
+	public boolean shipPositioning(Ship ship ,ShipOrientation orientation, int x, int y) {
+		
+		if(lecitPosition(ship.getLength(), orientation, x, y)) {
+			
+			ship.setPosition(new ShipCell(x,y), orientation);
+			for(ShipCell c : ship.getCells())
+				myGrid.getCells()[c.x][c.y].setOccupied(true);
+			shipPositioned++;
+			return true;
+			
+		}
+		
+		return false;
+		
+	} 
 	
-	
+	public boolean lecitPosition(int shipLength ,ShipOrientation orientation, int x, int y) {
+		
+		if(orientation.equals(ShipOrientation.ORIZZONTALE)) {
+			if(shipLength+x >= Grid.getDim())
+				return false;
+			
+			for(int i=0;i<shipLength;i++)
+				if(myGrid.getCells()[x+i][y].isOccupied())
+					return false;
+		}
+		else {
+			if(shipLength+y >= Grid.getDim())
+				return false;
+			
+			for(int i=0;i<shipLength;i++)
+				if(myGrid.getCells()[x][y+i].isOccupied())
+					return false;
+		}
+		
+		return true;
+	}
 
 	public boolean isShipOnCell(int x, int y) {
 		
@@ -94,7 +128,9 @@ public abstract class Player {
 		return shipsAlive;
 	}
 	
-	
+	public int getShipPositioned() {
+		return shipPositioned;
+	}
 	
 	
 	
