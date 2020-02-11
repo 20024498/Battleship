@@ -4,11 +4,11 @@ public class Ship implements Hittable {
 
 	private final ShipType type;
 	private final int length;
-	private Cell[] cells;
+	private ShipCell[] cells;
 	private ShipState state;
 	private ShipOrientation orientation;
 	private int health;
-	private Cell headCell;
+	private ShipCell headCell;
 	private final String name;
 	
 	public Ship (ShipType type){
@@ -18,14 +18,14 @@ public class Ship implements Hittable {
 		this.length=type.length();
 		this.health=type.length();
 		this.state=ShipState.ILLESA;
-		this.cells = new Cell[type.length()];
+		this.cells = new ShipCell[type.length()];
 		this.orientation=ShipOrientation.NESSUNA;
-		this.headCell = new Cell(-1,-1);
+		this.headCell = new ShipCell(-1,-1);
 		cells[0]=headCell;
 		
 	}
 	
-	public void setPosition(Cell headCell,ShipOrientation orientation) {
+	public void setPosition(ShipCell headCell,ShipOrientation orientation) {
 		this.orientation=orientation;
 		this.headCell=headCell;
 		cellsInit();
@@ -37,17 +37,15 @@ public class Ship implements Hittable {
 		
 		if (orientation.equals(ShipOrientation.ORIZZONTALE))
 			for(int i=0;i<length;i++) 
-				cells[i]=new Cell(headCell.x +i,headCell.y);                   
+				cells[i]=new ShipCell(headCell.x +i,headCell.y);                   
 		else
 			for(int i=0;i<length;i++) 
-				cells[i]=new Cell(headCell.x,headCell.y+i); 	
+				cells[i]=new ShipCell(headCell.x,headCell.y+i); 	
 		
 	}
 	
 	@Override
-	public void hit(int x, int y) {
-		
-		/* TODO FARE CONTROLLO OUTOFBOUND*/
+	public boolean hit(int x, int y) {
 		
 		for(int i=0;i<length;i++) {
 			
@@ -65,14 +63,16 @@ public class Ship implements Hittable {
 					if(health==0)
 						setState(ShipState.AFFONDATA);
 				}
+				
+				return true;
 			}
 		}
+		
+		return false;
 	}
 	
 	@Override
 	public boolean isHit(int x, int y) {
-		
-		/* TODO FARE CONTROLLO OUTOFBOUND*/
 		
 		for(int i=0;i<length;i++) 
 			if(cells[i].x == x && cells[i].y == y) 
@@ -96,7 +96,7 @@ public class Ship implements Hittable {
 		return length;
 	}
 
-	public Cell[] getCells() {
+	public ShipCell[] getCells() {
 		return cells;
 	}
 
@@ -112,7 +112,7 @@ public class Ship implements Hittable {
 		return health;
 	}
 
-	public Cell getHeadCell() {
+	public ShipCell getHeadCell() {
 		return headCell;
 	}
 

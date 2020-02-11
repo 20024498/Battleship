@@ -8,46 +8,96 @@ public class Game {
 	private HumanPlayer player;
 	private Computer cpu;
 	private Countdown timer;
+	private PlayerState pState;
 	
-	public Game (Boolean hard) {
+	
+	public Game (Boolean hard, int time) {
 		
-		timer= new Countdown();
 		player = new HumanPlayer();
+		pState = PlayerState.DEFAULT;
 
 		if(hard)
 			cpu = new SmartComputer();
 		else
 			cpu = new Computer();
+		
+		timer= new Countdown(time);
+		/*start timer*/
 	}
 	
 	
-	public void playerMove() {
-		Point p;
-		do {
-			p = player.declareCoord();
-		} while(player.getOppGrid().isHit(p.x, p.y));
-		 
-		player.getOppGrid().hit(p.x, p.y);
-		cpu.getMyGrid().hit(p.x, p.y);
-		if(cpu.hasHit(p.x, p.y)) {
-			cpu.setHit(p.x, p.y);
+	public MoveResult playerMove(int x, int y) {
+		
+		player.hitOppGrid(x, y);
+		cpu.hitOwnGrid(x, y);
+		
+		if(cpu.isShipOnCell(x, y)) {
+			ShipState s = cpu.hitShip(x, y);
+			
+			if(cpu.getShipsAlive()==0)
+				pState=PlayerState.VITTORIA;
+			
+			if(s.equals(ShipState.AFFONDATA))
+				return MoveResult.AFFONDATA;
+			else
+				return MoveResult.COLPITA;
 		}
+		
+		else
+			return MoveResult.MANCATA;
 		
 	}
 	
-	public void cpuMove() {
-		Point p;
-		do {
-			p = cpu.declareCoord();
-		} while(cpu.getOppGrid().isHit(p.x, p.y));
-		 
-		cpu.getOppGrid().hit(p.x, p.y);
-		player.getMyGrid().hit(p.x, p.y);
-		if(player.hasHit(p.x, p.y)) {
-			player.setHit(p.x, p.y);
+	public MoveResult  cpuMove() {
+		
+		Point p = cpu.declareCoord();
+		
+		cpu.hitOppGrid(p.x, p.y);
+		player.hitOwnGrid(p.x, p.y);
+		
+		if(player.isShipOnCell(p.x, p.y)) {
+			ShipState s = player.hitShip(p.x, p.y);
+			
+			if(cpu instanceof SmartComputer) {
+				if(((SmartComputer) cpu).getState().equals(SmartComputerState.SEEK))
+					((SmartComputer) cpu).setState(SmartComputerState.DESTROY);
+				((SmartComputer) cpu).getHitCells().add(p);
+			}
+				
+			if(player.getShipsAlive()==0)
+				pState=PlayerState.SCONFITTA;
+			
+			if(s.equals(ShipState.AFFONDATA))
+				return MoveResult.AFFONDATA;
+			else
+				return MoveResult.COLPITA;
 		}
 		
+		else
+			return MoveResult.MANCATA;
+		
 	}
+
+
+	public HumanPlayer getPlayer() {
+		return player;
+	}
+
+
+	public Computer getCpu() {
+		return cpu;
+	}
+
+
+	public Countdown getTimer() {
+		return timer;
+	}
+
+
+	public PlayerState getpState() {
+		return pState;
+	}
+	
 	
 	
 }

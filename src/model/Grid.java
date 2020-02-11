@@ -19,17 +19,21 @@ public class Grid implements Hittable{
 	}
 
 	@Override
-	public void hit(int x, int y) {
-		// TODO FARE CONTROLLO OUTOFBOUND
+	public boolean hit(int x, int y) {
+	
+		if(x>=0 && y >=0 && x<DIM && y<DIM && !cells[x][y].isHit()) {
+			cells[x][y].hit();
+			return true;
+		}
 		
-		cells[x][y].hit();
-		
-		
+		return false;
 	}
 
 	@Override
 	public boolean isHit(int x, int y) {
-		// TODO FARE CONTROLLO OUTOFBOUND
+		
+		if(x>=0 && y >=0 && x<DIM && y<DIM)
+			return false;
 		
 		if(cells[x][y].isHit())
 			return true;

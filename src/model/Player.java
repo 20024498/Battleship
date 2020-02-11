@@ -1,14 +1,13 @@
 package model;
 
-import java.awt.Point;
-
 public abstract class Player {
 	
 	private static final int SHIPNUM = 5;
 	private Grid myGrid;
 	private Grid oppGrid;
 	private Ship[] ships;
-	private int shipsAlive; 
+	private int shipsAlive;
+	protected int shipPositioned;
 	
 	
 	public Player () {
@@ -17,6 +16,7 @@ public abstract class Player {
 		this.oppGrid = new Grid();
 		this.ships = new Ship[SHIPNUM];
 		shipsAlive = SHIPNUM;
+		shipPositioned = 0;
 		shipInit();
 	}
 
@@ -29,13 +29,65 @@ public abstract class Player {
 	}
 	
 	
-	public abstract void shipPositioning();
+	public boolean shipPositioning(Ship ship ,ShipOrientation orientation, int x, int y) {
+		
+		if(lecitPosition(ship.getLength(), orientation, x, y)) {
+			
+			ship.setPosition(new ShipCell(x,y), orientation);
+			for(ShipCell c : ship.getCells())
+				myGrid.getCells()[c.x][c.y].setOccupied(true);
+			shipPositioned++;
+			return true;
+			
+		}
+		
+		return false;
+		
+	} 
 	
+	public boolean lecitPosition(int shipLength ,ShipOrientation orientation, int x, int y) {
+		
+		if(orientation.equals(ShipOrientation.ORIZZONTALE)) {
+			if(shipLength+x >= Grid.getDim())
+				return false;
+			
+			for(int i=0;i<shipLength;i++)
+				if(myGrid.getCells()[x+i][y].isOccupied())
+					return false;
+		}
+		else {
+			if(shipLength+y >= Grid.getDim())
+				return false;
+			
+			for(int i=0;i<shipLength;i++)
+				if(myGrid.getCells()[x][y+i].isOccupied())
+					return false;
+		}
+		
+		return true;
+	}
 	
-	public abstract Point declareCoord();
-	
+	private boolean verifySurround(int x, int y) {
+		
+		if(x!=0 && y!=0 && x!=(Grid.getDim()-1) && y!=(Grid.getDim()-1)) {}
+		
+		else {
+			
+			if(x==0) {}
+			else if(x==Grid.getDim()-1) {}
+			if(y==0) {}
+			else if(y==Grid.getDim()-1) {}
+			
+		}
+		
+		
+		
+		
+		
+		
+	}
 
-	public boolean hasHit(int x, int y) {
+	public boolean isShipOnCell(int x, int y) {
 		
 		if(myGrid.getCells()[x][y].isOccupied())
 			return true;
@@ -45,24 +97,30 @@ public abstract class Player {
 	}
 	
 	
-	public void setHit(int x, int y) {
-		
-		/*if(!myGrid.isHit(x, y))
-			myGrid.hit(x, y);*/
-		
+	public ShipState hitShip(int x, int y) {
+			
 		for(Ship s : ships)
-			if(!s.isHit(x, y)) {
+			if(s.isHit(x, y)) {
+				
 				s.hit(x, y);
-				if(s.getHealth()==0);
+				if(s.getState().equals(ShipState.AFFONDATA)) 
 					shipsAlive--;
+				
+				return s.getState();
 			}
-					
+			
+		return ShipState.ILLESA;				
 	}
 	
-	public void hitOpp (int x, int y) {
+	public void hitOppGrid (int x, int y) {
 		
 		if(!oppGrid.isHit(x, y))
-		oppGrid.hit(x, y);
+			oppGrid.hit(x, y);
+	}
+	
+	public void hitOwnGrid(int x, int y) {
+		if(!myGrid.isHit(x, y))
+			myGrid.hit(x, y);
 	}
 
 
@@ -90,7 +148,9 @@ public abstract class Player {
 		return shipsAlive;
 	}
 	
-	
+	public int getShipPositioned() {
+		return shipPositioned;
+	}
 	
 	
 	
