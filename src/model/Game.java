@@ -1,8 +1,6 @@
 package model;
 
 import java.awt.Point;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Game {
 
@@ -10,13 +8,11 @@ public class Game {
 	private HumanPlayer player;
 	private Computer cpu;
 	private Countdown timer;
-	private PlayerState pState;
 	private Difficulty diff;
 	
 	
 	public Game() {
 		player = null;;
-		pState = null;
 		cpu = null;
 		timer = null;
 		diff = null;
@@ -25,7 +21,6 @@ public class Game {
 	public Game (Difficulty diff, int time) {
 		
 		player = new HumanPlayer();
-		pState = PlayerState.DEFAULT;
 
 		if(diff.equals(Difficulty.FACILE))
 			cpu = new Computer();
@@ -49,7 +44,7 @@ public class Game {
 			
 			if(s.equals(ShipState.AFFONDATA)) {
 				if(cpu.getShipsAlive()==0)
-					pState=PlayerState.VITTORIA;
+					player.setpState(PlayerState.VITTORIA);
 				
 				for(ShipCell c : cpu.getShips().get(new Point(x,y)).getCells().values())
 					player.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
@@ -84,7 +79,7 @@ public class Game {
 			
 			if(s.equals(ShipState.AFFONDATA)) {
 				if(player.getShipsAlive()==0)
-					pState=PlayerState.SCONFITTA;
+					player.setpState(PlayerState.SCONFITTA);
 				for(ShipCell c : player.getShips().get(new Point(p.x,p.y)).getCells().values())
 					cpu.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
@@ -116,9 +111,6 @@ public class Game {
 		
 	}
 	
-	
-	
-	/* TODO ciclo posizionamento*/
 
 
 	public HumanPlayer getPlayer() {
@@ -136,8 +128,8 @@ public class Game {
 	}
 
 
-	public PlayerState getpState() {
-		return pState;
+	public Difficulty getDiff() {
+		return diff;
 	}
 	
 	

@@ -34,7 +34,7 @@ public abstract class Player {
 	}
 	
 	
-	public boolean shipPositioning(Ship ship ,ShipOrientation orientation, int x, int y) {
+	protected boolean shipPositioning(Ship ship ,ShipOrientation orientation, int x, int y) {
 		
 		if(lecitPosition(ship.getLength(), orientation, x, y)) {
 			
