@@ -60,7 +60,7 @@ public class NewGamePanel extends JPanel{
 
 	private void setComboBoxDifficoltaConstraint() {
 		
-		String[] s = {"FACILE" , "MEDIA", "DIFFICILE"};
+		String[] s = {"FACILE" , "MEDIA"};
 		diffiulties = new JComboBox(s);
 		cs.gridx = 1;
 		cs.gridy = 1;
