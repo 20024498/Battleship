@@ -64,7 +64,6 @@ public class SmartComputer extends Computer{
 			}
 			
 			//ULTIMO BERSAGLIO NON COLPITO
-			
 				
 		}
 	}
