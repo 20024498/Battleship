@@ -1,10 +1,10 @@
-package model.Test;
+package model.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class OwnGridTest {
+public class OppGridTest {
 
 	@Test
 	public void test() {
