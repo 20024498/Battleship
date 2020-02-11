@@ -20,11 +20,10 @@ public class NewGamePanel extends JPanel{
 	private JComboBox diffiulties;
 	private JButton btnOK;
 	private JLabel hint;
-	private JPanel panel;
 	
 	public NewGamePanel() {
 		
-		panel.setLayout(new GridBagLayout());
+		setLayout(new GridBagLayout());
 		cs = new GridBagConstraints();
 		
 		setLabelTempoConstraint();
@@ -43,7 +42,7 @@ public class NewGamePanel extends JPanel{
 		cs.weightx = 1;
 		cs.weighty = 1;
 		cs.fill = GridBagConstraints.CENTER;
-		panel.add(hint, cs);
+		add(hint, cs);
 	}
 
 	private void setBtnOkConstraint() {
@@ -56,7 +55,7 @@ public class NewGamePanel extends JPanel{
 		cs.weighty = 1;
 		cs.insets = new Insets(10, 10, 10, 10);
 		cs.fill = GridBagConstraints.HORIZONTAL;
-		panel.add(btnOK, cs);
+		add(btnOK, cs);
 	}
 
 	private void setComboBoxDifficoltaConstraint() {
@@ -69,7 +68,7 @@ public class NewGamePanel extends JPanel{
 		cs.weighty = 1;
 		cs.fill = GridBagConstraints.HORIZONTAL;
 		cs.insets = new Insets(10, 0, 10, 10);
-		panel.add(diffiulties, cs);
+		add(diffiulties, cs);
 	}
 
 	private void setTextFieldTempoConstraint() {
@@ -82,7 +81,7 @@ public class NewGamePanel extends JPanel{
 		textFieldTime.setColumns(10);
 		cs.insets = new Insets(10, 0, 10, 10);
 		cs.fill = GridBagConstraints.HORIZONTAL;
-		panel.add(textFieldTime, cs);
+		add(textFieldTime, cs);
 	}
 	
 	private void setLabelDifficoltaConstraint() {
@@ -94,7 +93,7 @@ public class NewGamePanel extends JPanel{
 		cs.weighty = 1;
 		cs.fill = GridBagConstraints.CENTER;
 		cs.insets = new Insets(10, 0, 10, 0);
-		panel.add(lblDifficulties, cs);
+		add(lblDifficulties, cs);
 	}
 
 	private void setLabelTempoConstraint() {
@@ -105,7 +104,7 @@ public class NewGamePanel extends JPanel{
 		cs.weightx = 1;
 		cs.weighty = 1;
 		cs.insets = new Insets(10, 0, 10, 0);
-		panel.add(lblTime, cs);
+		add(lblTime, cs);
 	}
 
 	public JLabel getLblTime() {
@@ -163,13 +162,4 @@ public class NewGamePanel extends JPanel{
 	public void setHint(JLabel hint) {
 		this.hint = hint;
 	}
-
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
-
 }

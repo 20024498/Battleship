@@ -15,7 +15,6 @@ import javax.swing.border.Border;
 @SuppressWarnings("serial")
 public class MainPanelBattleship extends JPanel{
 
-	private JPanel panel;
 	private JPanel playerMapPanel;
 	private Border border;
 	private JLabel[][] gridPlayerMap;
@@ -51,7 +50,7 @@ public class MainPanelBattleship extends JPanel{
 		}
 		
 		playerMapPanel.setPreferredSize(new Dimension(425, 425));
-		panel.add(playerMapPanel);
+		add(playerMapPanel);
 	}
 	
 	public void setCentralPanel() {
@@ -69,7 +68,7 @@ public class MainPanelBattleship extends JPanel{
 		scrollPane.setPreferredSize(new Dimension(150, 400));
 		centralPanel.add(scrollPane);
 		
-		panel.add(centralPanel);
+		add(centralPanel);
 	}
 	
 	public void setBattleMap() {
@@ -91,14 +90,13 @@ public class MainPanelBattleship extends JPanel{
 		}
 		
 		battleMapPanel.setPreferredSize(new Dimension(425, 425));
-		panel.add(battleMapPanel);
+		add(battleMapPanel);
 	}
 	
 	public void setPanel() {
 		
-		panel = new JPanel();
-		panel.setBounds(30, 30, 1000, 425);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		setBounds(30, 30, 1000, 425);
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setPanels();
 	}
 	
@@ -107,14 +105,6 @@ public class MainPanelBattleship extends JPanel{
 		setPlayerMap();
 		setCentralPanel();
 		setBattleMap();
-	}
-
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
 	}
 
 	public JPanel getPlayerMapPanel() {
