@@ -2,7 +2,7 @@ package Model;
 
 public class OwnGrid extends Grid{
 
-	private OwnGridCell[][] cells;
+	//private OwnGridCell[][] cells;
 	
 	public OwnGrid() {
 		this.cells = new OwnGridCell[Grid.DIM][Grid.DIM];

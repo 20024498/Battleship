@@ -2,6 +2,7 @@ package Model;
 
 import java.awt.Point;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 public abstract class Player {
 	
@@ -10,7 +11,7 @@ public abstract class Player {
 	private OppGrid oppGrid;
 	private LinkedHashMap<Point,Ship> ships;
 	private int shipsAlive;
-	protected int shipPositioned;
+	private LinkedList<Ship> shipHouse;
 	
 	
 	public Player () {
@@ -19,16 +20,17 @@ public abstract class Player {
 		this.oppGrid = new OppGrid();
 		this.ships = new LinkedHashMap<Point,Ship>();
 		shipsAlive = SHIPNUM;
-		shipPositioned = 0;
-		shipInit();
+		shipHouse = new LinkedList<Ship>();
+		shipHouseInit();
 	}
 
 
-	private void shipInit() {
+	private void shipHouseInit() {
 		
-		int i=0;
-		for(ShipType s : ShipType.values()) 
-			ships[i++]= new Ship(s);		
+		for(ShipType s : ShipType.values()) { 
+			shipHouse.add(new Ship(s));
+		}
+					
 	}
 	
 	
@@ -37,9 +39,13 @@ public abstract class Player {
 		if(lecitPosition(ship.getLength(), orientation, x, y)) {
 			
 			ship.setPosition(new ShipCell(x,y), orientation);
-			for(ShipCell c : ship.getCells())
-				ownGrid.getCells()[c.x][c.y].setOccupied(true);
-			shipPositioned++;
+			
+			for(ShipCell c : ship.getCells().values()) {
+				ownGrid.getCells()[c.x][c.y].Occupy();
+				ownGrid.getCells()[c.x][c.y].setShipType(ship.getType());
+				ships.put(c, ship);
+			}
+				
 			return true;
 			
 		}
@@ -51,7 +57,7 @@ public abstract class Player {
 	public boolean lecitPosition(int shipLength ,ShipOrientation orientation, int x, int y) {
 		
 		if(orientation.equals(ShipOrientation.ORIZZONTALE)) {
-			if(shipLength+x >= Grid.getDim())
+			if(shipLength+x >= Grid.DIM)
 				return false;
 			
 			for(int i=0;i<shipLength;i++)
@@ -59,7 +65,7 @@ public abstract class Player {
 					return false;
 		}
 		else {
-			if(shipLength+y >= Grid.getDim())
+			if(shipLength+y >= Grid.DIM)
 				return false;
 			
 			for(int i=0;i<shipLength;i++)
@@ -67,43 +73,41 @@ public abstract class Player {
 					return false;
 		}
 		
+		
 		return true;
 	}
 	
-
+	
+	 
 	public boolean isShipOnCell(int x, int y) {
 		
-		if(ownGrid.getCells()[x][y].isOccupied())
-			return true;
-		
-		else
-			return false;
+		return ships.containsKey(new Point(x,y));
 	}
+	
+	
 	
 	public Ship getShipOnCell(int x, int y) {
 		
-		if(isShipOnCell(x, y)) {
-			for(Ship s : ships)
-				for(ShipCell c : s.getCells())
-					if(c.x==x && c.y ==y)
-						return s;
-		}
-		
-		return null;
+		return ships.get(new Point(x,y));
 			
 	}
 	
 	
-	public ShipState hitShip(int x, int y) {
+	public ShipState hitOwnShip(int x, int y) {
 			
-		for(Ship s : ships)
-			if(!s.isHit(x, y) && ownGrid.isHit(x, y)) {
-				
-				s.hit(x, y);
-				if(s.getState().equals(ShipState.AFFONDATA)) 
-					shipsAlive--;
-				
-				return s.getState();
+		/*TODO eccezione griglia non colpita*/
+		
+			Ship s = ships.get(new Point(x,y));
+			
+			if(s!=null) {
+				if(ownGrid.isHit(x, y)) {
+					
+					s.hit(x, y);
+					if(s.getState().equals(ShipState.AFFONDATA)) 
+						shipsAlive--;
+					
+					return s.getState();
+				}
 			}
 			
 		return ShipState.ILLESA;				
@@ -126,17 +130,12 @@ public abstract class Player {
 	}
 
 
-	public Grid getMyGrid() {
-		return ownGrid;
-	}
-
-
-	public Grid getOppGrid() {
+	public OppGrid getOppGrid() {
 		return oppGrid;
 	}
 
 
-	public Ship[] getShips() {
+	public LinkedHashMap<Point,Ship> getShips() {
 		return ships;
 	}
 
@@ -144,10 +143,18 @@ public abstract class Player {
 	public int getShipsAlive() {
 		return shipsAlive;
 	}
-	
-	public int getShipPositioned() {
-		return shipPositioned;
+
+
+	public OwnGrid getOwnGrid() {
+		return ownGrid;
 	}
+
+
+	public LinkedList<Ship> getShipHouse() {
+		return shipHouse;
+	}
+	
+	
 	
 	
 	

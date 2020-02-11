@@ -4,7 +4,7 @@ public class OppGridCell extends Cell{
 
 	private static final long serialVersionUID = 1L;
 
-	OppGridCellState state;
+	private OppGridCellState state;
 	
 	public OppGridCell(int x , int y) {
 		super(x,y);

@@ -4,21 +4,21 @@ import java.awt.Point;
 
 public class MoveResult {
 
-	MoveRes moveRes;
+	MoveResultType moveRes;
 	ShipType shipType;
 	Point Coord;
 	
-	public MoveResult(MoveRes moveRes,Point Coord) {
+	public MoveResult(MoveResultType moveRes,Point Coord) {
 		this.moveRes = moveRes;
 		this.Coord = Coord;
 	}
 	
-	public MoveResult(MoveRes moveRes,ShipType shipType,Point Coord) {
+	public MoveResult(MoveResultType moveRes,Point Coord,ShipType shipType) {
 		this.moveRes = moveRes;
 		this.shipType=shipType;
 	}
 
-	public MoveRes getMoveRes() {
+	public MoveResultType getMoveResultType() {
 		return moveRes;
 	}
 
@@ -26,5 +26,9 @@ public class MoveResult {
 		return shipType;
 	}
 	
-	
+	@Override
+	public String toString() {
+		//TODO
+		return null;
+	}
 }

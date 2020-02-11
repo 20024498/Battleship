@@ -6,24 +6,25 @@ import java.util.Random;
 
 public class Computer extends Player{
 	
-	protected ArrayList<Point> possibleTargets;
+	protected ArrayList<Point> SeekTargets;
 	
 	public Computer() {
 		super();
-		possibleTargets = new ArrayList<Point>();
 		initTargets();
 	}
 	
 	protected void initTargets () {
-		for(int i=0; i<Grid.getDim();i++)
-			for(int j=0; j<Grid.getDim();j++)
-				possibleTargets.add(new Point(i,j));
+		SeekTargets = new ArrayList<Point>();
+		for(int i=0; i<Grid.DIM;i++)
+			for(int j=0; j<Grid.DIM;j++)
+				SeekTargets.add(new Point(i,j));
 	}
 
 	public void autoPosition() {
 		 
-		for(Ship s : getShips()) {
+		while(!getShipHouse().isEmpty()) {
 			 
+			Ship s = getShipHouse().pop();
 			int x; 
 			int y; 
 			int l; 
@@ -41,8 +42,8 @@ public class Computer extends Player{
 				
 			}while(lecitPosition(l, o, x, y));
 			
-			if(shipPositioning(s, o, x, y))
-				shipPositioned++;	
+			shipPositioning(s, o, x, y);
+					
 		 }
 			 
 	}
@@ -50,8 +51,8 @@ public class Computer extends Player{
 	public Point declareCoord() {
 		
 		int index = randomCell();
-		Point p = possibleTargets.get(index);
-		possibleTargets.remove(index);
+		Point p = SeekTargets.get(index);
+		SeekTargets.remove(index);
 		
 		return new Point(p.x,p.y);
 		
@@ -59,11 +60,11 @@ public class Computer extends Player{
 
 	public int randomCell() {
 		Random rand = new Random();
-		return rand.nextInt(possibleTargets.size());
+		return rand.nextInt(SeekTargets.size());
 	}
 
-	public ArrayList<Point> getPossibleTargets() {
-		return possibleTargets;
+	public ArrayList<Point> getSeekTargets() {
+		return SeekTargets;
 	}
 	
 	
