@@ -1,20 +1,23 @@
-package model;
+package Model;
+
+import java.awt.Point;
+import java.util.LinkedHashMap;
 
 public abstract class Player {
 	
 	private static final int SHIPNUM = 5;
-	private Grid myGrid;
-	private Grid oppGrid;
-	private Ship[] ships;
+	private OwnGrid ownGrid;
+	private OppGrid oppGrid;
+	private LinkedHashMap<Point,Ship> ships;
 	private int shipsAlive;
 	protected int shipPositioned;
 	
 	
 	public Player () {
 		
-		this.myGrid = new Grid();
-		this.oppGrid = new Grid();
-		this.ships = new Ship[SHIPNUM];
+		this.ownGrid = new OwnGrid();
+		this.oppGrid = new OppGrid();
+		this.ships = new LinkedHashMap<Point,Ship>();
 		shipsAlive = SHIPNUM;
 		shipPositioned = 0;
 		shipInit();
@@ -35,7 +38,7 @@ public abstract class Player {
 			
 			ship.setPosition(new ShipCell(x,y), orientation);
 			for(ShipCell c : ship.getCells())
-				myGrid.getCells()[c.x][c.y].setOccupied(true);
+				ownGrid.getCells()[c.x][c.y].setOccupied(true);
 			shipPositioned++;
 			return true;
 			
@@ -52,7 +55,7 @@ public abstract class Player {
 				return false;
 			
 			for(int i=0;i<shipLength;i++)
-				if(myGrid.getCells()[x+i][y].isOccupied())
+				if(ownGrid.getCells()[x+i][y].isOccupied())
 					return false;
 		}
 		else {
@@ -60,47 +63,41 @@ public abstract class Player {
 				return false;
 			
 			for(int i=0;i<shipLength;i++)
-				if(myGrid.getCells()[x][y+i].isOccupied())
+				if(ownGrid.getCells()[x][y+i].isOccupied())
 					return false;
 		}
 		
 		return true;
 	}
 	
-	private boolean verifySurround(int x, int y) {
-		
-		if(x!=0 && y!=0 && x!=(Grid.getDim()-1) && y!=(Grid.getDim()-1)) {}
-		
-		else {
-			
-			if(x==0) {}
-			else if(x==Grid.getDim()-1) {}
-			if(y==0) {}
-			else if(y==Grid.getDim()-1) {}
-			
-		}
-		
-		
-		
-		
-		
-		
-	}
 
 	public boolean isShipOnCell(int x, int y) {
 		
-		if(myGrid.getCells()[x][y].isOccupied())
+		if(ownGrid.getCells()[x][y].isOccupied())
 			return true;
 		
 		else
 			return false;
 	}
 	
+	public Ship getShipOnCell(int x, int y) {
+		
+		if(isShipOnCell(x, y)) {
+			for(Ship s : ships)
+				for(ShipCell c : s.getCells())
+					if(c.x==x && c.y ==y)
+						return s;
+		}
+		
+		return null;
+			
+	}
+	
 	
 	public ShipState hitShip(int x, int y) {
 			
 		for(Ship s : ships)
-			if(s.isHit(x, y)) {
+			if(!s.isHit(x, y) && ownGrid.isHit(x, y)) {
 				
 				s.hit(x, y);
 				if(s.getState().equals(ShipState.AFFONDATA)) 
@@ -119,8 +116,8 @@ public abstract class Player {
 	}
 	
 	public void hitOwnGrid(int x, int y) {
-		if(!myGrid.isHit(x, y))
-			myGrid.hit(x, y);
+		if(!ownGrid.isHit(x, y))
+			ownGrid.hit(x, y);
 	}
 
 
@@ -130,7 +127,7 @@ public abstract class Player {
 
 
 	public Grid getMyGrid() {
-		return myGrid;
+		return ownGrid;
 	}
 
 

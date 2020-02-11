@@ -1,10 +1,13 @@
-package model;
+package Model;
+
+import java.awt.Point;
+import java.util.LinkedHashMap;
 
 public class Ship implements Hittable {
 
 	private final ShipType type;
 	private final int length;
-	private ShipCell[] cells;
+	private LinkedHashMap<Point,ShipCell> cells;
 	private ShipState state;
 	private ShipOrientation orientation;
 	private int health;
@@ -18,10 +21,9 @@ public class Ship implements Hittable {
 		this.length=type.length();
 		this.health=type.length();
 		this.state=ShipState.ILLESA;
-		this.cells = new ShipCell[type.length()];
+		this.cells = new LinkedHashMap<Point,ShipCell>() ;
 		this.orientation=ShipOrientation.NESSUNA;
 		this.headCell = new ShipCell(-1,-1);
-		cells[0]=headCell;
 		
 	}
 	
@@ -33,40 +35,41 @@ public class Ship implements Hittable {
 
 	private void cellsInit() {
 		
-		/* TODO FARE CONTROLLO OUTOFBOUND*/
+		cells.clear();
 		
 		if (orientation.equals(ShipOrientation.ORIZZONTALE))
 			for(int i=0;i<length;i++) 
-				cells[i]=new ShipCell(headCell.x +i,headCell.y);                   
-		else
+				cells.put(new Point(headCell.x+i,headCell.y), new ShipCell(headCell.x+i,headCell.y)); 
+		
+		else if(orientation.equals(ShipOrientation.VERTICALE))
 			for(int i=0;i<length;i++) 
-				cells[i]=new ShipCell(headCell.x,headCell.y+i); 	
+				cells.put(new Point(headCell.x,headCell.y+i), new ShipCell(headCell.x,headCell.y+i)); 	
 		
 	}
 	
 	@Override
 	public boolean hit(int x, int y) {
 		
-		for(int i=0;i<length;i++) {
+		Point p = new Point(x,y);
 			
-			if(cells[i].x == x && cells[i].y == y) {
+		if(cells.containsKey(p)) {
 				
-				if(state.equals(ShipState.ILLESA)) {
-					setState(ShipState.COLPITA);
-					cells[i].hit();
-					health--;
-				}
-				
-				else if(state.equals(ShipState.COLPITA)) {
-					cells[i].hit();
-					health--;
-					if(health==0)
-						setState(ShipState.AFFONDATA);
-				}
-				
-				return true;
+			if(state.equals(ShipState.ILLESA)) {
+				setState(ShipState.COLPITA);
+				cells.get(p).hit();
+				health--;
 			}
+				
+			else if(state.equals(ShipState.COLPITA)) {
+				cells.get(p).hit();
+				health--;
+				if(health==0)
+					setState(ShipState.AFFONDATA);
+			}
+				
+			return true;
 		}
+		
 		
 		return false;
 	}
@@ -74,10 +77,10 @@ public class Ship implements Hittable {
 	@Override
 	public boolean isHit(int x, int y) {
 		
-		for(int i=0;i<length;i++) 
-			if(cells[i].x == x && cells[i].y == y) 
-				if(cells[i].isHit())
-					return true;
+		Point p = new Point(x,y);
+		if(cells.containsKey(p)) 
+			if(cells.get(p).isHit())
+				return true;
 		
 		return false;
 		
@@ -96,7 +99,7 @@ public class Ship implements Hittable {
 		return length;
 	}
 
-	public ShipCell[] getCells() {
+	public LinkedHashMap<Point,ShipCell> getCells() {
 		return cells;
 	}
 

@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 import java.awt.Point;
 
@@ -10,6 +10,12 @@ public class Game {
 	private Countdown timer;
 	private PlayerState pState;
 	
+	public Game() {
+		player = new HumanPlayer();
+		pState = PlayerState.DEFAULT;
+		cpu = new Computer();
+		timer = null;
+	}
 	
 	public Game (Boolean hard, int time) {
 		
@@ -26,7 +32,7 @@ public class Game {
 	}
 	
 	
-	public MoveResult playerMove(int x, int y) {
+	public MoveRes playerMove(int x, int y) {
 		
 		player.hitOppGrid(x, y);
 		cpu.hitOwnGrid(x, y);
@@ -38,17 +44,17 @@ public class Game {
 				pState=PlayerState.VITTORIA;
 			
 			if(s.equals(ShipState.AFFONDATA))
-				return MoveResult.AFFONDATA;
+				return MoveRes.AFFONDATA;
 			else
-				return MoveResult.COLPITA;
+				return MoveRes.COLPITA;
 		}
 		
 		else
-			return MoveResult.MANCATA;
+			return MoveRes.MANCATA;
 		
 	}
 	
-	public MoveResult  cpuMove() {
+	public MoveRes  cpuMove() {
 		
 		Point p = cpu.declareCoord();
 		
@@ -68,13 +74,13 @@ public class Game {
 				pState=PlayerState.SCONFITTA;
 			
 			if(s.equals(ShipState.AFFONDATA))
-				return MoveResult.AFFONDATA;
+				return MoveRes.AFFONDATA;
 			else
-				return MoveResult.COLPITA;
+				return MoveRes.COLPITA;
 		}
 		
 		else
-			return MoveResult.MANCATA;
+			return MoveRes.MANCATA;
 		
 	}
 

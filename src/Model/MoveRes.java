@@ -1,8 +1,8 @@
 package Model;
 
-public enum ShipState {
+public enum MoveRes {
 
-	ILLESA,
+	MANCATA,
 	COLPITA,
 	AFFONDATA;
 }

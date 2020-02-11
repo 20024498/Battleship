@@ -1,22 +1,12 @@
-package model;
+package Model;
 
-public class Grid implements Hittable{
+public abstract class Grid implements Hittable{
 	
-	private static final int DIM = 10;
-	private GridCell[][] cells;
-	
-	public Grid() {
-		this.cells = new GridCell[DIM][DIM];
-		gridInit();
-	}
+	public static final int DIM = 10;
+	protected Cell[][] cells;
 	
 	
-	private void gridInit() {
-		
-		for(int i=0;i<DIM;i++)
-			for(int j=0;j<DIM;j++) 
-				cells[i][j] = new GridCell(i,j);		
-	}
+	protected abstract void gridInit(); 
 
 	@Override
 	public boolean hit(int x, int y) {
@@ -43,15 +33,10 @@ public class Grid implements Hittable{
 	}
 
 
-	public static int getDim() {
-		return DIM;
-	}
-
-
-	public GridCell[][] getCells() {
+	public Cell[][] getCells() {
 		return cells;
 	}
-
 	
-
+	
+	
 }

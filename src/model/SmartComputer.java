@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 import java.awt.Point;
 import java.util.ArrayList;
