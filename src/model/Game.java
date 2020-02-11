@@ -82,18 +82,11 @@ public class Game {
 		if(player.isShipOnCell(p.x, p.y)) {
 			ShipState s = player.hitOwnShip(p.x, p.y);
 			
-			
-			
 			if(s.equals(ShipState.AFFONDATA)) {
 				if(player.getShipsAlive()==0)
 					pState=PlayerState.SCONFITTA;
 				for(ShipCell c : player.getShips().get(new Point(p.x,p.y)).getCells().values())
 					cpu.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
-				if(cpu instanceof SmartComputer) {
-					if(((SmartComputer) cpu).getDestroyTargets().isEmpty())
-						((SmartComputer) cpu).setState(SmartComputerState.SEEK);
-					((SmartComputer) cpu).setLastMove(new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),cpu.getShips().get(new Point(p.x,p.y)).getType()));
-				}
 				
 				
 				return new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),cpu.getShips().get(new Point(p.x,p.y)).getType());
@@ -102,12 +95,12 @@ public class Game {
 			else {
 				cpu.getOppGrid().getCells()[p.x][p.y].setState(OppGridCellState.COLPITO);
 				
+				
 				if(cpu instanceof SmartComputer) {
 					((SmartComputer) cpu).setState(SmartComputerState.DESTROY);
 					for(Point t : ((SmartComputer) cpu).crossBoundary(p))
 						if(!cpu.getOppGrid().getCells()[t.x][t.y].isHit())
 							((SmartComputer) cpu).getDestroyTargets().add(t);
-					((SmartComputer) cpu).setLastMove(new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y)));
 				}
 				
 				return new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y));
@@ -117,10 +110,6 @@ public class Game {
 		
 		else {
 			cpu.getOppGrid().getCells()[p.x][p.y].setState(OppGridCellState.MANCATO);
-			
-			if(cpu instanceof SmartComputer) {
-				((SmartComputer) cpu).setLastMove(new MoveResult(MoveResultType.MANCATO, new Point(p.x,p.y)));
-			}
 			return new MoveResult(MoveResultType.MANCATO, new Point(p.x,p.y));
 			
 		}

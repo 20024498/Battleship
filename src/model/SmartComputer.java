@@ -9,13 +9,11 @@ public class SmartComputer extends Computer{
 	
 	private SmartComputerState state;
 	private LinkedList<Point> destroyTargets;
-	private MoveResult LastMove;
 	
 	
 	public SmartComputer() {
 		super();
 		state=SmartComputerState.SEEK;
-		LastMove=null;
 		destroyTargets = new LinkedList<Point>();
 		initTargets();
 	}
@@ -35,7 +33,7 @@ public class SmartComputer extends Computer{
 		
 		if(state.equals(SmartComputerState.SEEK)) {
 			
-			int index = randomCell();
+			int index = randomCell(SeekTargets.size());
 			Point p = getSeekTargets().get(index);
 			getSeekTargets().remove(index);
 			
@@ -44,26 +42,15 @@ public class SmartComputer extends Computer{
 		
 		else {
 			
-			if(LastMove.getMoveResultType().equals(MoveResultType.COLPITO)) {
-				for(Point p : crossBoundary(LastMove.Coord)) {
-					if(getOppGrid().getCells()[p.x][p.y].getState().equals(OppGridCellState.COLPITO)) {
-						for(Point d : destroyTargets) {
-							if(d.x == p.x || d.y == p.y) {
-								destroyTargets.remove(d);
-								if(SeekTargets.contains(d))
-									SeekTargets.remove(d);
-								return d;
-							}
-							
-							//NON CI SONO CELLE IN DESTROY TARGET CON STESSA ASC/ORD DI UNA CELLA DEI DINTORNI DI LAST MOVE
-						}
-					}
-					
-					//NEI DINTORNI DELL'ULTIMA MOSSA NON CI SONO COLPITI
-				}
-			}
+			Point p = destroyTargets.pop();
 			
-			//ULTIMO BERSAGLIO NON COLPITO
+			if(destroyTargets.isEmpty())
+				setState(SmartComputerState.SEEK);
+							
+			if(SeekTargets.contains(p))
+				SeekTargets.remove(p);
+			
+			return p;		
 				
 		}
 	}
@@ -111,15 +98,6 @@ public class SmartComputer extends Computer{
 	}
 
 
-	public MoveResult getLastMove() {
-		return LastMove;
-	}
-
-
-	public void setLastMove(MoveResult lastMove) {
-		LastMove = lastMove;
-	}
-	
 	
 	
 }

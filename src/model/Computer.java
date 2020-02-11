@@ -32,10 +32,10 @@ public class Computer extends Player{
 			
 			do {
 				
-				x = randomCell();
-				y = randomCell();
+				x = randomCell(SeekTargets.size());
+				y = randomCell(SeekTargets.size());
 				l = s.getLength();
-				if(randomCell()%2==0)
+				if(randomCell(2)==0)
 					o=ShipOrientation.ORIZZONTALE;
 				else
 					o=ShipOrientation.VERTICALE;
@@ -50,7 +50,7 @@ public class Computer extends Player{
 	
 	public Point declareCoord() {
 		
-		int index = randomCell();
+		int index = randomCell(SeekTargets.size());
 		Point p = SeekTargets.get(index);
 		SeekTargets.remove(index);
 		
@@ -58,9 +58,9 @@ public class Computer extends Player{
 		
 	}
 
-	public int randomCell() {
+	public int randomCell(int size) {
 		Random rand = new Random();
-		return rand.nextInt(SeekTargets.size());
+		return rand.nextInt(size);
 	}
 
 	public ArrayList<Point> getSeekTargets() {
