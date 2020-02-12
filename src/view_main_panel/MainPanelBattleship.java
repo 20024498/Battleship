@@ -12,14 +12,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
+import view_cells.CellViewBattleCamp;
+import view_cells.CellViewPlayer;
+
 @SuppressWarnings("serial")
 public class MainPanelBattleship extends JPanel{
 
 	private JPanel playerMapPanel;
 	private Border border;
-	private JLabel[][] gridPlayerMap;
+	private CellViewPlayer[][] gridPlayerMap;
 	private JPanel centralPanel;
-	private JLabel[][] gridBattle;
+	private CellViewBattleCamp[][] gridBattle;
 	private JPanel battleMapPanel;
 	
 	public MainPanelBattleship() {
@@ -32,14 +35,15 @@ public class MainPanelBattleship extends JPanel{
 		playerMapPanel = new JPanel();
 		playerMapPanel.setLayout(new GridLayout(10, 10));
 		
-		gridPlayerMap = new JLabel[10][10];
+		gridPlayerMap = new CellViewPlayer[10][10];
 		playerMapPanel = new JPanel();
 		playerMapPanel.setLayout(new GridLayout(10, 10));
 		
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				gridPlayerMap[i][j] = new JLabel("");
+				gridPlayerMap[i][j] = new CellViewPlayer(i, j);
+				gridPlayerMap[i][j].setForeground(Color.orange);
 				gridPlayerMap[i][j].setHorizontalAlignment(JLabel.CENTER);
 				gridPlayerMap[i][j].setVerticalAlignment(JLabel.CENTER);
 				gridPlayerMap[i][j].setOpaque(true);
@@ -73,13 +77,13 @@ public class MainPanelBattleship extends JPanel{
 	
 	public void setBattleMap() {
 		
-		gridBattle = new JLabel[10][10];
+		gridBattle = new CellViewBattleCamp[10][10];
 		battleMapPanel = new JPanel();
 		battleMapPanel.setLayout(new GridLayout(10, 10));
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				gridBattle[i][j] = new JLabel("");
+				gridBattle[i][j] = new CellViewBattleCamp(i, j);
 				gridBattle[i][j].setHorizontalAlignment(JLabel.CENTER);
 				gridBattle[i][j].setVerticalAlignment(JLabel.CENTER);
 				gridBattle[i][j].setOpaque(true);
@@ -127,10 +131,6 @@ public class MainPanelBattleship extends JPanel{
 		return gridPlayerMap;
 	}
 
-	public void setGridPlayerMap(JLabel[][] gridPlayerMap) {
-		this.gridPlayerMap = gridPlayerMap;
-	}
-
 	public JPanel getCentralPanel() {
 		return centralPanel;
 	}
@@ -141,10 +141,6 @@ public class MainPanelBattleship extends JPanel{
 
 	public JLabel[][] getGridBattle() {
 		return gridBattle;
-	}
-
-	public void setGridBattle(JLabel[][] gridBattle) {
-		this.gridBattle = gridBattle;
 	}
 
 	public JPanel getBattleMapPanel() {
