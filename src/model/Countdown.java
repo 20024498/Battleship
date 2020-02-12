@@ -1,15 +1,8 @@
 package model;
 
-public class Countdown extends Thread{
+import java.util.Timer;
 
-	public Countdown(int time) {
-		// TODO Auto-generated constructor stub
-		
-	}
+public class Countdown extends Timer{
 
-	@Override
-	public void run() {
-		
-		
-	}
+	Timer timer;
 }

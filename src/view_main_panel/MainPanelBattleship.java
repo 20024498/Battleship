@@ -10,7 +10,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 import view_cells.CellViewBattleCamp;
 import view_cells.CellViewPlayer;
@@ -24,6 +26,8 @@ public class MainPanelBattleship extends JPanel{
 	private JPanel centralPanel;
 	private CellViewBattleCamp[][] gridBattle;
 	private JPanel battleMapPanel;
+	private JTable tableActions;
+	private DefaultTableModel tableModel;
 	
 	public MainPanelBattleship() {
 		
@@ -70,7 +74,27 @@ public class MainPanelBattleship extends JPanel{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(150, 400));
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		centralPanel.add(scrollPane);
+		
+		tableActions = new JTable(15, 1);
+		String[] nameColumns = {"Actions"};
+		
+		setTableModel(new DefaultTableModel(nameColumns, 0) {
+			
+			boolean[] columnEditables = new boolean[] {
+					false
+			};
+			
+			public boolean isCellEditable(int row, int column) {
+				
+				return columnEditables[column];
+			}
+		});
+		
+		tableActions.setModel(getTableModel());
+		scrollPane.setViewportView(tableActions);
+		
 		
 		add(centralPanel);
 	}
@@ -109,6 +133,30 @@ public class MainPanelBattleship extends JPanel{
 		setPlayerMap();
 		setCentralPanel();
 		setBattleMap();
+	}
+
+	public JTable getTableActions() {
+		return tableActions;
+	}
+
+	public void setTableActions(JTable tableActions) {
+		this.tableActions = tableActions;
+	}
+
+	public DefaultTableModel getTableModel() {
+		return tableModel;
+	}
+
+	public void setTableModel(DefaultTableModel tableModel) {
+		this.tableModel = tableModel;
+	}
+
+	public void setGridPlayerMap(CellViewPlayer[][] gridPlayerMap) {
+		this.gridPlayerMap = gridPlayerMap;
+	}
+
+	public void setGridBattle(CellViewBattleCamp[][] gridBattle) {
+		this.gridBattle = gridBattle;
 	}
 
 	public JPanel getPlayerMapPanel() {
