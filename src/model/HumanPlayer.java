@@ -36,7 +36,7 @@ public class HumanPlayer extends Player{
 		this.pState = pState;
 	}
 
-	public boolean shipPosition(Point p) {
+	public boolean humanShipPosition(Point p) {
 		
 		if(getShipHouse().isEmpty())
 			return false;

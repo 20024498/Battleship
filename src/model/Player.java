@@ -100,14 +100,15 @@ public abstract class Player {
 			Ship s = ships.get(new Point(x,y));
 			
 			if(s!=null) {
-				if(ownGrid.isHit(x, y)) {
+				if(!ownGrid.isHit(x, y)) 
+					hitOwnGrid(x, y);
 					
-					s.hit(x, y);
-					if(s.getState().equals(ShipState.AFFONDATA)) 
-						shipsAlive--;
+				s.hit(x, y);
+				if(s.getState().equals(ShipState.AFFONDATA)) 
+					shipsAlive--;
 					
 					return s.getState();
-				}
+				
 			}
 			
 		return ShipState.ILLESA;				
