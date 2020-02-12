@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+
 public class HumanPlayer extends Player{
 
 	private ShipOrientation choiceOrientation;
@@ -34,7 +36,25 @@ public class HumanPlayer extends Player{
 		this.pState = pState;
 	}
 
-	
+	public boolean shipPosition(Point p) {
+		
+		if(getShipHouse().isEmpty())
+			return false;
+		
+		Ship ship = getShipHouse().peek();
+		boolean b = shipPositioning(ship, choiceOrientation, p.x, p.y);
+		
+		if(b) {
+			getShipHouse().remove();
+			return true;
+		}
+		
+		else
+			return false;
+		
+		
+		
+	}
 	
 	
 }
