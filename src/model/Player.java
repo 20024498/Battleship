@@ -41,7 +41,7 @@ public abstract class Player {
 			ship.setPosition(new ShipCell(x,y), orientation);
 			
 			for(ShipCell c : ship.getCells().values()) {
-				ownGrid.getCells()[c.x][c.y].Occupy();
+				ownGrid.getCells()[c.x][c.y].occupy();
 				ownGrid.getCells()[c.x][c.y].setShipType(ship.getType());
 				ships.put(c, ship);
 			}

@@ -131,6 +131,16 @@ public class Game {
 	public Difficulty getDiff() {
 		return diff;
 	}
+
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Game load() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

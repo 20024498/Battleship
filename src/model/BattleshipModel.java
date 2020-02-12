@@ -13,8 +13,8 @@ public class BattleshipModel {
 	}
 	
 
-	public void newGame(Boolean hard, int time) {
-		game = new Game(hard, time);
+	public void newGame(Difficulty diff, int time) {
+		game = new Game(diff, time);
 		active=true;
 	}
 	
