@@ -27,7 +27,7 @@ public class OwnGridCell extends Cell {
 		return shipType;
 	}
 
-	public void Occupy() {
+	public void occupy() {
 		occupied = true;
 	}
 

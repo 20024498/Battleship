@@ -12,7 +12,7 @@ public abstract class Cell extends Point {
 		hit=false;
 	}
 	
-	public Cell(Cell c) {
+	public Cell(Point c) {
 		super(c.x,c.y);
 		hit=false;
 	}

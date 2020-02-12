@@ -22,7 +22,7 @@ public abstract class Grid implements Hittable{
 	@Override
 	public boolean isHit(int x, int y) {
 		
-		if(x>=0 && y >=0 && x<DIM && y<DIM)
+		if(x<0 || y<0 || x>=DIM || y>=DIM)
 			return false;
 		
 		if(cells[x][y].isHit())
