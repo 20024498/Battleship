@@ -111,6 +111,9 @@ public class ShipMap implements Map<Point,Ship> {
 		return m2.values();
 	}
 
-	
+	@Override
+	public String toString() {
+		return this.entrySet().toString();
+	}
 	
 }

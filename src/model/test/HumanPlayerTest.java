@@ -58,8 +58,6 @@ public class HumanPlayerTest {
 		assertNull(player.getShips().get(new Point (4,5)));
 		
 		
-		
-		
 	}
 	@Test
 	public void testShipPositioning() {
