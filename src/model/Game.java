@@ -27,7 +27,7 @@ public class Game {
 		else if(diff.equals(Difficulty.MEDIA))
 			cpu = new SmartComputer();
 		
-		timer= new Countdown(time);
+		//timer= new Countdown(time);
 		/*start timer*/
 	}
 	

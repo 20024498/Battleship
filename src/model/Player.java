@@ -6,10 +6,10 @@ import java.util.LinkedList;
 
 public abstract class Player {
 	
-	private static final int SHIPNUM = 5;
+	public static final int SHIPNUM = 5;
 	private OwnGrid ownGrid;
 	private OppGrid oppGrid;
-	private LinkedHashMap<Point,Ship> ships;
+	private ShipMap ships;
 	private int shipsAlive;
 	private LinkedList<Ship> shipHouse;
 	
@@ -18,7 +18,7 @@ public abstract class Player {
 		
 		this.ownGrid = new OwnGrid();
 		this.oppGrid = new OppGrid();
-		this.ships = new LinkedHashMap<Point,Ship>();
+		this.ships = new ShipMap();
 		shipsAlive = SHIPNUM;
 		shipHouse = new LinkedList<Ship>();
 		shipHouseInit();
@@ -36,6 +36,7 @@ public abstract class Player {
 	
 	protected boolean shipPositioning(Ship ship ,ShipOrientation orientation, int x, int y) {
 		
+		System.out.print("POS: ");
 		if(lecitPosition(ship.getLength(), orientation, x, y)) {
 			
 			ship.setPosition(new ShipCell(x,y), orientation);
@@ -55,6 +56,8 @@ public abstract class Player {
 	} 
 	
 	public boolean lecitPosition(int shipLength ,ShipOrientation orientation, int x, int y) {
+		
+		System.out.println("shiplen: " + shipLength + " orientation: " + orientation + " X: " + x + " Y: " + y);
 		
 		if(orientation.equals(ShipOrientation.ORIZZONTALE)) {
 			if(shipLength+x >= Grid.DIM)
@@ -126,17 +129,13 @@ public abstract class Player {
 	}
 
 
-	public static int getShipnum() {
-		return SHIPNUM;
-	}
-
 
 	public OppGrid getOppGrid() {
 		return oppGrid;
 	}
 
 
-	public LinkedHashMap<Point,Ship> getShips() {
+	public ShipMap getShips() {
 		return ships;
 	}
 

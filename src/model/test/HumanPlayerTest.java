@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.HumanPlayer;
+import model.Player;
 import model.Ship;
 import model.ShipOrientation;
 import model.ShipState;
@@ -127,7 +128,7 @@ public class HumanPlayerTest {
 		assertEquals(player.hitOwnShip(0, 3),ShipState.COLPITA);
 		assertEquals(player.hitOwnShip(0, 4),ShipState.COLPITA);
 		assertEquals(player.hitOwnShip(0, 5),ShipState.AFFONDATA);
-		assertEquals(player.getShipsAlive(),HumanPlayer.getShipnum()-1);
+		assertEquals(player.getShipsAlive(),Player.SHIPNUM-1);
 	}
 
 	@Test

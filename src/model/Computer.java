@@ -32,15 +32,15 @@ public class Computer extends Player{
 			
 			do {
 				
-				x = randomCell(SeekTargets.size());
-				y = randomCell(SeekTargets.size());
+				x = randomCell(Grid.DIM);
+				y = randomCell(Grid.DIM);
 				l = s.getLength();
 				if(randomCell(2)==0)
 					o=ShipOrientation.ORIZZONTALE;
 				else
 					o=ShipOrientation.VERTICALE;
 				
-			}while(lecitPosition(l, o, x, y));
+			}while(!lecitPosition(l, o, x, y));
 			
 			shipPositioning(s, o, x, y);
 					
@@ -58,7 +58,7 @@ public class Computer extends Player{
 		
 	}
 
-	public int randomCell(int size) {
+	protected int randomCell(int size) {
 		Random rand = new Random();
 		return rand.nextInt(size);
 	}
