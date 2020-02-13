@@ -1,7 +1,11 @@
 package model;
 
-public abstract class Grid implements Hittable{
+import java.io.Serializable;
+
+public abstract class Grid implements Hittable,Serializable{
 	
+
+	private static final long serialVersionUID = 1L;
 	public static final int DIM = 10;
 	protected Cell[][] cells;
 	

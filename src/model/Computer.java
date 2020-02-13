@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Computer extends Player{
 	
+	private static final long serialVersionUID = 1L;
 	protected ArrayList<Point> SeekTargets;
 	
 	public Computer() {

@@ -4,6 +4,7 @@ import java.awt.Point;
 
 public class HumanPlayer extends Player{
 
+	private static final long serialVersionUID = 1L;
 	private ShipOrientation choiceOrientation;
 	private PlayerState pState;
 

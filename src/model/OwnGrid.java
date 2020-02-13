@@ -2,8 +2,8 @@ package model;
 
 public class OwnGrid extends Grid{
 
-	//private OwnGridCell[][] cells;
-	
+	private static final long serialVersionUID = 1L;
+
 	public OwnGrid() {
 		this.cells = new OwnGridCell[Grid.DIM][Grid.DIM];
 		gridInit();

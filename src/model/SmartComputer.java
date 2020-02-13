@@ -7,6 +7,7 @@ import java.util.List;
 
 public class SmartComputer extends Computer{
 	
+	private static final long serialVersionUID = 1L;
 	private SmartComputerState state;
 	private LinkedList<Point> destroyTargets;
 	

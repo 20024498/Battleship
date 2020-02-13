@@ -1,11 +1,12 @@
 package model;
 
 import java.awt.Point;
-import java.util.LinkedHashMap;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public abstract class Player {
+public abstract class Player implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	public static final int SHIPNUM = 5;
 	private OwnGrid ownGrid;
 	private OppGrid oppGrid;
