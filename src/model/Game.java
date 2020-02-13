@@ -93,9 +93,7 @@ public class Game {
 				
 				if(cpu instanceof SmartComputer) {
 					((SmartComputer) cpu).setState(SmartComputerState.DESTROY);
-					for(Point t : ((SmartComputer) cpu).crossBoundary(p))
-						if(!cpu.getOppGrid().getCells()[t.x][t.y].isHit())
-							((SmartComputer) cpu).getDestroyTargets().add(t);
+					((SmartComputer) cpu).getDestroyTargets().addAll(((SmartComputer) cpu).crossBoundary(p));
 				}
 				
 				return new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y));

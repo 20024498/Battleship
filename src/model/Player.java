@@ -36,7 +36,7 @@ public abstract class Player {
 	
 	protected boolean shipPositioning(Ship ship ,ShipOrientation orientation, int x, int y) {
 		
-		System.out.print("POS: ");
+		//System.out.print("POS: ");
 		if(lecitPosition(ship.getLength(), orientation, x, y)) {
 			
 			ship.setPosition(new ShipCell(x,y), orientation);
@@ -57,7 +57,7 @@ public abstract class Player {
 	
 	public boolean lecitPosition(int shipLength ,ShipOrientation orientation, int x, int y) {
 		
-		System.out.println("shiplen: " + shipLength + " orientation: " + orientation + " X: " + x + " Y: " + y);
+		//System.out.println("shiplen: " + shipLength + " orientation: " + orientation + " X: " + x + " Y: " + y);
 		
 		if(orientation.equals(ShipOrientation.ORIZZONTALE)) {
 			if(shipLength+x >= Grid.DIM)

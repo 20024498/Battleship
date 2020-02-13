@@ -79,6 +79,10 @@ public class SmartComputer extends Computer{
 			out.add(new Point(p.x,p.y-1));
 			out.add(new Point(p.x,p.y+1));
 		}
+		
+		for(Point t : out)
+			if(getOppGrid().getCells()[t.x][t.y].isHit())
+				out.remove(t);
 			
 		return out;
 	}
