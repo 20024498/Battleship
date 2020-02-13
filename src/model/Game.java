@@ -109,6 +109,15 @@ public class Game {
 		
 	}
 	
+	public boolean playerPosition(Point p) {
+		
+		return player.humanShipPosition(p);
+	}
+	
+	public void cpuPosition() {
+		cpu.autoPosition();
+	}
+	
 
 
 	public HumanPlayer getPlayer() {
