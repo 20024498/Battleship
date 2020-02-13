@@ -4,15 +4,32 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
 public class Computer extends Player{
 	
 	protected ArrayList<Point> SeekTargets;
 	
+	/**
+	 * Il costrutttore Computer() si riferisce alla superclasse
+	 * con l'operatore super. Inoltre, usa la funzione initTargets()
+	 * che consente di trovare una nave bersaglio da affondare sulla
+	 * mappa
+	 * 
+	 */
 	public Computer() {
 		super();
 		initTargets();
 	}
 	
+	/**
+	 * Questo metodo inizializza i target di un giocatore
+	 * 
+	 */
 	protected void initTargets () {
 		SeekTargets = new ArrayList<Point>();
 		for(int i=0; i<Grid.DIM;i++)
@@ -20,6 +37,11 @@ public class Computer extends Player{
 				SeekTargets.add(new Point(i,j));
 	}
 
+	/**
+	 * Questo metodo serve a poszionare le navi per il Player
+	 * Computer in modo automatico
+	 * 
+	 */
 	public void autoPosition() {
 		 
 		while(!getShipHouse().isEmpty()) {
@@ -48,6 +70,11 @@ public class Computer extends Player{
 			 
 	}
 	
+	/**
+	 * Questo metodo serve a dichiarare le coordinate da colpire
+	 * 
+	 * @return new Point(p.x,p.y)
+	 */
 	public Point declareCoord() {
 		
 		int index = randomCell(SeekTargets.size());
@@ -58,15 +85,23 @@ public class Computer extends Player{
 		
 	}
 
+	/**
+	 * Questo metodo serve a generare un cella randomicamente
+	 * 
+	 * @param size
+	 * @return rand.nextInt(size)
+	 */
 	public int randomCell(int size) {
 		Random rand = new Random();
 		return rand.nextInt(size);
 	}
 
+	/**
+	 * Questo metodo serve ad ottenere il campo SeekTargets
+	 * 
+	 * @return SeekTargets
+	 */
 	public ArrayList<Point> getSeekTargets() {
 		return SeekTargets;
 	}
-	
-	
-
 }

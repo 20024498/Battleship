@@ -1,8 +1,20 @@
 package model;
 
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
 public class OppGrid extends Grid {
 
-	
+	/**
+	 * Questo costruttore associa alla griglia, mappa, 
+	 * dell'avversario le dimensioni. Inoltre, utilizza 
+	 * la funzione gridInit() per creare le celle
+	 * della mappa
+	 * 
+	 */
 	public OppGrid() {
 		this.cells = new OppGridCell[Grid.DIM][Grid.DIM];
 		gridInit();

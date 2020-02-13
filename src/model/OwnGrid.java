@@ -1,15 +1,30 @@
 package model;
 
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
 public class OwnGrid extends Grid{
 
 	//private OwnGridCell[][] cells;
 	
+	/**
+	 * Questo costruttore consente di inizializzare la griglia, mappa,
+	 * del giocatore dandole delle dimensioni. Inoltre, con la funzione
+	 * gridInit(), viene creata una cella per ogni posizione della griglia
+	 * 
+	 */
 	public OwnGrid() {
 		this.cells = new OwnGridCell[Grid.DIM][Grid.DIM];
 		gridInit();
 	}
 	
-	
+	/**
+	 * Questo metodo crea una cella per ogni posizione dellla griglia
+	 * 
+	 */
 	protected void gridInit() {
 		
 		for(int i=0;i<Grid.DIM;i++)
@@ -18,9 +33,12 @@ public class OwnGrid extends Grid{
 	}
 
 
-
+	/**
+	 * Questo metodo ritorna il campo cells della superclasse
+	 * 
+	 * @return (OwnGridCell[][])cells
+	 */
 	public OwnGridCell[][] getCells() {
 		return (OwnGridCell[][])cells;
 	}
-
 }

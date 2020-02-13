@@ -3,7 +3,6 @@ package view_new_game_panel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.time.LocalTime;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -62,8 +61,7 @@ public class NewGamePanel extends JPanel{
 	}
 
 	private void setComboBoxDifficoltaConstraint() {
-		
-		String[] s = {"FACILE" , "MEDIA"};
+	
 		diffiulties = new JComboBox<Difficulty>();
 		cs.gridx = 1;
 		cs.gridy = 1;
@@ -143,13 +141,13 @@ public class NewGamePanel extends JPanel{
 		this.lblDifficulties = lblDifficulties;
 	}
 
-	public JComboBox getDiffiulties() {
-		return diffiulties;
-	}
-
-	/*public void setDiffiulties(JComboBox diffiulties) {
-		this.diffiulties = diffiulties;
-	}*/
+//	public JComboBox getDiffiulties() {
+//		return diffiulties;
+//	}
+//
+//	public void setDiffiulties(JComboBox diffiulties) {
+//		this.diffiulties = diffiulties;
+//	}
 
 	public JButton getBtnOK() {
 		return btnOK;

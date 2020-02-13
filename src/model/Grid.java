@@ -1,11 +1,15 @@
 package model;
 
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
 public abstract class Grid implements Hittable{
 	
 	public static final int DIM = 10;
 	protected Cell[][] cells;
-	
-	
 	protected abstract void gridInit(); 
 
 	@Override
@@ -32,11 +36,12 @@ public abstract class Grid implements Hittable{
 		
 	}
 
-
+	/**
+	 * Questa funzione restituisce il campo cells
+	 * 
+	 * @return cells, ovvero una matrice di Cell
+	 */
 	public Cell[][] getCells() {
 		return cells;
 	}
-	
-	
-	
 }

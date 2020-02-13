@@ -1,8 +1,13 @@
 package model;
 
-import java.util.Timer;
 
-public class Countdown extends Timer{
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
+public class Countdown extends Thread{
 
-	Timer timer;
+	
 }

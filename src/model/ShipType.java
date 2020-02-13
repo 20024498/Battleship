@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * Questa classe Enum consente di associare ad una nave 
+ * un tipo preciso di nave con un nome ed una dimensione
+ * 
+ * @author Gili_Patera
+ *
+ */
 public enum ShipType {
 
 	PORTAEREI("Portaerei",5),
@@ -16,10 +23,20 @@ public enum ShipType {
 		this.length=length;
 	}
 	
+	/**
+	 * Questo metodo restituisce il nome della nave
+	 * 
+	 * @return shipName
+	 */
 	public String shipName() {
 		return shipName;
 	}
 	
+	/**
+	 * Questo metodo restituisce la lunghezza della nave
+	 * 
+	 * @return length
+	 */
 	public int length() {
 		return length;
 	}

@@ -2,6 +2,12 @@ package model;
 
 import java.awt.Point;
 
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
 public class Game {
 
 	
@@ -10,7 +16,10 @@ public class Game {
 	private Countdown timer;
 	private Difficulty diff;
 	
-	
+	/**
+	 * Il costruttore setta a null tutti i campi della classe
+	 * 
+	 */
 	public Game() {
 		player = null;;
 		cpu = null;
@@ -18,6 +27,14 @@ public class Game {
 		diff = null;
 	}
 	
+	/**
+	 * Questa funzione, che prende in input i parametri
+	 * diff e time, inizializza il giocatore, un
+	 * avversario in base alla difficoltà ed un timer
+	 * 
+	 * @param diff
+	 * @param time
+	 */
 	public Game (Difficulty diff, int time) {
 		
 		player = new HumanPlayer();
@@ -31,7 +48,14 @@ public class Game {
 		/*start timer*/
 	}
 	
-	
+	/**
+	 * Questa funzione, dati i parametri x ed y, in input
+	 * dirà il risultato della mossa del giocatore
+	 * 
+	 * @param x
+	 * @param y
+	 * @return il tipo di return è MoveResul 
+	 */
 	public MoveResult playerMove(int x, int y) {
 		
 		player.hitOppGrid(x, y);
@@ -67,7 +91,13 @@ public class Game {
 		
 	}
 	
-	public MoveResult  cpuMove() {
+	/**
+	 * Questa funzione, dati i parametri x ed y, in input
+	 * dirà il risultato della mossa del giocatore computer
+	 * 
+	 * @return il return è di tipo MoveResult
+	 */
+	public MoveResult cpuMove() {
 		
 		Point p = cpu.declareCoord();
 		
@@ -112,22 +142,38 @@ public class Game {
 	}
 	
 
-
+	/**
+	 * Questa funzione restituisce il campo player
+	 * 
+	 * @return player
+	 */
 	public HumanPlayer getPlayer() {
 		return player;
 	}
 
-
+	/**
+	 * Questa funzione restituisce il campo cpu
+	 * 
+	 * @return cpu
+	 */
 	public Computer getCpu() {
 		return cpu;
 	}
 
-
+	/**
+	 * Questa funzione restituisce il campo timer
+	 * 
+	 * @return timer
+	 */
 	public Countdown getTimer() {
 		return timer;
 	}
 
-
+	/**
+	 * Questa funzione restituisce il campo diff
+	 * 
+	 * @return diff
+	 */
 	public Difficulty getDiff() {
 		return diff;
 	}

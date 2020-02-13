@@ -5,12 +5,24 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
 public class SmartComputer extends Computer{
 	
 	private SmartComputerState state;
 	private LinkedList<Point> destroyTargets;
 	
-	
+	/**
+	 * Il costruttore SmartComputer() si riferisce alla superclasse
+	 *  tramite l'operatore super. Inoltre inizializza il valore dei campi
+	 *  state allo stato SEEK, crea l'oggetto destroyTarget ed in più riempie
+	 *  la lista dei target
+	 * 
+	 */
 	public SmartComputer() {
 		super();
 		state=SmartComputerState.SEEK;
@@ -55,6 +67,13 @@ public class SmartComputer extends Computer{
 		}
 	}
 
+	/**
+	 * Questa funzione controlla che non vengano sforati i confini
+	 * della mappa
+	 * 
+	 * @param p
+	 * @return out
+	 */
 	public List<Point> crossBoundary(Point p){
 		List<Point> out = new ArrayList<Point>();
 		
@@ -83,21 +102,31 @@ public class SmartComputer extends Computer{
 		return out;
 	}
 
+	/**
+	 * Questa funzione ritorna il campo state
+	 * 
+	 * @return state
+	 */
 	public SmartComputerState getState() {
 		return state;
-	}
+	} 
 
-
+	/**
+	 * Questa funzione imposta il capo stato al valore 
+	 * in input alla funzione
+	 * 
+	 * @param state
+	 */
 	public void setState(SmartComputerState state) {
 		this.state = state;
 	}
 
-
+	/**
+	 * Questa funzione serve a ritornare il campo destroyTargets
+	 * 
+	 * @return destroyTargets
+	 */
 	public LinkedList<Point> getDestroyTargets() {
 		return destroyTargets;
-	}
-
-
-	
-	
+	}	
 }

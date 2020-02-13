@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.TextArea;
-import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

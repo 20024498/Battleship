@@ -3,6 +3,12 @@ package model;
 import java.awt.Point;
 import java.util.LinkedHashMap;
 
+/**
+ * 
+ * 
+ * @author Gili_Patera
+ *
+ */
 public class Ship implements Hittable {
 
 	private final ShipType type;
@@ -14,6 +20,12 @@ public class Ship implements Hittable {
 	private ShipCell headCell;
 	private final String name;
 	
+	/**
+	 * Il costruttore inizializza tutte i campi della classe
+	 * ed imposta il campo shipType a quello passato in input
+	 * 
+	 * @param type
+	 */
 	public Ship (ShipType type){
 		
 		this.type=type;
@@ -27,6 +39,13 @@ public class Ship implements Hittable {
 		
 	}
 	
+	/**
+	 * Questo metodo imposta la posizione della nave ed 
+	 * imposta le sue celle
+	 * 
+	 * @param headCell
+	 * @param orientation
+	 */
 	public void setPosition(ShipCell headCell,ShipOrientation orientation) {
 		this.orientation=orientation;
 		this.headCell=headCell;
@@ -70,7 +89,6 @@ public class Ship implements Hittable {
 			return true;
 		}
 		
-		
 		return false;
 	}
 	
@@ -86,42 +104,84 @@ public class Ship implements Hittable {
 		
 	}
 	
-
+	/**
+	 * Questo metodo imposta il campo state ad un parametro in input
+	 * 
+	 * @param state
+	 */
 	private void setState(ShipState state) {
 		this.state = state;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo type
+	 * 
+	 * @return type
+	 */
 	public ShipType getType() {
 		return type;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo length
+	 * 
+	 * @return length
+	 */
 	public int getLength() {
 		return length;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo cells
+	 * 
+	 * @return cells
+	 */
 	public LinkedHashMap<Point,ShipCell> getCells() {
 		return cells;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo state
+	 * 
+	 * @return state
+	 */
 	public ShipState getState() {
 		return state;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo
+	 * 
+	 * @return orientation
+	 */
 	public ShipOrientation getOrientation() {
 		return orientation;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo health
+	 * 
+	 * @return health
+	 */
 	public int getHealth() {
 		return health;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo headCell
+	 * 
+	 * @return headCell
+	 */
 	public ShipCell getHeadCell() {
 		return headCell;
 	}
 
+	/**
+	 * Questo metodo restituisce il campo name
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
-	}
-	
-	
+	}	
 }
