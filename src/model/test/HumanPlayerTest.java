@@ -95,7 +95,6 @@ public class HumanPlayerTest {
 
 	@Test
 	public void testIsShipOnCell() {
-		Ship s = player.getShipHouse().peek();
 		boolean b1 = player.humanShipPosition(new Point (0,1));
 		assertTrue(b1);
 		assertTrue(player.isShipOnCell(0, 1));
