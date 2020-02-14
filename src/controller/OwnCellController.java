@@ -52,16 +52,19 @@ public class OwnCellController implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 		if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
-			
+			gridReverting();
 		}
 		
 	}
+
+	
 
 	@Override
 	public void mousePressed(MouseEvent e) {}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {}
+	
 
 	private void gridColoring() {
 		
@@ -103,8 +106,52 @@ public class OwnCellController implements MouseListener{
 						view.getPanel().getGridPlayerMap()[p.x][p.y+i].setColorRed();
 				
 			}
-		}
-				
+		}			
 	}
+	
+	private void gridReverting() {
+		
+		int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+		ShipOrientation so = model.getGame().getPlayer().getChoiceOrientation();
+		Point p = cellView.getPoint();
+		
+			
+		if(model.getGame().getPlayer().lecitPosition(l, so, p.x, p.y)) {
+			
+			if(so.equals(ShipOrientation.ORIZZONTALE))
+				for(int i=0;i<l;i++)
+					view.getPanel().getGridPlayerMap()[p.x+i][p.y].resetColor();
+			else if(so.equals(ShipOrientation.VERTICALE))
+				for(int i=0;i<l;i++)
+					view.getPanel().getGridPlayerMap()[p.x][p.y+i].resetColor();
+							
+		}
+		
+		else  {
+			
+			if(so.equals(ShipOrientation.ORIZZONTALE)) {
+				if(p.x+l>=Grid.DIM)
+					for(int i=0;i<Grid.DIM-p.x;i++)
+						view.getPanel().getGridPlayerMap()[p.x+i][p.y].resetColor();
+				else 
+					for(int i=0;i<l;i++)
+						view.getPanel().getGridPlayerMap()[p.x+i][p.y].resetColor();
+				
+			}
+			
+			else if(so.equals(ShipOrientation.VERTICALE)) {
+				
+				if(p.y+l>=Grid.DIM)
+					for(int i=0;i<Grid.DIM-p.y;i++)
+						view.getPanel().getGridPlayerMap()[p.x][p.y+i].resetColor();
+				else 
+					for(int i=0;i<l;i++)
+						view.getPanel().getGridPlayerMap()[p.x][p.y+i].resetColor();
+				
+			}
+		}			
+	}
+		
+	
 	
 }
