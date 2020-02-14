@@ -1,4 +1,4 @@
-package view_new_game_panel;
+package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

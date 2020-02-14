@@ -11,7 +11,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import view_main_panel.MainPanelBattleship;
 
 @SuppressWarnings("serial")
 public class BattleshipView extends JFrame{

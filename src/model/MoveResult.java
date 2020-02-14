@@ -13,6 +13,7 @@ public class MoveResult {
 	MoveResultType moveRes;
 	ShipType shipType;
 	Point Coord;
+	Turn turn;
 	
 	/**
 	 * Il costruttore inizializza alcuni campi della classe tramite dei 
@@ -56,6 +57,8 @@ public class MoveResult {
 	public ShipType getShipType() {
 		return shipType;
 	}
+	
+	
 	
 	@Override
 	public String toString() {
