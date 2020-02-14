@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 public class Ship implements Hittable {
 
 	private final ShipType type;
+	private final int shipId;
 	private final int length;
 	private LinkedHashMap<Point,ShipCell> cells;
 	private ShipState state;
@@ -32,6 +33,7 @@ public class Ship implements Hittable {
 		this.name = type.shipName();
 		this.length=type.length();
 		this.health=type.length();
+		this.shipId=type.id();
 		this.state=ShipState.ILLESA;
 		this.cells = new LinkedHashMap<Point,ShipCell>() ;
 		this.orientation=ShipOrientation.NESSUNA;
@@ -104,6 +106,31 @@ public class Ship implements Hittable {
 		
 	}
 	
+	@Override
+	public int hashCode() {
+		
+		return this.shipId;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ship other = (Ship) obj;
+		if (type != other.type)
+			return false;
+		
+		return this.shipId == ((Ship)obj).shipId;
+		
+		
+		
+		
+	}
+
 	/**
 	 * Questo metodo imposta il campo state ad un parametro in input
 	 * 

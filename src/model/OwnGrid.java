@@ -8,8 +8,8 @@ package model;
  */
 public class OwnGrid extends Grid{
 
-	//private OwnGridCell[][] cells;
-	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Questo costruttore consente di inizializzare la griglia, mappa,
 	 * del giocatore dandole delle dimensioni. Inoltre, con la funzione

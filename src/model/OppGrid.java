@@ -8,7 +8,10 @@ package model;
  */
 public class OppGrid extends Grid {
 
-	/**
+	private static final long serialVersionUID = 1L;
+
+
+		/**
 	 * Questo costruttore associa alla griglia, mappa, 
 	 * dell'avversario le dimensioni. Inoltre, utilizza 
 	 * la funzione gridInit() per creare le celle
@@ -29,10 +32,7 @@ public class OppGrid extends Grid {
 	}
 
 
-
 	public OppGridCell[][] getCells() {
 		return (OppGridCell[][]) cells;
-	}
-
-	
+	}	
 }

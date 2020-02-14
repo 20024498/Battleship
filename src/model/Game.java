@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  * 
@@ -8,9 +9,9 @@ import java.awt.Point;
  * @author Gili_Patera
  *
  */
-public class Game {
+public class Game implements Serializable {
 
-	
+	private static final long serialVersionUID = 1L;
 	private HumanPlayer player;
 	private Computer cpu;
 	private Countdown timer;
@@ -30,7 +31,7 @@ public class Game {
 	/**
 	 * Questa funzione, che prende in input i parametri
 	 * diff e time, inizializza il giocatore, un
-	 * avversario in base alla difficoltà ed un timer
+	 * avversario in base alla difficoltï¿½ ed un timer
 	 * 
 	 * @param diff
 	 * @param time
@@ -44,17 +45,17 @@ public class Game {
 		else if(diff.equals(Difficulty.MEDIA))
 			cpu = new SmartComputer();
 		
-		timer= new Countdown(time);
+		//timer= new Countdown(time);
 		/*start timer*/
 	}
 	
 	/**
 	 * Questa funzione, dati i parametri x ed y, in input
-	 * dirà il risultato della mossa del giocatore
+	 * dirï¿½ il risultato della mossa del giocatore
 	 * 
 	 * @param x
 	 * @param y
-	 * @return il tipo di return è MoveResul 
+	 * @return il tipo di return ï¿½ MoveResul 
 	 */
 	public MoveResult playerMove(int x, int y) {
 		
@@ -93,9 +94,9 @@ public class Game {
 	
 	/**
 	 * Questa funzione, dati i parametri x ed y, in input
-	 * dirà il risultato della mossa del giocatore computer
+	 * dirï¿½ il risultato della mossa del giocatore computer
 	 * 
-	 * @return il return è di tipo MoveResult
+	 * @return il return ï¿½ di tipo MoveResult
 	 */
 	public MoveResult cpuMove() {
 		
@@ -123,9 +124,7 @@ public class Game {
 				
 				if(cpu instanceof SmartComputer) {
 					((SmartComputer) cpu).setState(SmartComputerState.DESTROY);
-					for(Point t : ((SmartComputer) cpu).crossBoundary(p))
-						if(!cpu.getOppGrid().getCells()[t.x][t.y].isHit())
-							((SmartComputer) cpu).getDestroyTargets().add(t);
+					((SmartComputer) cpu).getDestroyTargets().addAll(((SmartComputer) cpu).crossBoundary(p));
 				}
 				
 				return new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y));
@@ -139,6 +138,15 @@ public class Game {
 			
 		}
 		
+	}
+	
+	public boolean playerPosition(Point p) {
+		
+		return player.humanShipPosition(p);
+	}
+	
+	public void cpuPosition() {
+		cpu.autoPosition();
 	}
 	
 

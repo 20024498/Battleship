@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+
 /**
  * 
  * 
@@ -8,6 +10,7 @@ package model;
  */
 public class HumanPlayer extends Player{
 
+	private static final long serialVersionUID = 1L;
 	private ShipOrientation choiceOrientation;
 	private PlayerState pState;
 
@@ -71,5 +74,22 @@ public class HumanPlayer extends Player{
 	 */
 	public void setpState(PlayerState pState) {
 		this.pState = pState;
-	}	
+	}
+
+	public boolean humanShipPosition(Point p) {
+		
+		if(getShipHouse().isEmpty())
+			return false;
+		
+		Ship ship = getShipHouse().peek();
+		boolean b = shipPositioning(ship, choiceOrientation, p.x, p.y);
+		
+		if(b) {
+			getShipHouse().remove();
+			return true;
+		}
+		
+		else
+			return false;	
+	}
 }

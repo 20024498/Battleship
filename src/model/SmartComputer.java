@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class SmartComputer extends Computer{
 	
+	private static final long serialVersionUID = 1L;
 	private SmartComputerState state;
 	private LinkedList<Point> destroyTargets;
 	
@@ -75,29 +76,34 @@ public class SmartComputer extends Computer{
 	 * @return out
 	 */
 	public List<Point> crossBoundary(Point p){
+		List<Point> temp = new ArrayList<Point>();
 		List<Point> out = new ArrayList<Point>();
 		
 		if(p.x ==0) 
-			out.add(new Point(1,p.y));
+			temp.add(new Point(1,p.y));
 		
 		if(p.y ==0) 
-			out.add(new Point(p.x,1));
+			temp.add(new Point(p.x,1));
 		
 		if(p.x == Grid.DIM-1) 
-			out.add(new Point(Grid.DIM-2,p.y));
+			temp.add(new Point(Grid.DIM-2,p.y));
 		
 		if(p.y == Grid.DIM-1) 
-			out.add(new Point(p.x,Grid.DIM-2));
+			temp.add(new Point(p.x,Grid.DIM-2));
 		
 		if(p.x!= 0 && p.x!= Grid.DIM-1) {
-			out.add(new Point(p.x-1,p.y));
-			out.add(new Point(p.x+1,p.y));
+			temp.add(new Point(p.x-1,p.y));
+			temp.add(new Point(p.x+1,p.y));
 		}
 		
 		if(p.y!= 0 && p.y!= Grid.DIM-1) {
-			out.add(new Point(p.x,p.y-1));
-			out.add(new Point(p.x,p.y+1));
+			temp.add(new Point(p.x,p.y-1));
+			temp.add(new Point(p.x,p.y+1));
 		}
+		
+		for(Point t : temp)
+			if(!getOppGrid().getCells()[t.x][t.y].isHit())
+				out.add(t);
 			
 		return out;
 	}

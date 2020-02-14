@@ -1,7 +1,7 @@
 package model;
 
 import java.awt.Point;
-import java.util.LinkedHashMap;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
@@ -10,12 +10,13 @@ import java.util.LinkedList;
  * @author Gili_Patera
  *
  */
-public abstract class Player {
+public abstract class Player implements Serializable{
 	
-	private static final int SHIPNUM = 5;
+	private static final long serialVersionUID = 1L;
+	public static final int SHIPNUM = 5;
 	private OwnGrid ownGrid;
 	private OppGrid oppGrid;
-	private LinkedHashMap<Point,Ship> ships;
+	private ShipMap ships;
 	private int shipsAlive;
 	private LinkedList<Ship> shipHouse;
 	
@@ -31,7 +32,7 @@ public abstract class Player {
 		
 		this.ownGrid = new OwnGrid();
 		this.oppGrid = new OppGrid();
-		this.ships = new LinkedHashMap<Point,Ship>();
+		this.ships = new ShipMap();
 		shipsAlive = SHIPNUM;
 		shipHouse = new LinkedList<Ship>();
 		shipHouseInit();
@@ -48,7 +49,7 @@ public abstract class Player {
 	/**
 	 * Questa funzione serve per posizionare una nave sulla propria griglia.
 	 * Dopo aver verificato con la funzione lecitPosition(...) che la posizione
-	 * per la nave sia lecita, imposta le celle che il tipo di nave occuperà sulla 
+	 * per la nave sia lecita, imposta le celle che il tipo di nave occuperï¿½ sulla 
 	 * mappa. Con occupy(), occupa la cella disponibile, con setShipType(...) imposta
 	 * il tipo di nave e con put(...) la inserisce nella LinkedHashMap
 	 * 
@@ -56,10 +57,11 @@ public abstract class Player {
 	 * @param orientation
 	 * @param x
 	 * @param y
-	 * @return un valore booleano che dice se la nave è stata poszionata o meno
+	 * @return un valore booleano che dice se la nave ï¿½ stata poszionata o meno
 	 */
 	protected boolean shipPositioning(Ship ship ,ShipOrientation orientation, int x, int y) {
 		
+		//System.out.print("POS: ");
 		if(lecitPosition(ship.getLength(), orientation, x, y)) {
 			
 			ship.setPosition(new ShipCell(x,y), orientation);
@@ -78,7 +80,7 @@ public abstract class Player {
 	/**
 	 * Con questa funzione si verifica che la posizione per una nave, sulla mappa sia lecita
 	 * La verifica viene effettuata controllando che le cella che si vogliono occupare non lo 
-	 * siano già
+	 * siano giï¿½
 	 * 
 	 * @param shipLength
 	 * @param orientation
@@ -87,6 +89,8 @@ public abstract class Player {
 	 * @return un tipo booleano che specifica se la posizione fosse valida o meno
 	 */
 	public boolean lecitPosition(int shipLength ,ShipOrientation orientation, int x, int y) {
+		
+		//System.out.println("shiplen: " + shipLength + " orientation: " + orientation + " X: " + x + " Y: " + y);
 		
 		if(orientation.equals(ShipOrientation.ORIZZONTALE)) {
 			if(shipLength+x >= Grid.DIM)
@@ -110,13 +114,13 @@ public abstract class Player {
 	}
 	
 	/**
-	 * Questa funzione controlla se una propria nave è stata colpita
+	 * Questa funzione controlla se una propria nave ï¿½ stata colpita
 	 * da una mossa del computer
 	 * 
 	 * @param x
 	 * @param y
-	 * @return ShipState.ILLESA la nostra nave non è statta colpita
-	 * @return s.getState() ritorniamo lo stato della nave se non è stata affondata
+	 * @return ShipState.ILLESA la nostra nave non ï¿½ statta colpita
+	 * @return s.getState() ritorniamo lo stato della nave se non ï¿½ stata affondata
 	 */
 	public ShipState hitOwnShip(int x, int y) {
 		
@@ -125,14 +129,15 @@ public abstract class Player {
 			Ship s = ships.get(new Point(x,y));
 			
 			if(s!=null) {
-				if(ownGrid.isHit(x, y)) {
+				if(!ownGrid.isHit(x, y)) 
+					hitOwnGrid(x, y);
 					
-					s.hit(x, y);
-					if(s.getState().equals(ShipState.AFFONDATA)) 
-						shipsAlive--;
+				s.hit(x, y);
+				if(s.getState().equals(ShipState.AFFONDATA)) 
+					shipsAlive--;
 					
 					return s.getState();
-				}
+				
 			}
 			
 		return ShipState.ILLESA;				
@@ -167,7 +172,7 @@ public abstract class Player {
 	/**
 	 * Questa funzione imposta a colpita la cella della mappa
 	 * di un giocatore avversario, solo dopo essersi assicurata
-	 * che non lo sia già
+	 * che non lo sia giï¿½
 	 * 
 	 * @param x
 	 * @param y
@@ -180,7 +185,7 @@ public abstract class Player {
 	
 	/**
 	 * Questa funzione imposta a colpita la cella della propria mappa
-	 * solo dopo essersi assicurata che non lo sia già
+	 * solo dopo essersi assicurata che non lo sia giï¿½
 	 * 
 	 * @param x
 	 * @param y
@@ -190,14 +195,6 @@ public abstract class Player {
 			ownGrid.hit(x, y);
 	}
 
-	/**
-	 * Questa funzione serve ad ottenere il numero di navi
-	 * 
-	 * @return SHIPNUM
-	 */
-	public static int getShipnum() {
-		return SHIPNUM;
-	}
 
 	/**
 	 * Questa funzione serve ad ottenere il campo oppGrid
@@ -208,12 +205,8 @@ public abstract class Player {
 		return oppGrid;
 	}
 
-	/**
-	 * Questa funzione ritorna il campo LinkedHashMap 
-	 * 
-	 * @return ships
-	 */
-	public LinkedHashMap<Point,Ship> getShips() {
+
+	public ShipMap getShips() {
 		return ships;
 	}
 
