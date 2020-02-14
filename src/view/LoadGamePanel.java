@@ -5,13 +5,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class ViewLoadFile extends JPanel{
+public class LoadGamePanel extends JPanel{
 
 	private JFileChooser fileChooser;
 	private File file;
 	private int resultOfDialogOperation;
 	
-	public ViewLoadFile() {
+	public LoadGamePanel() {
 		
 		fileChooser = new JFileChooser();
 		file = new File("");

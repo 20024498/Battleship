@@ -9,13 +9,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class ViewSavePanel extends JPanel{
+public class SaveGamePanel extends JPanel{
 
 	private JFileChooser fileChooser;
 	private File file;
 	private int resultOfDialogOperation;
 	
-	public ViewSavePanel() throws IOException {
+	public SaveGamePanel() throws IOException {
 		
 		fileChooser = new JFileChooser();
 		file = new File("");
