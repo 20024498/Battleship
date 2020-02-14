@@ -19,9 +19,9 @@ public class MainPanelBattleship extends JPanel{
 
 	private JPanel playerMapPanel;
 	private Border border;
-	private OwnCellView[][] gridPlayerMap;
+	private OwnCellView[][] ownGrid;
 	private JPanel centralPanel;
-	private OppCellView[][] gridBattle;
+	private OppCellView[][] oppGrid;
 	private JPanel battleMapPanel;
 	private JTable tableActions;
 	private DefaultTableModel tableModel;
@@ -36,21 +36,21 @@ public class MainPanelBattleship extends JPanel{
 		playerMapPanel = new JPanel();
 		playerMapPanel.setLayout(new GridLayout(10, 10));
 		
-		gridPlayerMap = new OwnCellView[10][10];
+		ownGrid = new OwnCellView[10][10];
 		playerMapPanel = new JPanel();
 		playerMapPanel.setLayout(new GridLayout(10, 10));
 		
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				gridPlayerMap[i][j] = new OwnCellView(i, j);
-				gridPlayerMap[i][j].setForeground(Color.orange);
-				gridPlayerMap[i][j].setHorizontalAlignment(JLabel.CENTER);
-				gridPlayerMap[i][j].setVerticalAlignment(JLabel.CENTER);
-				gridPlayerMap[i][j].setOpaque(true);
-				gridPlayerMap[i][j].setBackground(Color.WHITE);
-				gridPlayerMap[i][j].setBorder(border);
-				playerMapPanel.add(gridPlayerMap[i][j]);
+				ownGrid[i][j] = new OwnCellView(i, j);
+				ownGrid[i][j].setForeground(Color.orange);
+				ownGrid[i][j].setHorizontalAlignment(JLabel.CENTER);
+				ownGrid[i][j].setVerticalAlignment(JLabel.CENTER);
+				ownGrid[i][j].setOpaque(true);
+				ownGrid[i][j].setBackground(Color.WHITE);
+				ownGrid[i][j].setBorder(border);
+				playerMapPanel.add(ownGrid[i][j]);
 			}
 		}
 		
@@ -98,19 +98,19 @@ public class MainPanelBattleship extends JPanel{
 	
 	public void setBattleMap() {
 		
-		gridBattle = new OppCellView[10][10];
+		oppGrid = new OppCellView[10][10];
 		battleMapPanel = new JPanel();
 		battleMapPanel.setLayout(new GridLayout(10, 10));
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				gridBattle[i][j] = new OppCellView(i, j);
-				gridBattle[i][j].setHorizontalAlignment(JLabel.CENTER);
-				gridBattle[i][j].setVerticalAlignment(JLabel.CENTER);
-				gridBattle[i][j].setOpaque(true);
-				gridBattle[i][j].setBackground(Color.WHITE);
-				gridBattle[i][j].setBorder(border);
-				battleMapPanel.add(gridBattle[i][j]);
+				oppGrid[i][j] = new OppCellView(i, j);
+				oppGrid[i][j].setHorizontalAlignment(JLabel.CENTER);
+				oppGrid[i][j].setVerticalAlignment(JLabel.CENTER);
+				oppGrid[i][j].setOpaque(true);
+				oppGrid[i][j].setBackground(Color.WHITE);
+				oppGrid[i][j].setBorder(border);
+				battleMapPanel.add(oppGrid[i][j]);
 			}
 		}
 		
@@ -149,11 +149,11 @@ public class MainPanelBattleship extends JPanel{
 	}
 
 	public void setGridPlayerMap(OwnCellView[][] gridPlayerMap) {
-		this.gridPlayerMap = gridPlayerMap;
+		this.ownGrid = gridPlayerMap;
 	}
 
 	public void setGridBattle(OppCellView[][] gridBattle) {
-		this.gridBattle = gridBattle;
+		this.oppGrid = gridBattle;
 	}
 
 	public JPanel getPlayerMapPanel() {
@@ -172,8 +172,8 @@ public class MainPanelBattleship extends JPanel{
 		this.border = border;
 	}
 
-	public JLabel[][] getGridPlayerMap() {
-		return gridPlayerMap;
+	public OwnCellView[][]getGridPlayerMap() {
+		return ownGrid;
 	}
 
 	public JPanel getCentralPanel() {
@@ -184,8 +184,8 @@ public class MainPanelBattleship extends JPanel{
 		this.centralPanel = centralPanel;
 	}
 
-	public JLabel[][] getGridBattle() {
-		return gridBattle;
+	public OppCellView[][] getGridBattle() {
+		return oppGrid;
 	}
 
 	public JPanel getBattleMapPanel() {
