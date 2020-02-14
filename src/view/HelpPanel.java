@@ -5,17 +5,14 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.TextArea;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class HelpPanel extends JPanel{
 
 	private GridBagConstraints cs;
 	private JLabel lblRuling;
-	private JScrollPane scrollPane;
 	private TextArea textAreaRuling;
 	
 	public HelpPanel() {
@@ -28,11 +25,9 @@ public class HelpPanel extends JPanel{
 	}
 	
 	private void setTextArea() {
-
-//		scrollPane = new JScrollPane();
-//		scrollPane.set
 		
 		textAreaRuling = new TextArea();
+		textAreaRuling.setEditable(false);
 		cs.gridx = 0;
 		cs.gridy = 1;
 		cs.insets = new Insets(10, 0, 0, 0);

@@ -9,12 +9,14 @@ public class OwnCellView extends JLabel {
 
 	private int x;
 	private int y;
+	private Color currentColor;
 	
 	public OwnCellView(int x, int y) {
 		
 		super();
 		this.x = x;
 		this.y = y;
+		currentColor = Color.WHITE;
 	}
 	
 	public Point getPoint() {
@@ -31,12 +33,27 @@ public class OwnCellView extends JLabel {
 	public void  shipLocation() {
 		
 		setText("");
+		currentColor = Color.GRAY;
 		setBackground(Color.GRAY);
 	}
 	
 	public void mapPlayerHit() {
 		
 		setText("X");
-		setBackground(Color.GRAY);
+	}
+	
+	public void setColorGreen() {
+		
+		setBackground(Color.GREEN);
+	}
+	
+	public void setColorRed() {
+		
+		setBackground(Color.RED);
+	}
+	
+	public void resetColor() {
+		
+		setBackground(currentColor);
 	}
 }

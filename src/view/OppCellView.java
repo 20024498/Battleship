@@ -26,7 +26,6 @@ public class OppCellView extends JLabel {
 	public void missed() {
 		
 		setText("X");
-		setBackground(Color.WHITE);
 	}
 	
 	public void mapBattleHit() {
