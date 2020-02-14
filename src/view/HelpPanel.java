@@ -9,13 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class HelpGamePanel extends JPanel{
+public class HelpPanel extends JPanel{
 
 	private GridBagConstraints cs;
 	private JLabel lblRuling;
 	private TextArea textAreaRuling;
 	
-	public HelpGamePanel() {
+	public HelpPanel() {
 		
 		setLayout(new GridBagLayout());
 		cs = new GridBagConstraints();

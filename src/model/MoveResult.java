@@ -10,10 +10,10 @@ import java.awt.Point;
  */
 public class MoveResult {
 
-	MoveResultType moveRes;
-	ShipType shipType;
-	Point Coord;
-	Turn turn;
+	private MoveResultType moveRes;
+	private ShipType shipType;
+	private Point Coord;
+	private Turn turn;
 	
 	/**
 	 * Il costruttore inizializza alcuni campi della classe tramite dei 
@@ -60,6 +60,18 @@ public class MoveResult {
 	
 	
 	
+	public MoveResultType getMoveRes() {
+		return moveRes;
+	}
+
+	public Point getCoord() {
+		return Coord;
+	}
+
+	public Turn getTurn() {
+		return turn;
+	}
+
 	@Override
 	public String toString() {
 		//TODO
