@@ -1,5 +1,8 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * 
  * 
@@ -40,18 +43,49 @@ public class BattleshipModel {
 	 * Questo metodo serve a salvare una partita
 	 * 
 	 */
-	public void saveGame() {
-		if(active==true)
-			game.save(); 
+	public Boolean saveGame(File file) {
+		if(active==true) {
+			
+			try {
+			game.save(file); 
+			
+			}
+		
+		catch(IOException ex) 
+        { 
+            return false; 
+        } 
+		
+		return true;
+		
+		}
+		
+		return false;
 	}
 	
 	/**
 	 * Questo metodo serve a caricare una partita
 	 * 
 	 */
-	public void loadGame() {
-		game = game.load();
+	public boolean loadGame(File file) {
+		try {
+		game = game.load(file);
 		active=true;
+		}
+		
+		catch(IOException ex) 
+        { 
+             game=null;
+             return false;
+        } 
+          
+        catch(ClassNotFoundException ex) 
+        { 
+             game=null;
+             return false;
+        } 
+		
+		return true;
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package view_help_game;
+package view;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;

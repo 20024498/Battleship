@@ -1,4 +1,4 @@
-package view_main_panel;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,9 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
-
-import view_cells.CellViewBattleCamp;
-import view_cells.CellViewPlayer;
 
 @SuppressWarnings("serial")
 public class MainPanelBattleship extends JPanel{

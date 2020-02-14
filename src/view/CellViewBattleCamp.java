@@ -1,4 +1,4 @@
-package view_cells;
+package view;
 
 import java.awt.Color;
 import java.awt.Point;

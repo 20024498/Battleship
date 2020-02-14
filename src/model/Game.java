@@ -1,6 +1,12 @@
 package model;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -186,14 +192,36 @@ public class Game implements Serializable {
 		return diff;
 	}
 
-	public void save() {
-		// TODO Auto-generated method stub
+	public void save(File file) throws IOException {
+		   
+            
+            FileOutputStream fileStream = new FileOutputStream(file); 
+            ObjectOutputStream out = new ObjectOutputStream(fileStream); 
+              
+            out.writeObject(this); 
+              
+            out.close(); 
+            fileStream.close(); 
+              
+            System.out.println("Object has been serialized"); 
+  
 		
 	}
 
-	public Game load() {
-		// TODO Auto-generated method stub
-		return null;
+	public Game load(File file) throws IOException, ClassNotFoundException  {
+		
+		Game game = null;
+		       
+		FileInputStream fileStream = new FileInputStream(file); 
+	    ObjectInputStream in = new ObjectInputStream(fileStream); 
+	                 
+	    game = (Game)in.readObject(); 
+	              
+	    in.close(); 
+	    fileStream.close(); 
+	              
+		return game;
+	  
 	}
 	
 	

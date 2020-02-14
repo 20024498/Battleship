@@ -1,4 +1,4 @@
-package view_pop_up_panel;
+package view;
 
 import java.io.File;
 import javax.swing.JFileChooser;
