@@ -15,6 +15,7 @@ public class BattleshipController {
 	private BattleshipView view;
 	private OwnGridController ownGridController;
 	private OppGridController oppGridController;
+	private MenuGameController menuGameController;
 	
 	public BattleshipController() {
 		
@@ -22,6 +23,7 @@ public class BattleshipController {
 		this.view=new BattleshipView();
 		this.ownGridController = new OwnGridController();
 		this.oppGridController = new OppGridController();
+		this.menuGameController = new MenuGameController();
 		
 	}
 	
@@ -39,7 +41,7 @@ public class BattleshipController {
 				
 				JMenuItem source = (JMenuItem)e.getSource();
 				
-				if(source.getText().equals(arg0))
+				if(source.getText().equals("NUOVA PARTITA"))
 				
 				JOptionPane JOPNewGame = new JOptionPane
 				

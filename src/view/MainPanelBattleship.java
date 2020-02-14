@@ -19,9 +19,9 @@ public class MainPanelBattleship extends JPanel{
 
 	private JPanel playerMapPanel;
 	private Border border;
-	private CellViewPlayer[][] gridPlayerMap;
+	private OwnCellView[][] gridPlayerMap;
 	private JPanel centralPanel;
-	private CellViewBattleCamp[][] gridBattle;
+	private OppCellView[][] gridBattle;
 	private JPanel battleMapPanel;
 	private JTable tableActions;
 	private DefaultTableModel tableModel;
@@ -36,14 +36,14 @@ public class MainPanelBattleship extends JPanel{
 		playerMapPanel = new JPanel();
 		playerMapPanel.setLayout(new GridLayout(10, 10));
 		
-		gridPlayerMap = new CellViewPlayer[10][10];
+		gridPlayerMap = new OwnCellView[10][10];
 		playerMapPanel = new JPanel();
 		playerMapPanel.setLayout(new GridLayout(10, 10));
 		
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				gridPlayerMap[i][j] = new CellViewPlayer(i, j);
+				gridPlayerMap[i][j] = new OwnCellView(i, j);
 				gridPlayerMap[i][j].setForeground(Color.orange);
 				gridPlayerMap[i][j].setHorizontalAlignment(JLabel.CENTER);
 				gridPlayerMap[i][j].setVerticalAlignment(JLabel.CENTER);
@@ -98,13 +98,13 @@ public class MainPanelBattleship extends JPanel{
 	
 	public void setBattleMap() {
 		
-		gridBattle = new CellViewBattleCamp[10][10];
+		gridBattle = new OppCellView[10][10];
 		battleMapPanel = new JPanel();
 		battleMapPanel.setLayout(new GridLayout(10, 10));
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				gridBattle[i][j] = new CellViewBattleCamp(i, j);
+				gridBattle[i][j] = new OppCellView(i, j);
 				gridBattle[i][j].setHorizontalAlignment(JLabel.CENTER);
 				gridBattle[i][j].setVerticalAlignment(JLabel.CENTER);
 				gridBattle[i][j].setOpaque(true);
@@ -148,11 +148,11 @@ public class MainPanelBattleship extends JPanel{
 		this.tableModel = tableModel;
 	}
 
-	public void setGridPlayerMap(CellViewPlayer[][] gridPlayerMap) {
+	public void setGridPlayerMap(OwnCellView[][] gridPlayerMap) {
 		this.gridPlayerMap = gridPlayerMap;
 	}
 
-	public void setGridBattle(CellViewBattleCamp[][] gridBattle) {
+	public void setGridBattle(OppCellView[][] gridBattle) {
 		this.gridBattle = gridBattle;
 	}
 

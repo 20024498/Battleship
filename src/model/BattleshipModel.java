@@ -95,4 +95,14 @@ public class BattleshipModel {
 	public void help() {
 		
 	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+	
+	
 }

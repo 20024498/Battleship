@@ -5,12 +5,12 @@ import java.awt.Point;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class CellViewPlayer extends JLabel {
+public class OwnCellView extends JLabel {
 
 	private int x;
 	private int y;
 	
-	public CellViewPlayer(int x, int y) {
+	public OwnCellView(int x, int y) {
 		
 		super();
 		this.x = x;
@@ -28,7 +28,7 @@ public class CellViewPlayer extends JLabel {
 		setBackground(Color.WHITE);
 	}
 	
-	public void  shipLocatin() {
+	public void  shipLocation() {
 		
 		setText("");
 		setBackground(Color.GRAY);

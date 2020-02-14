@@ -6,12 +6,12 @@ import java.awt.Point;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class CellViewBattleCamp extends JLabel {
+public class OppCellView extends JLabel {
 
 	private int x;
 	private int y;
 	
-	public CellViewBattleCamp(int x, int y) {
+	public OppCellView(int x, int y) {
 		
 		super();
 		this.x = x;
