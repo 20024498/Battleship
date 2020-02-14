@@ -32,7 +32,8 @@ public class OwnCellController implements MouseListener{
 			
 			if(SwingUtilities.isLeftMouseButton(e)) {
 				if(model.getGame().playerPosition(cellView.getPoint()))
-					cellView.shipLocation();}
+					shipColoring();
+			}
 			else if(SwingUtilities.isRightMouseButton(e)){
 				model.getGame().getPlayer().switchOrientation();
 				gridColoring();
@@ -65,6 +66,19 @@ public class OwnCellController implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent e) {}
 	
+	private void shipColoring() {
+		
+		int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+		ShipOrientation so = model.getGame().getPlayer().getChoiceOrientation();
+		Point p = cellView.getPoint();
+		
+		if(so.equals(ShipOrientation.ORIZZONTALE))
+			for(int i=0;i<l;i++)
+				view.getPanel().getGridPlayerMap()[p.x+i][p.y].shipLocation();
+		else if(so.equals(ShipOrientation.VERTICALE))
+			for(int i=0;i<l;i++)
+				view.getPanel().getGridPlayerMap()[p.x][p.y+i].shipLocation();
+	}
 
 	private void gridColoring() {
 		
