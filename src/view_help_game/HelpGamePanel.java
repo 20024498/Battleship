@@ -8,12 +8,14 @@ import java.awt.TextArea;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class HelpGamePanel extends JPanel{
 
 	private GridBagConstraints cs;
 	private JLabel lblRuling;
+	private JScrollPane scrollPane;
 	private TextArea textAreaRuling;
 	
 	public HelpGamePanel() {
@@ -26,6 +28,9 @@ public class HelpGamePanel extends JPanel{
 	}
 	
 	private void setTextArea() {
+
+//		scrollPane = new JScrollPane();
+//		scrollPane.set
 		
 		textAreaRuling = new TextArea();
 		cs.gridx = 0;

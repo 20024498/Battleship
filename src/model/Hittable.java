@@ -22,9 +22,8 @@ public interface Hittable {
 	
 	/**
 	 * Questa funzione deve essere implementata in ogni classe 
-	 * che implementa Hittable e consente verificare se un punto
-	 * della mappa che ha coordinate x ed y, contenente una 
-	 * porzione di una nave, sia stato colpito
+	 * che implementa Hittable e consente verificare se una cella
+	 * sia stato colpito
 	 * 
 	 * @param x
 	 * @param y

@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import model.Difficulty;
 
@@ -17,7 +16,6 @@ public class NewGamePanel extends JPanel{
 
 	private JLabel lblTime;
 	private GridBagConstraints cs;
-	private JTextField textFieldTime;
 	private JLabel lblDifficulties;
 	private JComboBox<Difficulty> diffiulties;
 	private JComboBox<Integer> times;
@@ -30,23 +28,11 @@ public class NewGamePanel extends JPanel{
 		cs = new GridBagConstraints();
 		
 		setLabelTempoConstraint();
-		setTextFieldTempoConstraint();
+		setComboBoxTempoConstraint();
 		setLabelDifficoltaConstraint();
 		setComboBoxDifficoltaConstraint();
 		setBtnOkConstraint();
-		//setAiutoTextArea();
 	}
-	
-//	private void setAiutoTextArea() {
-//		
-//		hint = new JLabel("es. tempo: 15:05, 6:09, 1:33...");
-//		cs.gridx = 0;
-//		cs.gridy = 2;
-//		cs.weightx = 1;
-//		cs.weighty = 1;
-//		cs.fill = GridBagConstraints.CENTER;
-//		add(hint, cs);
-//	}
 
 	private void setBtnOkConstraint() {
 		
@@ -72,18 +58,16 @@ public class NewGamePanel extends JPanel{
 		add(diffiulties, cs);
 	}
 
-	private void setTextFieldTempoConstraint() {
+	private void setComboBoxTempoConstraint() {
 		
-		/**/
 		times = new JComboBox<Integer>();
 		cs.gridx = 1;
 		cs.gridy = 0;
 		cs.weightx = 1;
 		cs.weighty = 1;
-		textFieldTime.setColumns(10);
 		cs.insets = new Insets(10, 0, 10, 10);
 		cs.fill = GridBagConstraints.HORIZONTAL;
-		add(textFieldTime, cs);
+		add(times, cs);
 	}
 	
 	private void setLabelDifficoltaConstraint() {
@@ -125,21 +109,13 @@ public class NewGamePanel extends JPanel{
 		this.cs = cs;
 	}
 
-	public JTextField getTextFieldTime() {
-		return textFieldTime;
-	}
-
-	public void setTextFieldTime(JTextField textFieldTime) {
-		this.textFieldTime = textFieldTime;
-	}
-
 	public JLabel getLblDifficulties() {
 		return lblDifficulties;
 	}
 
 	public void setLblDifficulties(JLabel lblDifficulties) {
 		this.lblDifficulties = lblDifficulties;
-	}
+	} 
 
 //	public JComboBox getDiffiulties() {
 //		return diffiulties;
