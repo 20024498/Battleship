@@ -23,7 +23,7 @@ public class HumanPlayer extends Player {
 	 */
 	public HumanPlayer() {
 		super();
-		choiceOrientation = ShipOrientation.VERTICALE;
+		choiceOrientation = ShipOrientation.ORIZZONTALE;
 		
 	}
 	
@@ -66,7 +66,9 @@ public class HumanPlayer extends Player {
 			return false;
 		
 		Ship ship = getShipHouse().peek();
+		
 		boolean b = shipPositioning(ship, choiceOrientation, p.x, p.y);
+		
 		
 		if(b) {
 			getShipHouse().remove();

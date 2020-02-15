@@ -93,19 +93,19 @@ public abstract class Player implements Serializable{
 		//System.out.println("shiplen: " + shipLength + " orientation: " + orientation + " X: " + x + " Y: " + y);
 		
 		if(orientation.equals(ShipOrientation.ORIZZONTALE)) {
-			if(shipLength+x >= Grid.DIM)
-				return false;
-			
-			for(int i=0;i<shipLength;i++)
-				if(ownGrid.getCells()[x+i][y].isOccupied())
-					return false;
-		}
-		else {
-			if(shipLength+y >= Grid.DIM)
+			if(shipLength+y > Grid.DIM)
 				return false;
 			
 			for(int i=0;i<shipLength;i++)
 				if(ownGrid.getCells()[x][y+i].isOccupied())
+					return false;
+		}
+		else {
+			if(shipLength+x > Grid.DIM)
+				return false;
+			
+			for(int i=0;i<shipLength;i++)
+				if(ownGrid.getCells()[x+i][y].isOccupied())
 					return false;
 		}
 		

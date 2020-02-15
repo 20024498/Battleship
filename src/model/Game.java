@@ -54,6 +54,8 @@ public class Game extends Observable implements Serializable  {
 		else if(diff.equals(Difficulty.MEDIA))
 			cpu = new SmartComputer();
 		
+		cpu.autoPosition();
+		
 		//timer= new Countdown(time);
 		/*start timer*/
 	}
@@ -83,19 +85,19 @@ public class Game extends Observable implements Serializable  {
 				for(ShipCell c : cpu.getShips().get(new Point(x,y)).getCells().values())
 					player.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
-				return new MoveResult(MoveResultType.AFFONDATO, new Point(x,y),cpu.getShips().get(new Point(x,y)).getType());
+				return new MoveResult(MoveResultType.AFFONDATO, new Point(x,y),cpu.getShips().get(new Point(x,y)).getType(),Turn.PLAYER);
 			}
 			
 			else {
 				player.getOppGrid().getCells()[x][y].setState(OppGridCellState.COLPITO);
-				return new MoveResult(MoveResultType.COLPITO, new Point(x,y));
+				return new MoveResult(MoveResultType.COLPITO, new Point(x,y),Turn.PLAYER);
 			}	
 		}
 		
 		
 		else {
 			player.getOppGrid().getCells()[x][y].setState(OppGridCellState.MANCATO);
-			return new MoveResult(MoveResultType.MANCATO, new Point(x,y));
+			return new MoveResult(MoveResultType.MANCATO, new Point(x,y),Turn.PLAYER);
 			
 		}
 		
@@ -111,6 +113,8 @@ public class Game extends Observable implements Serializable  {
 		
 		Point p = cpu.declareCoord();
 		
+		
+		
 		cpu.hitOppGrid(p.x, p.y);
 		player.hitOwnGrid(p.x, p.y);
 		
@@ -124,7 +128,7 @@ public class Game extends Observable implements Serializable  {
 					cpu.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
 				
-				return new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),cpu.getShips().get(new Point(p.x,p.y)).getType());
+				return new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),cpu.getShips().get(new Point(p.x,p.y)).getType(),Turn.CPU);
 			}
 			
 			else {
@@ -136,14 +140,14 @@ public class Game extends Observable implements Serializable  {
 					((SmartComputer) cpu).getDestroyTargets().addAll(((SmartComputer) cpu).crossBoundary(p));
 				}
 				
-				return new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y));
+				return new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y),Turn.CPU);
 			}	
 		}
 		
 		
 		else {
 			cpu.getOppGrid().getCells()[p.x][p.y].setState(OppGridCellState.MANCATO);
-			return new MoveResult(MoveResultType.MANCATO, new Point(p.x,p.y));
+			return new MoveResult(MoveResultType.MANCATO, new Point(p.x,p.y),Turn.CPU);
 			
 		}
 		
@@ -206,7 +210,7 @@ public class Game extends Observable implements Serializable  {
             out.close(); 
             fileStream.close(); 
               
-            System.out.println("Object has been serialized"); 
+            
   
 		
 	}

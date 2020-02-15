@@ -22,7 +22,8 @@ public class MoveResult {
 	 * @param moveRes
 	 * @param Coord
 	 */
-	public MoveResult(MoveResultType moveRes,Point Coord) {
+	public MoveResult(MoveResultType moveRes,Point Coord,Turn turn) {
+		this.turn= turn;
 		this.moveRes = moveRes;
 		this.Coord = Coord;
 	}
@@ -35,9 +36,11 @@ public class MoveResult {
 	 * @param Coord
 	 * @param shipType
 	 */
-	public MoveResult(MoveResultType moveRes,Point Coord,ShipType shipType) {
+	public MoveResult(MoveResultType moveRes,Point Coord,ShipType shipType,Turn turn) {
+		this.turn= turn;
 		this.moveRes = moveRes;
 		this.shipType=shipType;
+		this.Coord = Coord;
 	}
 
 	/**
@@ -70,7 +73,8 @@ public class MoveResult {
 
 	@Override
 	public String toString() {
-		//TODO
-		return null;
+
+		String str = turn.toString()+ ":" +" " +Coord.x+"," +Coord.y +moveRes.toString();
+		return str;
 	}
 }
