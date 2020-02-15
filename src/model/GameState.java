@@ -7,7 +7,7 @@ package model;
  * @author Gili_Patera
  *
  */
-public enum PlayerState {
+public enum GameState {
 
 	VITTORIA,
 	DEFAULT,

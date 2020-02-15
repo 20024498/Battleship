@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  * 
@@ -15,13 +16,14 @@ import java.io.Serializable;
  * @author Gili_Patera
  *
  */
-public class Game implements Serializable {
+public class Game extends Observable implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 	private HumanPlayer player;
 	private Computer cpu;
 	private Countdown timer;
 	private Difficulty diff;
+	private GameState gstate;
 	
 	/**
 	 * Il costruttore setta a null tutti i campi della classe
@@ -32,6 +34,7 @@ public class Game implements Serializable {
 		cpu = null;
 		timer = null;
 		diff = null;
+		gstate=null;
 	}
 	
 	/**
@@ -45,7 +48,7 @@ public class Game implements Serializable {
 	public Game (Difficulty diff, int time) {
 		
 		player = new HumanPlayer();
-
+		gstate= GameState.DEFAULT;
 		if(diff.equals(Difficulty.FACILE))
 			cpu = new Computer();
 		else if(diff.equals(Difficulty.MEDIA))
@@ -75,7 +78,7 @@ public class Game implements Serializable {
 			
 			if(s.equals(ShipState.AFFONDATA)) {
 				if(cpu.getShipsAlive()==0)
-					player.setpState(PlayerState.VITTORIA);
+					setGameState(GameState.VITTORIA);
 				
 				for(ShipCell c : cpu.getShips().get(new Point(x,y)).getCells().values())
 					player.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
@@ -116,7 +119,7 @@ public class Game implements Serializable {
 			
 			if(s.equals(ShipState.AFFONDATA)) {
 				if(player.getShipsAlive()==0)
-					player.setpState(PlayerState.SCONFITTA);
+					setGameState(GameState.SCONFITTA);
 				for(ShipCell c : player.getShips().get(new Point(p.x,p.y)).getCells().values())
 					cpu.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
@@ -222,6 +225,17 @@ public class Game implements Serializable {
 	              
 		return game;
 	  
+	}
+
+
+	public GameState getGameState() {
+		return gstate;
+	}
+
+	public void setGameState(GameState gstate) {
+		this.gstate = gstate;
+		setChanged();
+	    notifyObservers();
 	}
 	
 	

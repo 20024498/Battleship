@@ -8,11 +8,11 @@ import java.awt.Point;
  * @author Gili_Patera
  *
  */
-public class HumanPlayer extends Player{
+public class HumanPlayer extends Player {
 
 	private static final long serialVersionUID = 1L;
 	private ShipOrientation choiceOrientation;
-	private PlayerState pState;
+	
 
 	/**
 	 * Il costruttore HumanPlayer() si riferisce, tramite l'operatore super,
@@ -24,7 +24,7 @@ public class HumanPlayer extends Player{
 	public HumanPlayer() {
 		super();
 		choiceOrientation = ShipOrientation.VERTICALE;
-		pState = PlayerState.DEFAULT;
+		
 	}
 	
 	/**
@@ -58,23 +58,7 @@ public class HumanPlayer extends Player{
 		this.choiceOrientation = choiceOrientation;
 	}
 
-	/**
-	 * Ritorna il valore del campo pState
-	 * 
-	 * @return pState
-	 */
-	public PlayerState getpState() {
-		return pState;
-	}
 
-	/**
-	 * Imposta il valore del campo pState a quello in input alla funzione
-	 * 
-	 * @param pState
-	 */
-	public void setpState(PlayerState pState) {
-		this.pState = pState;
-	}
 
 	public boolean humanShipPosition(Point p) {
 		
