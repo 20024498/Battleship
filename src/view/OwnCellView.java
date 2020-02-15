@@ -27,7 +27,7 @@ public class OwnCellView extends JLabel {
 	public void missed() {
 		
 		setText("X");
-		setBackground(Color.WHITE);
+		setForeground(Color.BLACK);
 	}
 	
 	public void  shipLocation() {
@@ -40,6 +40,7 @@ public class OwnCellView extends JLabel {
 	public void hit() {
 		
 		setText("X");
+		setForeground(Color.BLACK);
 	}
 	
 	public void setColorGreen() {
