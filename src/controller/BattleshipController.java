@@ -46,7 +46,7 @@ public class BattleshipController {
 				if(source.getText().equals("NUOVA PARTITA")) {	
 					int opt = view.showNewGameWindow(newGamePanel);
 					if(opt == JOptionPane.OK_OPTION)
-						model.newGame((Difficulty)newGamePanel.getDiffiulties().getSelectedItem(), (int)newGamePanel.getTimes().getSelectedItem());
+						model.newGame((Difficulty)newGamePanel.getDifficulties().getSelectedItem(), (int)newGamePanel.getTimes().getSelectedItem());
 				}
 				
 				if(source.getText().equals("SALVA PARTITA")) {	

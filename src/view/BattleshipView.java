@@ -288,7 +288,7 @@ public class BattleshipView extends JFrame{
 	public void setMenuGame(JMenu menuGame) {
 		this.menuGame = menuGame;
 	}
-
+	
 	public JMenuItem getLoadGame() {
 		return loadGame;
 	}

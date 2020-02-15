@@ -17,8 +17,10 @@ public class NewGamePanel extends JPanel{
 	private JLabel lblTime;
 	private GridBagConstraints cs;
 	private JLabel lblDifficulties;
-	private JComboBox<Difficulty> diffiulties;
-	private JComboBox<Integer> times;
+	private JComboBox<String> diffiulties;
+	private JComboBox<String> times;
+	private String[] s = {};
+	private String[] s1 = {"5", "7", "10"};
 	private JButton btnOK;
 	private JLabel hint;
 	
@@ -48,7 +50,8 @@ public class NewGamePanel extends JPanel{
 
 	private void setComboBoxDifficoltaConstraint() {
 	
-		diffiulties = new JComboBox<Difficulty>();
+		setDifficultiesBox();
+		diffiulties = new JComboBox<String>(s);
 		cs.gridx = 1;
 		cs.gridy = 1;
 		cs.weightx = 1;
@@ -58,9 +61,32 @@ public class NewGamePanel extends JPanel{
 		add(diffiulties, cs);
 	}
 
+	public String[] getS() {
+		return s;
+	}
+
+	public void setS(String[] s) {
+		this.s = s;
+	}
+
+	public void setDiffiulties(JComboBox<String> diffiulties) {
+		this.diffiulties = diffiulties;
+	}
+
+	private void setDifficultiesBox() {
+		// TODO Auto-generated method stub
+		Difficulty[] s = Difficulty.values();
+		String[] str = new String[s.length];
+		
+		str[0] = Difficulty.FACILE.toString();
+		str[1] = Difficulty.MEDIA.toString();
+		
+		setS(str);
+	}
+
 	private void setComboBoxTempoConstraint() {
 		
-		times = new JComboBox<Integer>();
+		times = new JComboBox<String>(s1);
 		cs.gridx = 1;
 		cs.gridy = 0;
 		cs.weightx = 1;
@@ -141,21 +167,19 @@ public class NewGamePanel extends JPanel{
 		this.hint = hint;
 	}
 
-	public JComboBox<Integer> getTimes() {
+	public JComboBox<String> getTimes() {
 		return times;
 	}
 
-	public void setTimes(JComboBox<Integer> times) {
+	public void setTimes(JComboBox<String> times) {
 		this.times = times;
 	}
 
-	public void setDiffiulties(JComboBox<Difficulty> diffiulties) {
+	public void setDifficulties(JComboBox<String> diffiulties) {
 		this.diffiulties = diffiulties;
 	}
 
-	public JComboBox<Difficulty> getDiffiulties() {
+	public JComboBox<String> getDifficulties() {
 		return diffiulties;
 	}
-	
-	
 }
