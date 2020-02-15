@@ -35,11 +35,7 @@ public class MainPanelBattleship extends JPanel{
 		
 		playerMapPanel = new JPanel();
 		playerMapPanel.setLayout(new GridLayout(10, 10));
-		
 		ownGrid = new OwnCellView[10][10];
-		playerMapPanel = new JPanel();
-		playerMapPanel.setLayout(new GridLayout(10, 10));
-		
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
@@ -72,7 +68,6 @@ public class MainPanelBattleship extends JPanel{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(150, 400));
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		centralPanel.add(scrollPane);
 		
 		tableActions = new JTable(15, 1);
 		String[] nameColumns = {"Actions"};
@@ -88,11 +83,10 @@ public class MainPanelBattleship extends JPanel{
 				return columnEditables[column];
 			}
 		});
-		
 		tableActions.setModel(getTableModel());
 		scrollPane.setViewportView(tableActions);
 		
-		
+		centralPanel.add(scrollPane);
 		add(centralPanel);
 	}
 	
@@ -119,8 +113,7 @@ public class MainPanelBattleship extends JPanel{
 	}
 	
 	public void setPanel() {
-		
-		setBounds(30, 30, 1000, 425);
+
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setPanels();
 	}
