@@ -28,7 +28,7 @@ public class OppCellView extends JLabel {
 		setText("X");
 	}
 	
-	public void mapBattleHit() {
+	public void hit() {
 		
 		setText("X");
 		setBackground(Color.RED);
@@ -39,4 +39,6 @@ public class OppCellView extends JLabel {
 		setText("X");
 		setBackground(Color.BLACK);
 	}
+	
+	
 }

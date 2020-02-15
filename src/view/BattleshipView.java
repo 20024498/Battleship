@@ -4,11 +4,13 @@ import java.awt.Font;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -334,4 +336,22 @@ public class BattleshipView extends JFrame{
 	public static int getFrameHeigth() {
 		return FRAME_HEIGTH;
 	}
+	
+	public int showNewGameWindow(NewGamePanel newGamePanel) {
+		return JOptionPane.showConfirmDialog(this, newGamePanel, "Nuova Partita", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null);
+	}
+	
+	public int showLoadGameWindow(JFileChooser fileChooser) {
+		return fileChooser.showOpenDialog(this);
+	}
+	
+	public int showSaveGameWindow(JFileChooser fileChooser) {
+		return fileChooser.showSaveDialog(this);
+	}
+	
+	public int showHelpGameWindow() {
+		HelpPanel helpPanel = new HelpPanel();
+		return JOptionPane.showConfirmDialog(this, helpPanel, "Aiuto", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE, null);
+	}
+	
 }

@@ -37,7 +37,7 @@ public class OwnCellView extends JLabel {
 		setBackground(Color.GRAY);
 	}
 	
-	public void mapPlayerHit() {
+	public void hit() {
 		
 		setText("X");
 	}

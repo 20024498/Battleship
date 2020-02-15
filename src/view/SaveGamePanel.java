@@ -15,7 +15,7 @@ public class SaveGamePanel extends JPanel{
 	private File file;
 	private int resultOfDialogOperation;
 	
-	public SaveGamePanel() throws IOException {
+	public SaveGamePanel() throws IOException  {
 		
 		fileChooser = new JFileChooser();
 		file = new File("");

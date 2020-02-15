@@ -172,7 +172,7 @@ public class MainPanelBattleship extends JPanel{
 		this.border = border;
 	}
 
-	public OwnCellView[][]getGridPlayerMap() {
+	public OwnCellView[][]getOwnGrid() {
 		return ownGrid;
 	}
 
@@ -184,7 +184,7 @@ public class MainPanelBattleship extends JPanel{
 		this.centralPanel = centralPanel;
 	}
 
-	public OppCellView[][] getGridBattle() {
+	public OppCellView[][] getOppGrid() {
 		return oppGrid;
 	}
 

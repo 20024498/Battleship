@@ -59,10 +59,6 @@ public class MoveResult {
 	}
 	
 	
-	
-	public MoveResultType getMoveRes() {
-		return moveRes;
-	}
 
 	public Point getCoord() {
 		return Coord;

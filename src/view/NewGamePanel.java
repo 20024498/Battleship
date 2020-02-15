@@ -152,4 +152,10 @@ public class NewGamePanel extends JPanel{
 	public void setDiffiulties(JComboBox<Difficulty> diffiulties) {
 		this.diffiulties = diffiulties;
 	}
+
+	public JComboBox<Difficulty> getDiffiulties() {
+		return diffiulties;
+	}
+	
+	
 }
