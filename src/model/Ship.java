@@ -60,11 +60,11 @@ public class Ship implements Hittable {
 		
 		if (orientation.equals(ShipOrientation.ORIZZONTALE))
 			for(int i=0;i<length;i++) 
-				cells.put(new Point(headCell.x+i,headCell.y), new ShipCell(headCell.x+i,headCell.y)); 
+				cells.put(new Point(headCell.x,headCell.y+i), new ShipCell(headCell.x,headCell.y+i)); 
 		
 		else if(orientation.equals(ShipOrientation.VERTICALE))
 			for(int i=0;i<length;i++) 
-				cells.put(new Point(headCell.x,headCell.y+i), new ShipCell(headCell.x,headCell.y+i)); 	
+				cells.put(new Point(headCell.x+i,headCell.y), new ShipCell(headCell.x+i,headCell.y)); 	
 		
 	}
 	

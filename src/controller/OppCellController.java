@@ -31,11 +31,12 @@ public class OppCellController implements MouseListener{
 		int x =cellView.getPoint().x;
 		int y = cellView.getPoint().y;
 		
-		if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
+		if(model.getGame().getPlayer().getShipHouse().isEmpty()) {
 			if(!model.getGame().getPlayer().getOppGrid().isHit(x, y)) {
 				
 				//player
 				mr = model.getGame().playerMove(x, y);
+				
 				 if(mr.getMoveResultType().equals(MoveResultType.COLPITO))
 					 view.getPanel().getOppGrid()[x][y].hit();
 				 else if(mr.getMoveResultType().equals(MoveResultType.MANCATO))
@@ -50,10 +51,11 @@ public class OppCellController implements MouseListener{
 				 
 				 // pc
 				 mr = model.getGame().cpuMove();
+				 
 				 if(mr.getMoveResultType().equals(MoveResultType.MANCATO))
-					 view.getPanel().getOwnGrid()[x][y].missed();
+					 view.getPanel().getOwnGrid()[mr.getCoord().x][mr.getCoord().y].missed();
 				 else
-					 view.getPanel().getOwnGrid()[x][y].hit();
+					 view.getPanel().getOwnGrid()[mr.getCoord().x][mr.getCoord().y].hit();
 				 String[] saCpu = {mr.toString()};
 				 view.getPanel().getTableModel().insertRow(view.getPanel().getTableModel().getRowCount(), saCpu);
 			}

@@ -83,6 +83,7 @@ public class Computer extends Player{
 		SeekTargets.remove(index);
 		
 		return new Point(p.x,p.y);
+
 		
 	}
 	/**
