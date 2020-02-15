@@ -354,4 +354,15 @@ public class BattleshipView extends JFrame{
 		return JOptionPane.showConfirmDialog(this, helpPanel, "Aiuto", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 	}
 	
+	 public void setEnableAll(boolean b) {    	
+	    /*	tabbedPane.setEnabled(b);
+	    	searchPanel.setAllComponentEnable(b);
+	    	
+	    	if(!b) {
+	    		searchPanel.getTableModelRisultatiRicerca().setRowCount(0);
+	    		searchPanel.getTableModelTags().setRowCount(0);
+	    		tabbedPane.setSelectedIndex(0);
+	    	}
+	    	*/
+	 }
 }

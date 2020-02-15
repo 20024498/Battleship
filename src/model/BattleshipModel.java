@@ -23,8 +23,11 @@ public class BattleshipModel {
 	 * 
 	 */
 	public BattleshipModel() {
-		active= false;
-		game= new Game();
+		/*active= false;
+		game= new Game();*/
+		
+		game = new Game(Difficulty.FACILE, 10);
+		active=true;
 	}
 	
 	/**

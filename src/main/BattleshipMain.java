@@ -1,5 +1,7 @@
 package main;
 
+
+
 import javax.swing.SwingUtilities;
 
 import controller.BattleshipController;
@@ -23,5 +25,7 @@ public class BattleshipMain {
 
 		});
 	}
+
+	
 
 }
