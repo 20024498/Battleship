@@ -26,7 +26,7 @@ public class BattleshipModel {
 		/*active= false;
 		game= new Game();*/
 		
-		game = new Game(Difficulty.FACILE, 10);
+		game = new Game(Difficulty.MEDIA, 10);
 		active=true;
 	}
 	

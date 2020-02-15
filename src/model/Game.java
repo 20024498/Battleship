@@ -128,7 +128,7 @@ public class Game extends Observable implements Serializable  {
 					cpu.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
 				
-				return new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),cpu.getShips().get(new Point(p.x,p.y)).getType(),Turn.CPU);
+				return new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),player.getShips().get(new Point(p.x,p.y)).getType(),Turn.CPU);
 			}
 			
 			else {
