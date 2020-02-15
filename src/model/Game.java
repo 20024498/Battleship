@@ -85,19 +85,19 @@ public class Game extends Observable implements Serializable  {
 				for(ShipCell c : cpu.getShips().get(new Point(x,y)).getCells().values())
 					player.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
-				return new MoveResult(MoveResultType.AFFONDATO, new Point(x,y),cpu.getShips().get(new Point(x,y)).getType(),Turn.PLAYER);
+				return new MoveResult(MoveResultType.AFFONDATO, new Point(x,y),cpu.getShips().get(new Point(x,y)).getType(),Turn.PLA);
 			}
 			
 			else {
 				player.getOppGrid().getCells()[x][y].setState(OppGridCellState.COLPITO);
-				return new MoveResult(MoveResultType.COLPITO, new Point(x,y),Turn.PLAYER);
+				return new MoveResult(MoveResultType.COLPITO, new Point(x,y),Turn.PLA);
 			}	
 		}
 		
 		
 		else {
 			player.getOppGrid().getCells()[x][y].setState(OppGridCellState.MANCATO);
-			return new MoveResult(MoveResultType.MANCATO, new Point(x,y),Turn.PLAYER);
+			return new MoveResult(MoveResultType.MANCATO, new Point(x,y),Turn.PLA);
 			
 		}
 		
@@ -112,7 +112,6 @@ public class Game extends Observable implements Serializable  {
 	public MoveResult cpuMove() {
 		
 		Point p = cpu.declareCoord();
-		
 		
 		
 		cpu.hitOppGrid(p.x, p.y);

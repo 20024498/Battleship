@@ -2,6 +2,6 @@ package model;
 
 public enum Turn {
 
-	PLAYER,
+	PLA,
 	CPU;
 }
