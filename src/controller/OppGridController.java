@@ -14,8 +14,7 @@ public class OppGridController {
 		this.view = view;
 		this.model = model;
 		controllers= new OppCellController[Grid.DIM][Grid.DIM];
-		init();
-		
+		init();	
 	}
 
 	private void init() {
@@ -37,7 +36,4 @@ public class OppGridController {
 	public OppCellController[][] getControllers() {
 		return controllers;
 	}
-	
-	
-	
 }

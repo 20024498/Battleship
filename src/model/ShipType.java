@@ -43,6 +43,11 @@ public enum ShipType {
 		return length;
 	}
 	
+	/**
+	 * Questa funzione restituisce il campo id
+	 * 
+	 * @return id
+	 */
 	public int id() {
 		return id;
 	}

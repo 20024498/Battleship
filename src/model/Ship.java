@@ -127,10 +127,6 @@ public class Ship implements Hittable,Serializable {
 			return false;
 		
 		return this.shipId == ((Ship)obj).shipId;
-		
-		
-		
-		
 	}
 
 	/**

@@ -8,8 +8,6 @@ import java.io.Serializable;
  * @author Gili_Patera
  *
  */
-
-
 public class Countdown implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -18,15 +16,11 @@ public class Countdown implements Serializable{
 	public Countdown(int playerTime){
 		
 		time = playerTime*60;
-		
-		
-
 	}
 
 	public void updateTime() {
 		if(time > 0) 
-			time--;
-				
+			time--;			
 	}	
 
 	public int getSec() {
@@ -53,8 +47,7 @@ public class Countdown implements Serializable{
 			s = String.format("0%d : %d", min, sec);
 		
 		return s;
-	}
-	
+	}	
 }
 
 

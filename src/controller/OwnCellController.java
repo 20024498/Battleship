@@ -164,8 +164,7 @@ public class OwnCellController implements MouseListener{
 						view.getPanel().getOwnGrid()[p.x][p.y+i].resetColor();
 				else 
 					for(int i=0;i<l;i++)
-						view.getPanel().getOwnGrid()[p.x][p.y+i].resetColor();
-				
+						view.getPanel().getOwnGrid()[p.x][p.y+i].resetColor();	
 			}
 			
 			else if(so.equals(ShipOrientation.VERTICALE)) {
@@ -176,11 +175,7 @@ public class OwnCellController implements MouseListener{
 				else 
 					for(int i=0;i<l;i++)
 						view.getPanel().getOwnGrid()[p.x+i][p.y].resetColor();
-				
 			}
 		}			
 	}
-		
-	
-	
 }

@@ -3,17 +3,18 @@ package view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Difficulty;
 
-@SuppressWarnings("serial")
 public class NewGamePanel extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel lblTime;
 	private GridBagConstraints cs;
 	private JLabel lblDifficulties;
@@ -21,7 +22,6 @@ public class NewGamePanel extends JPanel{
 	private JComboBox<Integer> times;
 	private Difficulty[] s = {};
 	private Integer[] s1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	//private JButton btnOK;
 	private JLabel hint;
 	
 	public NewGamePanel() {
@@ -33,20 +33,7 @@ public class NewGamePanel extends JPanel{
 		setComboBoxTempoConstraint();
 		setLabelDifficoltaConstraint();
 		setComboBoxDifficoltaConstraint();
-		//setBtnOkConstraint();
 	}
-
-//	private void setBtnOkConstraint() {
-//		
-//		btnOK = new JButton("OK");
-//		cs.gridx = 1;
-//		cs.gridy = 2;
-//		cs.weightx = 1;
-//		cs.weighty = 1;
-//		cs.insets = new Insets(10, 10, 10, 10);
-//		cs.fill = GridBagConstraints.HORIZONTAL;
-//		add(btnOK, cs);
-//	}
 
 	private void setComboBoxDifficoltaConstraint() {
 	
@@ -74,7 +61,6 @@ public class NewGamePanel extends JPanel{
 	}
 
 	private void setDifficultiesBox() {
-		// TODO Auto-generated method stub
 		Difficulty[] s = Difficulty.values();
 		Difficulty[] str = new Difficulty[s.length];
 		
@@ -98,7 +84,7 @@ public class NewGamePanel extends JPanel{
 	
 	private void setLabelDifficoltaConstraint() {
 		
-		lblDifficulties = new JLabel("Scegliere difficolt� : ");
+		lblDifficulties = new JLabel("Scegliere difficolta' : ");
 		cs.gridx = 0;
 		cs.gridy = 1;
 		cs.weightx = 1;
@@ -142,14 +128,6 @@ public class NewGamePanel extends JPanel{
 	public void setLblDifficulties(JLabel lblDifficulties) {
 		this.lblDifficulties = lblDifficulties;
 	} 
-
-//	public JButton getBtnOK() {
-//		return btnOK;
-//	}
-//
-//	public void setBtnOK(JButton btnOK) {
-//		this.btnOK = btnOK;
-//	}
 
 	public JLabel getHint() {
 		return hint;

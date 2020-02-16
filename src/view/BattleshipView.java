@@ -2,9 +2,6 @@ package view;
 
 import java.awt.Font;
 import java.net.URL;
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -16,9 +13,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-@SuppressWarnings("serial")
-public class BattleshipView extends JFrame {
 
+public class BattleshipView extends JFrame {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int FRAME_WIDTH = 1075;
 	private static final int FRAME_HEIGTH = 525;
 	private JMenuBar menuBar;
@@ -39,7 +40,6 @@ public class BattleshipView extends JFrame {
 	}
 	
 	private void setIconFrame() {
-		// TODO Auto-generated method stub
 		URL iconURL = getClass().getResource("/image/frameIcon.png");
 		ImageIcon icon = new ImageIcon(iconURL);
 		setIconImage(icon.getImage());
@@ -50,13 +50,10 @@ public class BattleshipView extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(null);
-		
-		
 		setContentPane(contentPane);
-		
+
 		setLabel();
-		setMainPanel();	
-		
+		setMainPanel();		
 	}
 	
 	private void setMainPanel() {
@@ -82,7 +79,7 @@ public class BattleshipView extends JFrame {
 	private void setMenuBar() {
 		menuBar = new JMenuBar();
 		
-		menuGame = new JMenu("MENU GAME");
+		menuGame = new JMenu("MENU DEL GIOCO");
 		menuGame.setFont(new Font("Arial", Font.PLAIN, 15));
 		menuBar.add(menuGame);
 		
@@ -269,12 +266,6 @@ public class BattleshipView extends JFrame {
 		contentPane.add(label_19);
 	}
 	
-	/*
-	 * PER EVITARE PROBLEMI DI OVERRIDE ABBIAMO
-	 * SCELTO DI CHIAMARE I DUE SEGUENTI METODI, SEPPUR 
-	 * PER setMenuBar L'ERRORE NON FOSSE NOTIFICATO DA 
-	 * JAVA, CON LA SEGUENTE MODALITA':  <nome_metodo>Variable
-	 */
 	public JMenuBar getMenuBarVariable() {
 		return menuBar;
 	}
@@ -356,26 +347,11 @@ public class BattleshipView extends JFrame {
 		return JOptionPane.showConfirmDialog(this, helpPanel, "Aiuto", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 	}
 	
-	public void setEnableAll(boolean b) {    	
-	    /*	tabbedPane.setEnabled(b);
-	    	searchPanel.setAllComponentEnable(b);
-	    	
-	    	if(!b) {
-	    		searchPanel.getTableModelRisultatiRicerca().setRowCount(0);
-	    		searchPanel.getTableModelTags().setRowCount(0);
-	    		tabbedPane.setSelectedIndex(0);
-	    	}
-	    	*/
-	}
-	
 	public void win() {
 		JOptionPane.showMessageDialog(this, "HAI VINTO!", "Vittoria", JOptionPane.INFORMATION_MESSAGE, null);
 	}
 	
 	public void lose() {
 		JOptionPane.showMessageDialog(this, "HAI PERSO!", "Sconfitta", JOptionPane.INFORMATION_MESSAGE, null);
-	}
-
-	
-	 
+	}	 
 }

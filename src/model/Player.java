@@ -119,12 +119,10 @@ public abstract class Player implements Serializable{
 	 * 
 	 * @param x
 	 * @param y
-	 * @return ShipState.ILLESA la nostra nave non ï¿½ statta colpita
-	 * @return s.getState() ritorniamo lo stato della nave se non ï¿½ stata affondata
+	 * @return ShipState.ILLESA la nostra nave non è statta colpita
+	 * @return s.getState() ritorniamo lo stato della nave se non è stata affondata
 	 */
 	public ShipState hitOwnShip(int x, int y) {
-		
-		/*TODO eccezione griglia non colpita*/
 		
 			Ship s = ships.get(new Point(x,y));
 			
@@ -137,7 +135,6 @@ public abstract class Player implements Serializable{
 					shipsAlive--;
 					
 					return s.getState();
-				
 			}
 			
 		return ShipState.ILLESA;				

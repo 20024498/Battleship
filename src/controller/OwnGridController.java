@@ -22,9 +22,7 @@ public class OwnGridController  {
 			for(int j=0; j<Grid.DIM;j++) {
 				controllers[i][j] = new OwnCellController(view.getPanel().getOwnGrid()[i][j], model, view);
 				view.getPanel().getOwnGrid()[i][j].addMouseListener(controllers[i][j]);
-			}
-		
-		
+			}	
 	}
 
 	public BattleshipView getView() {
@@ -38,6 +36,4 @@ public class OwnGridController  {
 	public OwnCellController[][] getControllers() {
 		return controllers;
 	}
-
-	
 }

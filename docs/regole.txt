@@ -1,4 +1,0 @@
-Le seguenti regole del gioco ti aiuteranno a capire 
-come utilizzare la nostra apllicazione Java e tutte le
-sue funzionalità al meglio.
-

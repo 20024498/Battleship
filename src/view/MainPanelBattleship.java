@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -16,9 +13,12 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
-@SuppressWarnings("serial")
 public class MainPanelBattleship extends JPanel  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel playerMapPanel;
 	private Border border;
 	private OwnCellView[][] ownGrid;
@@ -77,6 +77,10 @@ public class MainPanelBattleship extends JPanel  {
 		
 		setTableModel(new DefaultTableModel(nameColumns, 0) {
 			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] {
 					false
 			};

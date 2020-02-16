@@ -4,9 +4,12 @@ import java.awt.Point;
 
 import javax.swing.JLabel;
 
-@SuppressWarnings("serial")
 public class OwnCellView extends JLabel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private Color currentColor;

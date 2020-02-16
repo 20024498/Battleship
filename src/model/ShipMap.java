@@ -24,7 +24,6 @@ public class ShipMap implements Map<Point,Ship>,Serializable {
 	public void clear() {
 		m1.clear();
 		m2.clear();
-		
 	}
 
 	@Override
@@ -116,6 +115,5 @@ public class ShipMap implements Map<Point,Ship>,Serializable {
 	@Override
 	public String toString() {
 		return this.entrySet().toString();
-	}
-	
+	}	
 }

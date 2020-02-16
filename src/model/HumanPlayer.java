@@ -74,7 +74,6 @@ public class HumanPlayer extends Player {
 			getShipHouse().remove();
 			return true;
 		}
-		
 		else
 			return false;	
 	}
