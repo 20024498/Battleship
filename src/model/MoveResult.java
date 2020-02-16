@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 
 /**
@@ -9,8 +10,9 @@ import java.util.LinkedHashMap;
  * @author Gili_Patera
  *
  */
-public class MoveResult {
+public class MoveResult implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private MoveResultType moveRes;
 	private ShipType shipType;
 	private Point point;
@@ -78,7 +80,7 @@ public class MoveResult {
 	@Override
 	public String toString() {
 
-		String str = turn.toString()+ ":" +" " +"["+charMap.get(point.y)  +"," + pointCorrector(point.x)+"]" +" "+moveRes.toString();
+		String str = turn.toString()+ ":" +"["+charMap.get(point.y)  +"," + pointCorrector(point.x)+"]" +" "+moveRes.toString();
 		return str;
 	}
 	

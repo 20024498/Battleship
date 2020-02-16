@@ -3,6 +3,7 @@ package model;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.Observable;
+import java.util.Vector;
 
 /**
  * 
@@ -18,6 +19,7 @@ public class Game extends Observable implements Serializable  {
 	private Countdown countdown;
 	private Difficulty diff;
 	private GameState gstate;
+	private Vector<MoveResult> moves;
 	
 	/**
 	 * Il costruttore setta a null tutti i campi della classe
@@ -29,6 +31,7 @@ public class Game extends Observable implements Serializable  {
 		countdown = null;
 		diff = null;
 		gstate=null;
+		moves=null;
 	}
 	
 	/**
@@ -49,7 +52,7 @@ public class Game extends Observable implements Serializable  {
 			cpu = new SmartComputer();
 		
 		cpu.autoPosition();
-		
+		moves = new Vector<MoveResult>();
 		countdown= new Countdown(time);
 		/*start timer*/
 	}
@@ -63,6 +66,8 @@ public class Game extends Observable implements Serializable  {
 	 * @return il tipo di return � MoveResul 
 	 */
 	public MoveResult playerMove(int x, int y) {
+		
+		MoveResult move;
 		
 		player.hitOppGrid(x, y);
 		cpu.hitOwnGrid(x, y);
@@ -78,24 +83,31 @@ public class Game extends Observable implements Serializable  {
 				for(ShipCell c : cpu.getShips().get(new Point(x,y)).getCells().values())
 					player.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
+				move = new MoveResult(MoveResultType.AFFONDATO, new Point(x,y),cpu.getShips().get(new Point(x,y)).getType(),Turn.PLA);
+				moves.add(move);
+				
 				if(cpu.getShipsAlive()==0) {
-					setGameState(GameState.VITTORIA);
-					
+					setGameState(GameState.VITTORIA);	
 				}
 				
-				return new MoveResult(MoveResultType.AFFONDATO, new Point(x,y),cpu.getShips().get(new Point(x,y)).getType(),Turn.PLA);
+				
+				return move;
 			}
 			
 			else {
 				player.getOppGrid().getCells()[x][y].setState(OppGridCellState.COLPITO);
-				return new MoveResult(MoveResultType.COLPITO, new Point(x,y),Turn.PLA);
+				move=new MoveResult(MoveResultType.COLPITO, new Point(x,y),Turn.PLA);
+				moves.add(move);
+				return move;
 			}	
 		}
 		
 		
 		else {
 			player.getOppGrid().getCells()[x][y].setState(OppGridCellState.MANCATO);
-			return new MoveResult(MoveResultType.MANCATO, new Point(x,y),Turn.PLA);
+			move = new MoveResult(MoveResultType.MANCATO, new Point(x,y),Turn.PLA);
+			moves.add(move);
+			return move;
 			
 		}
 		
@@ -110,7 +122,7 @@ public class Game extends Observable implements Serializable  {
 	public MoveResult cpuMove() {
 		
 		Point p = cpu.declareCoord();
-		
+		MoveResult move;
 		
 		cpu.hitOppGrid(p.x, p.y);
 		player.hitOwnGrid(p.x, p.y);
@@ -123,13 +135,14 @@ public class Game extends Observable implements Serializable  {
 				for(ShipCell c : player.getShips().get(new Point(p.x,p.y)).getCells().values())
 					cpu.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
 				
+				move=new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),player.getShips().get(new Point(p.x,p.y)).getType(),Turn.CPU);
+				moves.add(move);
+				
 				if(player.getShipsAlive()==0) {
 					setGameState(GameState.SCONFITTA);
-					
 				}
 				
-				
-				return new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),player.getShips().get(new Point(p.x,p.y)).getType(),Turn.CPU);
+				return move;
 			}
 			
 			else {
@@ -140,23 +153,30 @@ public class Game extends Observable implements Serializable  {
 					((SmartComputer) cpu).setState(SmartComputerState.DESTROY);
 					((SmartComputer) cpu).getDestroyTargets().addAll(((SmartComputer) cpu).crossBoundary(p));
 				}
-				
-				return new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y),Turn.CPU);
+				move= new MoveResult(MoveResultType.COLPITO, new Point(p.x,p.y),Turn.CPU);
+				moves.add(move);
+				return move;
 			}	
 		}
 		
 		
 		else {
 			cpu.getOppGrid().getCells()[p.x][p.y].setState(OppGridCellState.MANCATO);
-			return new MoveResult(MoveResultType.MANCATO, new Point(p.x,p.y),Turn.CPU);
+			move = new MoveResult(MoveResultType.MANCATO, new Point(p.x,p.y),Turn.CPU);
+			moves.add(move);
+			return move;
 			
 		}
 		
 	}
 	
 	public boolean playerPosition(Point p) {
-		
-		return player.humanShipPosition(p);
+		boolean b=player.humanShipPosition(p);
+		if(getPlayer().getShipHouse().isEmpty()) {
+			setChanged();
+		    notifyObservers();
+		}
+		return b;
 	}
 	
 	public void cpuPosition() {
@@ -211,6 +231,14 @@ public class Game extends Observable implements Serializable  {
 		this.gstate = gstate;
 		setChanged();
 	    notifyObservers();
+	}
+
+	public Vector<MoveResult> getMoves() {
+		return moves;
+	}
+
+	public void setCountdown(Countdown countdown) {
+		this.countdown = countdown;
 	}
 	
 	
