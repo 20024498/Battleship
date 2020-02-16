@@ -266,6 +266,7 @@ public class BattleshipView extends JFrame {
 		contentPane.add(label_19);
 	}
 	
+	
 	public JMenuBar getMenuBarVariable() {
 		return menuBar;
 	}
@@ -347,11 +348,27 @@ public class BattleshipView extends JFrame {
 		return JOptionPane.showConfirmDialog(this, helpPanel, "Aiuto", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 	}
 	
+	
 	public void win() {
 		JOptionPane.showMessageDialog(this, "HAI VINTO!", "Vittoria", JOptionPane.INFORMATION_MESSAGE, null);
 	}
 	
 	public void lose() {
 		JOptionPane.showMessageDialog(this, "HAI PERSO!", "Sconfitta", JOptionPane.INFORMATION_MESSAGE, null);
-	}	 
+	}
+
+	public void correctSave() {
+		JOptionPane.showMessageDialog(this, "Salvataggio effettuato correttamente!", "Save Successful", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+	
+	public void failedSave() {
+		JOptionPane.showMessageDialog(this, "Salvataggio fallito!", "Save Failed", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+	
+	public void failedLoad() {
+		JOptionPane.showMessageDialog(this, "Caricamento fallito!", "Load Failed", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+
+	
+	 
 }

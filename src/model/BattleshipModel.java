@@ -46,17 +46,21 @@ public class BattleshipModel {
 		active=true;
 	}
 	
-	public void saveGame() {
+	public boolean saveGame() {
+		boolean b= false;
 		if(active==true)
-			System.out.println(saveGameAux());
+			b = saveGameAux();
+		return b;
+		
 	}
 	
-	public void loadGame() {
+	public boolean loadGame() {
 		
 		boolean b = loadGameAux();
-		System.out.println(b);
 		if(b)
-			active=true;	
+			active=true;
+		return b;
+		
 	}
 	
 	/**

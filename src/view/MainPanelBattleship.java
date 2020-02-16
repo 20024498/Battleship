@@ -223,4 +223,8 @@ public class MainPanelBattleship extends JPanel  {
 		tableModel.setRowCount(0);
 		//timer label default;
 	}
+
+	
+		
+	
 }
