@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -15,7 +17,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("serial")
-public class MainPanelBattleship extends JPanel{
+public class MainPanelBattleship extends JPanel implements Observer {
 
 	private JPanel playerMapPanel;
 	private Border border;
@@ -25,6 +27,7 @@ public class MainPanelBattleship extends JPanel{
 	private JPanel battleMapPanel;
 	private JTable tableActions;
 	private DefaultTableModel tableModel;
+	private JLabel lblNewLabel;
 	
 	public MainPanelBattleship() {
 		
@@ -60,7 +63,7 @@ public class MainPanelBattleship extends JPanel{
 		centralPanel.setLayout(new BoxLayout(centralPanel, BoxLayout.Y_AXIS));
 		centralPanel.setPreferredSize(new Dimension(150, 425));
 		
-		JLabel lblNewLabel = new JLabel("  00 : 00");
+		lblNewLabel = new JLabel("  00 : 00");
 		lblNewLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 27));
 		lblNewLabel.setPreferredSize(new Dimension(150, 60));
 		centralPanel.add(lblNewLabel);
@@ -123,6 +126,22 @@ public class MainPanelBattleship extends JPanel{
 		setPlayerMap();
 		setCentralPanel();
 		setBattleMap();
+	}
+	
+	public JLabel getLblNewLabel() {
+		return lblNewLabel;
+	}
+
+	public void setLblNewLabel(JLabel lblNewLabel) {
+		this.lblNewLabel = lblNewLabel;
+	}
+
+	public void setOwnGrid(OwnCellView[][] ownGrid) {
+		this.ownGrid = ownGrid;
+	}
+
+	public void setOppGrid(OppCellView[][] oppGrid) {
+		this.oppGrid = oppGrid;
 	}
 
 	public JTable getTableActions() {
@@ -187,6 +206,12 @@ public class MainPanelBattleship extends JPanel{
 
 	public void setBattleMapPanel(JPanel battleMapPanel) {
 		this.battleMapPanel = battleMapPanel;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+
 	}
 	
 }

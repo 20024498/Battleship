@@ -17,10 +17,10 @@ public class NewGamePanel extends JPanel{
 	private JLabel lblTime;
 	private GridBagConstraints cs;
 	private JLabel lblDifficulties;
-	private JComboBox<String> diffiulties;
-	private JComboBox<String> times;
-	private String[] s = {};
-	private String[] s1 = {"5", "7", "10"};
+	private JComboBox<Difficulty> diffiulties;
+	private JComboBox<Integer> times;
+	private Difficulty[] s = {};
+	private Integer[] s1 = {5, 7, 10};
 	//private JButton btnOK;
 	private JLabel hint;
 	
@@ -51,7 +51,7 @@ public class NewGamePanel extends JPanel{
 	private void setComboBoxDifficoltaConstraint() {
 	
 		setDifficultiesBox();
-		diffiulties = new JComboBox<String>(s);
+		diffiulties = new JComboBox<Difficulty>(s);
 		cs.gridx = 1;
 		cs.gridy = 1;
 		cs.weightx = 1;
@@ -61,32 +61,32 @@ public class NewGamePanel extends JPanel{
 		add(diffiulties, cs);
 	}
 
-	public String[] getS() {
+	public Difficulty[] getS() {
 		return s;
 	}
 
-	public void setS(String[] s) {
+	public void setS(Difficulty[] s) {
 		this.s = s;
 	}
 
-	public void setDiffiulties(JComboBox<String> diffiulties) {
+	public void setDiffiulties(JComboBox<Difficulty> diffiulties) {
 		this.diffiulties = diffiulties;
 	}
 
 	private void setDifficultiesBox() {
 		// TODO Auto-generated method stub
 		Difficulty[] s = Difficulty.values();
-		String[] str = new String[s.length];
+		Difficulty[] str = new Difficulty[s.length];
 		
-		str[0] = Difficulty.FACILE.toString();
-		str[1] = Difficulty.MEDIA.toString();
+		str[0] = Difficulty.FACILE;
+		str[1] = Difficulty.MEDIA;
 		
 		setS(str);
 	}
 
 	private void setComboBoxTempoConstraint() {
 		
-		times = new JComboBox<String>(s1);
+		times = new JComboBox<Integer>(s1);
 		cs.gridx = 1;
 		cs.gridy = 0;
 		cs.weightx = 1;
@@ -159,19 +159,19 @@ public class NewGamePanel extends JPanel{
 		this.hint = hint;
 	}
 
-	public JComboBox<String> getTimes() {
+	public JComboBox<Integer> getTimes() {
 		return times;
 	}
 
-	public void setTimes(JComboBox<String> times) {
+	public void setTimes(JComboBox<Integer> times) {
 		this.times = times;
 	}
 
-	public void setDifficulties(JComboBox<String> diffiulties) {
+	public void setDifficulties(JComboBox<Difficulty> diffiulties) {
 		this.diffiulties = diffiulties;
 	}
 
-	public JComboBox<String> getDifficulties() {
+	public JComboBox<Difficulty> getDifficulties() {
 		return diffiulties;
 	}
 }
