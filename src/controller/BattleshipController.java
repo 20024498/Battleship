@@ -25,10 +25,6 @@ public class BattleshipController implements Observer{
 	private BattleshipView view;
 	private OwnGridController ownGridController;
 	private OppGridController oppGridController;
-	private int x;
-	private int min;
-	private int sec = 0;
-	private Countdown countDown;
 	private Timer timer;
 	
 	
@@ -57,55 +53,66 @@ public class BattleshipController implements Observer{
 				
 				JMenuItem source = (JMenuItem)e.getSource();
 				NewGamePanel newGamePanel = new NewGamePanel();
-				if(source.getText().equals("NUOVA PARTITA")) {	
-					int opt = view.showNewGameWindow(newGamePanel);
-					if(opt == JOptionPane.OK_OPTION) {
-						model.newGame((Difficulty)newGamePanel.getDifficulties().getSelectedItem(), (int)newGamePanel.getTimes().getSelectedItem());
-			
-					x = (int)newGamePanel.getTimes().getSelectedItem();
-					min =  x;
-					
-					getTimer().scheduleAtFixedRate(new TimerTask() {
-
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							view.getPanel().update(null, setLabelCounter());
-						}
+					if(source.getText().equals("NUOVA PARTITA")) {	
+						int opt = view.showNewGameWindow(newGamePanel);
+						if(opt == JOptionPane.OK_OPTION) {
+							model.newGame((Difficulty)newGamePanel.getDifficulties().getSelectedItem(), (int)newGamePanel.getTimes().getSelectedItem());
+				
+							
+							
 						
-					}, 0, 1000);
-
-					view.getPanel().resetAll();
-				}
-				
-				if(source.getText().equals("SALVA PARTITA")) {	
-					/*JFileChooser fileChooser = new JFileChooser();
-					int opt = view.showSaveGameWindow(fileChooser);
-					if (opt == JFileChooser.APPROVE_OPTION) {
-			            File file = fileChooser.getSelectedFile();
-			            model.saveGame(file);
-			            }*/
-					model.saveGame();
+						int min =  (int)newGamePanel.getTimes().getSelectedItem();
+						
+						getTimer().scheduleAtFixedRate(new TimerTask() {
+	
+							@Override
+							public void run() {
+						
+								//view.getPanel().update(null, setLabelCounter());
+								model.getGame().getCountdown().updateTime();
+								view.getPanel().getLblNewLabel().setText(model.getGame().getCountdown().toString());
+								if(model.getGame().getCountdown().getSec()==0)
+									model.getGame().setGameState(GameState.SCONFITTA);
+							}
+							
+						}, 0, 1000);
+						
+						
+						
+						
+						
+	
+						view.getPanel().resetAll();
+					}
 					
+					if(source.getText().equals("SALVA PARTITA")) {	
+						/*JFileChooser fileChooser = new JFileChooser();
+						int opt = view.showSaveGameWindow(fileChooser);
+						if (opt == JFileChooser.APPROVE_OPTION) {
+				            File file = fileChooser.getSelectedFile();
+				            model.saveGame(file);
+				            }*/
+						model.saveGame();
+						
+					}
+					
+					if(source.getText().equals("CARICA PARTITA")) {	
+						/*JFileChooser fileChooser = new JFileChooser();
+						int opt = view.showLoadGameWindow(fileChooser);
+						if (opt == JFileChooser.APPROVE_OPTION) {
+				            File file = fileChooser.getSelectedFile();
+				            model.loadGame(file);
+				        }*/
+						model.loadGame();
+					}
+					
+					if(source.getText().equals("AIUTO")) {	
+						//int opt = view.showHelpGameWindow();
+						opt = view.showHelpGameWindow();
+					}
+			
 				}
-				
-				if(source.getText().equals("CARICA PARTITA")) {	
-					/*JFileChooser fileChooser = new JFileChooser();
-					int opt = view.showLoadGameWindow(fileChooser);
-					if (opt == JFileChooser.APPROVE_OPTION) {
-			            File file = fileChooser.getSelectedFile();
-			            model.loadGame(file);
-			        }*/
-					model.loadGame();
-				}
-				
-				if(source.getText().equals("AIUTO")) {	
-					//int opt = view.showHelpGameWindow();
-					opt = view.showHelpGameWindow();
-				}
-		
 			}
-		
 		};
 
 		view.getNewGame().addActionListener(menuGameListener); 
@@ -115,7 +122,7 @@ public class BattleshipController implements Observer{
 	
 	}
 
-	private boolean setLabelCounter() {
+	/*private int setLabelCounter() {
 
 		String s = null;
 			
@@ -153,9 +160,9 @@ public class BattleshipController implements Observer{
 			}
 			
 		countDown = new Countdown(min);
-//		return countDown.getTime();
+		return countdown.get;
 		return true;
-	}
+	}*/
 	
 	public Timer getTimer() {
 		return timer;
@@ -183,8 +190,12 @@ public class BattleshipController implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(model.getGame().getGameState().equals(GameState.VITTORIA))
+		if(model.getGame().getGameState().equals(GameState.VITTORIA)) {
+			
 			view.win();
+			
+		}
+			
 		else if(model.getGame().getGameState().equals(GameState.SCONFITTA))
 			view.lose();
 		

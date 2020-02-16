@@ -21,7 +21,7 @@ public class Game extends Observable implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	private HumanPlayer player;
 	private Computer cpu;
-	private Countdown timer;
+	private Countdown countdown;
 	private Difficulty diff;
 	private GameState gstate;
 	
@@ -32,7 +32,7 @@ public class Game extends Observable implements Serializable  {
 	public Game() {
 		player = null;;
 		cpu = null;
-		timer = null;
+		countdown = null;
 		diff = null;
 		gstate=null;
 	}
@@ -56,7 +56,7 @@ public class Game extends Observable implements Serializable  {
 		
 		cpu.autoPosition();
 		
-		//timer= new Countdown(time);
+		countdown= new Countdown(time);
 		/*start timer*/
 	}
 	
@@ -185,8 +185,8 @@ public class Game extends Observable implements Serializable  {
 	 * 
 	 * @return timer
 	 */
-	public Countdown getTimer() {
-		return timer;
+	public Countdown getCountdown() {
+		return countdown;
 	}
 
 	/**
