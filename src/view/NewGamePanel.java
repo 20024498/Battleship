@@ -21,7 +21,7 @@ public class NewGamePanel extends JPanel{
 	private JComboBox<String> times;
 	private String[] s = {};
 	private String[] s1 = {"5", "7", "10"};
-	private JButton btnOK;
+	//private JButton btnOK;
 	private JLabel hint;
 	
 	public NewGamePanel() {
@@ -33,20 +33,20 @@ public class NewGamePanel extends JPanel{
 		setComboBoxTempoConstraint();
 		setLabelDifficoltaConstraint();
 		setComboBoxDifficoltaConstraint();
-		setBtnOkConstraint();
+		//setBtnOkConstraint();
 	}
 
-	private void setBtnOkConstraint() {
-		
-		btnOK = new JButton("OK");
-		cs.gridx = 1;
-		cs.gridy = 2;
-		cs.weightx = 1;
-		cs.weighty = 1;
-		cs.insets = new Insets(10, 10, 10, 10);
-		cs.fill = GridBagConstraints.HORIZONTAL;
-		add(btnOK, cs);
-	}
+//	private void setBtnOkConstraint() {
+//		
+//		btnOK = new JButton("OK");
+//		cs.gridx = 1;
+//		cs.gridy = 2;
+//		cs.weightx = 1;
+//		cs.weighty = 1;
+//		cs.insets = new Insets(10, 10, 10, 10);
+//		cs.fill = GridBagConstraints.HORIZONTAL;
+//		add(btnOK, cs);
+//	}
 
 	private void setComboBoxDifficoltaConstraint() {
 	
@@ -143,21 +143,13 @@ public class NewGamePanel extends JPanel{
 		this.lblDifficulties = lblDifficulties;
 	} 
 
-//	public JComboBox getDiffiulties() {
-//		return diffiulties;
+//	public JButton getBtnOK() {
+//		return btnOK;
 //	}
 //
-//	public void setDiffiulties(JComboBox diffiulties) {
-//		this.diffiulties = diffiulties;
+//	public void setBtnOK(JButton btnOK) {
+//		this.btnOK = btnOK;
 //	}
-
-	public JButton getBtnOK() {
-		return btnOK;
-	}
-
-	public void setBtnOK(JButton btnOK) {
-		this.btnOK = btnOK;
-	}
 
 	public JLabel getHint() {
 		return hint;
