@@ -20,7 +20,7 @@ public class NewGamePanel extends JPanel{
 	private JComboBox<Difficulty> diffiulties;
 	private JComboBox<Integer> times;
 	private Difficulty[] s = {};
-	private Integer[] s1 = {1, 5, 7, 10};
+	private Integer[] s1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	//private JButton btnOK;
 	private JLabel hint;
 	
@@ -98,7 +98,7 @@ public class NewGamePanel extends JPanel{
 	
 	private void setLabelDifficoltaConstraint() {
 		
-		lblDifficulties = new JLabel("Scegliere difficoltà : ");
+		lblDifficulties = new JLabel("Scegliere difficoltï¿½ : ");
 		cs.gridx = 0;
 		cs.gridy = 1;
 		cs.weightx = 1;
