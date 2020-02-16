@@ -98,7 +98,7 @@ public class NewGamePanel extends JPanel{
 	
 	private void setLabelDifficoltaConstraint() {
 		
-		lblDifficulties = new JLabel("Scegliere difficoltà : ");
+		lblDifficulties = new JLabel("Scegliere difficoltï¿½ : ");
 		cs.gridx = 0;
 		cs.gridy = 1;
 		cs.weightx = 1;

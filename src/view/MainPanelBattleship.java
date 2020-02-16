@@ -17,7 +17,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("serial")
-public class MainPanelBattleship extends JPanel implements Observer {
+public class MainPanelBattleship extends JPanel  {
 
 	private JPanel playerMapPanel;
 	private Border border;
@@ -208,11 +208,7 @@ public class MainPanelBattleship extends JPanel implements Observer {
 		this.battleMapPanel = battleMapPanel;
 	}
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
-	}
+	
 	
 	public void resetAll() {
 		for(int i = 0; i < 10; i++) 
