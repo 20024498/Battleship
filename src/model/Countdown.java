@@ -38,13 +38,13 @@ public class Countdown implements Serializable{
 		String s = null;
 		
 		if(min < 10 && sec < 10)
-			s = String.format(" 0%d : 0%d", min, sec);
+			s = String.format("0%d : 0%d", min, sec);
 		else if(min >= 10 && sec >= 10)
-			s = String.format(" %d : %d", min, sec);
+			s = String.format("%d : %d", min, sec);
 		else if(min >= 10 && sec < 10)
-			s = String.format(" %d : 0%d", min, sec);
+			s = String.format("%d : 0%d", min, sec);
 		else if(min < 10 && sec >= 10)
-			s = String.format(" 0%d : %d", min, sec);
+			s = String.format("0%d : %d", min, sec);
 		
 		return s;
 	}	
