@@ -40,5 +40,9 @@ public class OppCellView extends JLabel {
 		setBackground(Color.BLACK);
 	}
 	
+	public void blank() {
+		setText("");
+		setBackground(Color.WHITE);
+	}
 	
 }

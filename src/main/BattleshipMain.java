@@ -12,7 +12,7 @@ import view.BattleshipView;
 
 public class BattleshipMain {
 
-	@SuppressWarnings("unused")
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {			
 			
@@ -21,6 +21,7 @@ public class BattleshipMain {
 				BattleshipModel model = new BattleshipModel();
 				BattleshipView view = new BattleshipView();
 				BattleshipController controller = new BattleshipController(model, view);
+				model.getGame().addObserver(controller);
 			}
 
 		});

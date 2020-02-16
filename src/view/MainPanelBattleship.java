@@ -60,10 +60,10 @@ public class MainPanelBattleship extends JPanel{
 		centralPanel.setLayout(new BoxLayout(centralPanel, BoxLayout.Y_AXIS));
 		centralPanel.setPreferredSize(new Dimension(150, 425));
 		
-		JLabel lblNewLabel = new JLabel("  00 : 00");
-		lblNewLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 27));
-		lblNewLabel.setPreferredSize(new Dimension(150, 60));
-		centralPanel.add(lblNewLabel);
+		JLabel timerLabel = new JLabel("  00 : 00");
+		timerLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 27));
+		timerLabel.setPreferredSize(new Dimension(150, 60));
+		centralPanel.add(timerLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(150, 400));
@@ -189,4 +189,13 @@ public class MainPanelBattleship extends JPanel{
 		this.battleMapPanel = battleMapPanel;
 	}
 	
+	public void resetAll() {
+		for(int i = 0; i < 10; i++) 
+			for(int j = 0; j < 10; j++) {
+				oppGrid[i][j].blank();
+				ownGrid[i][j].blank();
+				}
+		tableModel.setRowCount(0);
+		//timer label default;
+	}
 }

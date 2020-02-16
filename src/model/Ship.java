@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 
 /**
@@ -9,8 +10,9 @@ import java.util.LinkedHashMap;
  * @author Gili_Patera
  *
  */
-public class Ship implements Hittable {
+public class Ship implements Hittable,Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private final ShipType type;
 	private final int shipId;
 	private final int length;
