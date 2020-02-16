@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingUtilities;
 
 import model.BattleshipModel;
+import model.GameState;
 import model.Grid;
 import model.ShipOrientation;
 import view.BattleshipView;
@@ -29,29 +30,31 @@ public class OwnCellController implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		
 		if(model.isActive()==true)
-			if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
-				int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
-				if(SwingUtilities.isLeftMouseButton(e)) {
-					if(model.getGame().playerPosition(cellView.getPoint()))
-						shipColoring(l);
+			if(model.getGame().getGameState().equals(GameState.DEFAULT))
+				if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
+					int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+					if(SwingUtilities.isLeftMouseButton(e)) {
+						if(model.getGame().playerPosition(cellView.getPoint()))
+							shipColoring(l);
+					}
+					else if(SwingUtilities.isRightMouseButton(e)){
+						gridReverting(l);
+						model.getGame().getPlayer().switchOrientation();
+						gridColoring(l);
+					}
+					
 				}
-				else if(SwingUtilities.isRightMouseButton(e)){
-					gridReverting(l);
-					model.getGame().getPlayer().switchOrientation();
-					gridColoring(l);
-				}
-				
-			}
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {	
 		if(model.isActive()==true)
-			if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
-				int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
-				gridColoring(l);
-				}
+			if(model.getGame().getGameState().equals(GameState.DEFAULT))
+				if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
+					int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+					gridColoring(l);
+					}
 		
 	}
 
@@ -59,10 +62,11 @@ public class OwnCellController implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		
 		if(model.isActive()==true)
-			if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
-				int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
-				gridReverting(l);
-			}
+			if(model.getGame().getGameState().equals(GameState.DEFAULT))
+				if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
+					int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+					gridReverting(l);
+				}
 		
 	}
 

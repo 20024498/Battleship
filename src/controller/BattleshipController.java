@@ -25,6 +25,7 @@ public class BattleshipController implements Observer{
 	private BattleshipView view;
 	private OwnGridController ownGridController;
 	private OppGridController oppGridController;
+	private Timer timer;
 	
 	
 	
@@ -60,7 +61,7 @@ public class BattleshipController implements Observer{
 							model.getGame().addObserver(BattleshipController.this);
 							
 							
-						/*
+						
 						timer = new Timer();
 						timer.scheduleAtFixedRate(new TimerTask() {
 	
@@ -71,11 +72,14 @@ public class BattleshipController implements Observer{
 								view.getPanel().getLblNewLabel().setText(model.getGame().getCountdown().toString());
 								if(model.getGame().getCountdown().getSec()==0) {
 									model.getGame().setGameState(GameState.SCONFITTA);
-									System.out.println("SCONFITTA");}
+									System.out.println("SCONFITTA");
+									this.cancel();
+								}
+								
 								
 							}
 							
-						}, 0, 1000);*/
+						}, 0, 1000);
 						
 						
 						
@@ -186,12 +190,13 @@ public class BattleshipController implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(model.getGame().getGameState().equals(GameState.VITTORIA)) {
-			
+			timer.cancel();
 			view.win();
 			
 		}
 			
 		else if(model.getGame().getGameState().equals(GameState.SCONFITTA))
+			timer.cancel();
 			view.lose();
 		
 	}

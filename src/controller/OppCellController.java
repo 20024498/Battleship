@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.BattleshipModel;
+import model.GameState;
 import model.MoveResult;
 import model.MoveResultType;
 import model.ShipCell;
@@ -27,8 +28,9 @@ public class OppCellController implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		if(model.isActive()==true) {
-		
+		if(model.isActive()==true) 
+			if(model.getGame().getGameState().equals(GameState.DEFAULT)) {
+			
 			MoveResult mr = null;
 			int x =cellView.getPoint().x;
 			int y = cellView.getPoint().y;
