@@ -74,6 +74,7 @@ public class BattleshipController implements Observer{
 									model.getGame().setGameState(GameState.SCONFITTA);
 									System.out.println("SCONFITTA");
 									this.cancel();
+									
 								}
 								
 								
@@ -191,13 +192,16 @@ public class BattleshipController implements Observer{
 	public void update(Observable o, Object arg) {
 		if(model.getGame().getGameState().equals(GameState.VITTORIA)) {
 			timer.cancel();
+			timer.purge();
 			view.win();
 			
 		}
 			
-		else if(model.getGame().getGameState().equals(GameState.SCONFITTA))
+		else if(model.getGame().getGameState().equals(GameState.SCONFITTA)) {
 			timer.cancel();
+			timer.purge();
 			view.lose();
+		}
 		
 	}
 	

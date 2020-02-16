@@ -91,18 +91,18 @@ public class SmartComputer extends Computer{
 		if(p.y == Grid.DIM-1) 
 			temp.add(new Point(p.x,Grid.DIM-2));
 		
-		if(p.x!= 0 && p.x!= Grid.DIM-1) {
+		if(p.x> 0 && p.x< Grid.DIM-1) {
 			temp.add(new Point(p.x-1,p.y));
 			temp.add(new Point(p.x+1,p.y));
 		}
 		
-		if(p.y!= 0 && p.y!= Grid.DIM-1) {
+		if(p.y> 0 && p.y< Grid.DIM-1) {
 			temp.add(new Point(p.x,p.y-1));
 			temp.add(new Point(p.x,p.y+1));
 		}
 		
 		for(Point t : temp)
-			if(!getOppGrid().getCells()[t.x][t.y].isHit())
+			if(!getOppGrid().getCells()[t.x][t.y].isHit() && !destroyTargets.contains(t))
 				out.add(t);
 			
 		return out;

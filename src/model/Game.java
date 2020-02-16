@@ -73,11 +73,15 @@ public class Game extends Observable implements Serializable  {
 			
 			
 			if(s.equals(ShipState.AFFONDATA)) {
-				if(cpu.getShipsAlive()==0)
-					setGameState(GameState.VITTORIA);
+				
 				
 				for(ShipCell c : cpu.getShips().get(new Point(x,y)).getCells().values())
 					player.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
+				
+				if(cpu.getShipsAlive()==0) {
+					setGameState(GameState.VITTORIA);
+					
+				}
 				
 				return new MoveResult(MoveResultType.AFFONDATO, new Point(x,y),cpu.getShips().get(new Point(x,y)).getType(),Turn.PLA);
 			}
@@ -115,10 +119,14 @@ public class Game extends Observable implements Serializable  {
 			ShipState s = player.hitOwnShip(p.x, p.y);
 			
 			if(s.equals(ShipState.AFFONDATA)) {
-				if(player.getShipsAlive()==0)
-					setGameState(GameState.SCONFITTA);
+				
 				for(ShipCell c : player.getShips().get(new Point(p.x,p.y)).getCells().values())
 					cpu.getOppGrid().getCells()[c.x][c.y].setState(OppGridCellState.AFFONDATO);
+				
+				if(player.getShipsAlive()==0) {
+					setGameState(GameState.SCONFITTA);
+					
+				}
 				
 				
 				return new MoveResult(MoveResultType.AFFONDATO, new Point(p.x,p.y),player.getShips().get(new Point(p.x,p.y)).getType(),Turn.CPU);
