@@ -20,7 +20,7 @@ public class NewGamePanel extends JPanel{
 	private JComboBox<Difficulty> diffiulties;
 	private JComboBox<Integer> times;
 	private Difficulty[] s = {};
-	private Integer[] s1 = {5, 7, 10};
+	private Integer[] s1 = {1, 5, 7, 10};
 	//private JButton btnOK;
 	private JLabel hint;
 	

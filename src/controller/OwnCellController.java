@@ -27,44 +27,42 @@ public class OwnCellController implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
-			int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
-			if(SwingUtilities.isLeftMouseButton(e)) {
-				if(model.getGame().playerPosition(cellView.getPoint()))
-					shipColoring(l);
+		
+		if(model.isActive()==true)
+			if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
+				int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+				if(SwingUtilities.isLeftMouseButton(e)) {
+					if(model.getGame().playerPosition(cellView.getPoint()))
+						shipColoring(l);
+				}
+				else if(SwingUtilities.isRightMouseButton(e)){
+					gridReverting(l);
+					model.getGame().getPlayer().switchOrientation();
+					gridColoring(l);
+				}
+				
 			}
-			else if(SwingUtilities.isRightMouseButton(e)){
-				gridReverting(l);
-				model.getGame().getPlayer().switchOrientation();
-				gridColoring(l);
-			}
-			
-		}
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		if(model.getGame()==null)
-			System.out.println("NULL"); 
-		else
-			System.out.println("Diverso");	
-		
-		if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
-			int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
-			gridColoring(l);
-			}
+	public void mouseEntered(MouseEvent e) {	
+		if(model.isActive()==true)
+			if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
+				int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+				gridColoring(l);
+				}
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		
-		
-		if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
-			int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
-			gridReverting(l);
-		}
+		if(model.isActive()==true)
+			if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
+				int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
+				gridReverting(l);
+			}
 		
 	}
 

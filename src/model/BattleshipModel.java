@@ -31,8 +31,8 @@ public class BattleshipModel {
 		/*active= false;
 		game= new Game();*/
 		
-		game = new Game(Difficulty.MEDIA, 10);
-		active=true;
+		game = null;
+		active=false;
 	}
 	
 	/**

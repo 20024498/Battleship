@@ -27,42 +27,44 @@ public class OppCellController implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		MoveResult mr = null;
-		int x =cellView.getPoint().x;
-		int y = cellView.getPoint().y;
+		if(model.isActive()==true) {
 		
-		if(model.getGame().getPlayer().getShipHouse().isEmpty()) {
-			if(!model.getGame().getPlayer().getOppGrid().isHit(x, y)) {
-				
-				//player
-				mr = model.getGame().playerMove(x, y);
-				
-				 if(mr.getMoveResultType().equals(MoveResultType.COLPITO))
-					 view.getPanel().getOppGrid()[x][y].hit();
-				 else if(mr.getMoveResultType().equals(MoveResultType.MANCATO))
-					 view.getPanel().getOppGrid()[x][y].missed();
-				 else {
-					 for(ShipCell c : model.getGame().getCpu().getShips().get(new Point(x,y)).getCells().values())
-						 view.getPanel().getOppGrid()[c.x][c.y].sinked();
-				 }
-				 String[] saPlayer = {mr.toString()};
-				 view.getPanel().getTableModel().insertRow(view.getPanel().getTableModel().getRowCount(), saPlayer);
-				 
-				 
-				 // pc
-				 mr = model.getGame().cpuMove();
-				 
-				 if(mr.getMoveResultType().equals(MoveResultType.MANCATO))
-					 view.getPanel().getOwnGrid()[mr.getCoord().x][mr.getCoord().y].missed();
-				 else
-					 view.getPanel().getOwnGrid()[mr.getCoord().x][mr.getCoord().y].hit();
-				 String[] saCpu = {mr.toString()};
-				 view.getPanel().getTableModel().insertRow(view.getPanel().getTableModel().getRowCount(), saCpu);
-			}
-				
+			MoveResult mr = null;
+			int x =cellView.getPoint().x;
+			int y = cellView.getPoint().y;
 			
+			if(model.getGame().getPlayer().getShipHouse().isEmpty()) {
+				if(!model.getGame().getPlayer().getOppGrid().isHit(x, y)) {
+					
+					//player
+					mr = model.getGame().playerMove(x, y);
+					
+					 if(mr.getMoveResultType().equals(MoveResultType.COLPITO))
+						 view.getPanel().getOppGrid()[x][y].hit();
+					 else if(mr.getMoveResultType().equals(MoveResultType.MANCATO))
+						 view.getPanel().getOppGrid()[x][y].missed();
+					 else {
+						 for(ShipCell c : model.getGame().getCpu().getShips().get(new Point(x,y)).getCells().values())
+							 view.getPanel().getOppGrid()[c.x][c.y].sinked();
+					 }
+					 String[] saPlayer = {mr.toString()};
+					 view.getPanel().getTableModel().insertRow(view.getPanel().getTableModel().getRowCount(), saPlayer);
+					 
+					 
+					 // pc
+					 mr = model.getGame().cpuMove();
+					 
+					 if(mr.getMoveResultType().equals(MoveResultType.MANCATO))
+						 view.getPanel().getOwnGrid()[mr.getCoord().x][mr.getCoord().y].missed();
+					 else
+						 view.getPanel().getOwnGrid()[mr.getCoord().x][mr.getCoord().y].hit();
+					 String[] saCpu = {mr.toString()};
+					 view.getPanel().getTableModel().insertRow(view.getPanel().getTableModel().getRowCount(), saCpu);
+				}
+					
+				
+			}
 		}
-		
 	}
 
 	@Override
