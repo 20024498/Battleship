@@ -269,12 +269,7 @@ public class BattleshipView extends JFrame {
 		contentPane.add(label_19);
 	}
 	
-	/*
-	 * PER EVITARE PROBLEMI DI OVERRIDE ABBIAMO
-	 * SCELTO DI CHIAMARE I DUE SEGUENTI METODI, SEPPUR 
-	 * PER setMenuBar L'ERRORE NON FOSSE NOTIFICATO DA 
-	 * JAVA, CON LA SEGUENTE MODALITA':  <nome_metodo>Variable
-	 */
+	
 	public JMenuBar getMenuBarVariable() {
 		return menuBar;
 	}
@@ -356,17 +351,6 @@ public class BattleshipView extends JFrame {
 		return JOptionPane.showConfirmDialog(this, helpPanel, "Aiuto", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 	}
 	
-	public void setEnableAll(boolean b) {    	
-	    /*	tabbedPane.setEnabled(b);
-	    	searchPanel.setAllComponentEnable(b);
-	    	
-	    	if(!b) {
-	    		searchPanel.getTableModelRisultatiRicerca().setRowCount(0);
-	    		searchPanel.getTableModelTags().setRowCount(0);
-	    		tabbedPane.setSelectedIndex(0);
-	    	}
-	    	*/
-	}
 	
 	public void win() {
 		JOptionPane.showMessageDialog(this, "HAI VINTO!", "Vittoria", JOptionPane.INFORMATION_MESSAGE, null);
@@ -374,6 +358,18 @@ public class BattleshipView extends JFrame {
 	
 	public void lose() {
 		JOptionPane.showMessageDialog(this, "HAI PERSO!", "Sconfitta", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+
+	public void correctSave() {
+		JOptionPane.showMessageDialog(this, "Salvataggio effettuato correttamente!", "Save Successful", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+	
+	public void failedSave() {
+		JOptionPane.showMessageDialog(this, "Salvataggio fallito!", "Save Failed", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+	
+	public void failedLoad() {
+		JOptionPane.showMessageDialog(this, "Caricamento fallito!", "Load Failed", JOptionPane.INFORMATION_MESSAGE, null);
 	}
 
 	

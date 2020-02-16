@@ -61,5 +61,9 @@ public class OwnCellView extends JLabel {
 	public void blank() {
 		setText("");
 		setBackground(Color.WHITE);
+		this.currentColor = Color.WHITE;
 	}
+
+	
+	
 }
