@@ -45,6 +45,10 @@ public class OwnCellController implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		if(model.getGame()==null)
+			System.out.println("NULL"); 
+		else
+			System.out.println("Diverso");	
 		
 		if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
 			int l = model.getGame().getPlayer().getShipHouse().peek().getLength();
@@ -55,6 +59,7 @@ public class OwnCellController implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		
 		
 		if(!model.getGame().getPlayer().getShipHouse().isEmpty()) {
 			int l = model.getGame().getPlayer().getShipHouse().peek().getLength();

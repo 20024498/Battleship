@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Font;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -15,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class BattleshipView extends JFrame{
+public class BattleshipView extends JFrame {
 
 	private static final int FRAME_WIDTH = 1075;
 	private static final int FRAME_HEIGTH = 525;
@@ -354,7 +356,7 @@ public class BattleshipView extends JFrame{
 		return JOptionPane.showConfirmDialog(this, helpPanel, "Aiuto", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 	}
 	
-	 public void setEnableAll(boolean b) {    	
+	public void setEnableAll(boolean b) {    	
 	    /*	tabbedPane.setEnabled(b);
 	    	searchPanel.setAllComponentEnable(b);
 	    	
@@ -364,5 +366,16 @@ public class BattleshipView extends JFrame{
 	    		tabbedPane.setSelectedIndex(0);
 	    	}
 	    	*/
-	 }
+	}
+	
+	public void win() {
+		JOptionPane.showMessageDialog(this, "HAI VINTO!", "Vittoria", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+	
+	public void lose() {
+		JOptionPane.showMessageDialog(this, "HAI PERSO!", "Sconfitta", JOptionPane.INFORMATION_MESSAGE, null);
+	}
+
+	
+	 
 }

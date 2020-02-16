@@ -1,7 +1,12 @@
 package model;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * 
@@ -42,53 +47,80 @@ public class BattleshipModel {
 		active=true;
 	}
 	
+	public void saveGame() {
+		if(active==true)
+			System.out.println(saveGameAux());
+	}
+	
+	public void loadGame() {
+		
+		boolean b = loadGameAux();
+		System.out.println(b);
+		if(b)
+			active=true;	
+	}
+	
 	/**
 	 * Questo metodo serve a salvare una partita
 	 * 
 	 */
-	public Boolean saveGame(File file) {
-		if(active==true) {
-			
+	private Boolean saveGameAux() {
+		
+			  
 			try {
-			game.save(file); 
+			FileOutputStream fileStream = new FileOutputStream("saveFile.ser"); 
+            ObjectOutputStream out = new ObjectOutputStream(fileStream); 
+            try {  
+            out.writeObject(this.game); 
+            }
+            catch(IOException e) {
+            	e.printStackTrace();
+            }
+              
+            out.close(); 
+            fileStream.close(); 
+            }
 			
-			}
+			catch(FileNotFoundException e) {
+				System.out.println("notfound");
+				return false;}
+			catch(IOException e) {
+				System.out.println("IO");
+				return false;
+				}   
+			
+			return true;
+	              
 		
-		catch(IOException ex) 
-        { 
-            return false; 
-        } 
-		
-		return true;
-		
-		}
-		
-		return false;
 	}
 	
 	/**
 	 * Questo metodo serve a caricare una partita
+	 * @throws  
 	 * 
 	 */
-	public boolean loadGame(File file) {
+	private boolean loadGameAux()  {
+		
 		try {
-		game = game.load(file);
-		active=true;
+		
+			FileInputStream fileStream = new FileInputStream("saveFile.ser"); 
+			ObjectInputStream in = new ObjectInputStream(fileStream); 
+			
+			this.game = (Game)in.readObject(); 
+	    
+			in.close(); 
+			fileStream.close(); 
+	    
 		}
 		
-		catch(IOException ex) 
-        { 
-             game=null;
-             return false;
-        } 
-          
-        catch(ClassNotFoundException ex) 
-        { 
-             game=null;
-             return false;
-        } 
+		catch(FileNotFoundException e){return false;}
 		
+		catch(IOException e) {return false;}
+		
+		catch(ClassNotFoundException e) {return false;}
+	        
 		return true;
+		
 	}
 	
 	/**

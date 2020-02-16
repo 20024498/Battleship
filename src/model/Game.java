@@ -198,7 +198,7 @@ public class Game extends Observable implements Serializable  {
 		return diff;
 	}
 
-	public void save(File file) throws IOException {
+	/*public void save(File file) throws IOException {
 		   
             
             FileOutputStream fileStream = new FileOutputStream(file); 
@@ -212,23 +212,23 @@ public class Game extends Observable implements Serializable  {
             
   
 		
-	}
+	}*/
 
-	public Game load(File file) throws IOException, ClassNotFoundException  {
+	/*public Game load(File file) throws IOException, ClassNotFoundException  {
 		
 		Game game = null;
-		       
+		 
 		FileInputStream fileStream = new FileInputStream(file); 
 	    ObjectInputStream in = new ObjectInputStream(fileStream); 
-	                 
+	    
 	    game = (Game)in.readObject(); 
-	              
+	    
 	    in.close(); 
 	    fileStream.close(); 
 	              
 		return game;
 	  
-	}
+	}*/
 
 
 	public GameState getGameState() {

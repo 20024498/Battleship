@@ -214,4 +214,13 @@ public class MainPanelBattleship extends JPanel implements Observer {
 
 	}
 	
+	public void resetAll() {
+		for(int i = 0; i < 10; i++) 
+			for(int j = 0; j < 10; j++) {
+				oppGrid[i][j].blank();
+				ownGrid[i][j].blank();
+				}
+		tableModel.setRowCount(0);
+		//timer label default;
+	}
 }
